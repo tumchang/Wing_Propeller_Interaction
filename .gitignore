@@ -1,0 +1,16 @@
+# Ignore directories for wing_propeller_interaction project
+
+xrotor_api/
+.idea/
+
+VSP/Steady/
+VSP/UnSteady/
+VSP/test_model/
+VSP/airfoil/
+VSP/fuselage/
+VSP/_pycache_/
+
+Lifting_Line/LILI/archive/
+Lifting_Line/bem_solver/APC_Propeller_data/
+Lifting_Line/LILI/atr72-500_out/
+Lifting_Line/_pycache_/
