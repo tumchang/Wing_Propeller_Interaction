@@ -45,4 +45,14 @@ In order to succesfully run this project, several modules should be installed at
   ```
 * XRotor Api [Module Homepage](https://pypi.org/project/xrotor/)
   Since I have altered the XRotor API source code to get the far-field slip-stream induced speed output. The XRotor API is already compiled and ready for use.
-  Just copy the **XRotor_API** folder in this GITHUB project to Anaconda environment **site-packages** folder. 
+  Just copy the **XRotor_API** folder in this GITHUB project to Anaconda environment **site-packages** folder in your computer.
+
+  
+## Task Lists
+ - [x] Development of CPACS & OpenVSP interface
+ - [x] OpenVSP - Gmsh - SU<sup>2</sup>
+ - [ ] XFoil - XRotor - LiftingLine
+ - [ ] Wing Optimization
+ - [ ] Integration to the pre-existing aircraft design loop @ Bauhaus Luftfahrt e.V
+ - [ ] Thesis Writing
+ - [ ] :tada:
