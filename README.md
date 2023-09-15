@@ -32,10 +32,10 @@ In order to succesfully run this project, several modules should be installed at
   3. Delete two folders called **charm-0.1.0-py3.6.egg & openvsp-3.26.1-py3.6.egg**, two files called **degen_geom-0.0.1-py3.6.egg & utilities-0.1.0-py3.6.egg** in **site-packages** folder
   4. Finally copy three exe files called **vspaero.exe, vspslicer.exe, vspviewer.exe** under OpenVSP download folder to Anaconda env folder.
   5. Check all installed packages in Pycharm :)
-  ```Python
-  Import openvsp as vsp
-  vsp.VSPCheckSetup()
-  ```
+    ```Python
+    Import openvsp as vsp
+    vsp.VSPCheckSetup()
+    ```
   > **Note:** Only OpenVSP 3.26.1 is tested for this project. Other Versions of OpenVSP maybe cause conflicts!
 * GMSH Api [Module Homepage](https://pypi.org/project/gmsh/)
   ```bash
