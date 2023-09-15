@@ -20,6 +20,8 @@ In order to succesfully run this project, several modules should be installed at
 * OpenVSP API 3.26.1 [DownLoad Link](https://openvsp.org/download_old.php)
   1. After download, Navigate to ***./OpenVSP-3.26.1-win64/python/*** folder. Install **utilities, degen_geom, openvsp, CHARM, AvlPy** one by one.
   Take utilities for example, first navigate to the **utilities** folder using Anaconda Prompt, then excute:
+
+
   ```bash
   python setup.py build
   ```
