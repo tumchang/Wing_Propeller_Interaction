@@ -11,7 +11,7 @@ With Special Thanks to my Supervisors during my thesis
 [^1]: TUM.
 [^2]: Bauhaus Luftfahrt e.V.
 
-![alt text](https://img.airliners.de/2021/02/d328eco-EDFilV__wide__824)
+![alt text](https://imgr1.flugrevue.de/image-169Gallery-86189129-1910293.jpg)
 
 ## Instructions on Installation of Python Module needed by this project
 In order to succesfully run this project, several modules should be installed at first.
