@@ -1148,7 +1148,6 @@ def su2_analysis(vsp_model, vsp_output_case_dir):
     su2_exe_dir = fr"P:\SU2-v7.5.1-win64\bin\SU2_CFD"
     cfg_dir = fr'./{vsp_model.name}.cfg'
 
-
     # Change directory in command prompt
     shutil.copy(cfg_dir, vsp_output_case_dir)
     os.chdir(f"{vsp_output_case_dir}")

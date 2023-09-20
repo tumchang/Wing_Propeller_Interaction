@@ -15,7 +15,6 @@ Copyright @ Bauhaus Luftfahrt e.V
 import pandas as pd
 import matplotlib.pyplot as plt
 
-
 # Specify the folder first
 dir1 = './atr72-500_out/propFalse_RPM0/'
 dir2 = './atr72-500_out/propTrue_RPM800/'

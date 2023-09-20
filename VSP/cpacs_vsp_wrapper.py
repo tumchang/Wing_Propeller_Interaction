@@ -22,7 +22,7 @@ from scipy.interpolate import interp1d
 from tigl3.tigl3wrapper import *
 from tixi3.tixi3wrapper import *
 from tixi3.tixi3wrapper import Tixi3Exception
-from Functions import *
+from VSP.Functions import *
 
 MODEL = "/cpacs/vehicles/aircraft/model"
 REFS = MODEL + "/reference"
@@ -44,6 +44,7 @@ class CPACS:
 
         self.model = self.cpacs_dict['cpacs']['vehicles']['aircraft']['model']
         self.profile = self.cpacs_dict['cpacs']['vehicles']['profiles']
+        self.aeromap = self.cpacs_dict['cpacs']['toolspecific']['tool']['ns1:liftingLine']['ns1:toolInput']['ns1:aeroCases']['ns1:aeroCase']
         self.tixi = Tixi3()
         print("reading cpacs with tixi...")
         self.tixi.open(cpacs_file)

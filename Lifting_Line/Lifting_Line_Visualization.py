@@ -84,9 +84,11 @@ def parse_attributes(tecplot_dir, name):
     return geom_secs
 
 
-def parse_distribution(tecplot_dir, name):
+def parse_distribution(tecplot_dir, name, parse_total=False):
     # distribution_file = tecplot_dir + "/aircraft_distribution.plt"
     distribution_file = tecplot_dir + f'/{name}_distribution.plt'
+    if parse_total:
+        distribution_file = tecplot_dir + f'/{name}_total.plt'
 
     # Lists to store columns and data
     columns = []
@@ -309,7 +311,7 @@ def panel_dist_plot(distribution_dic, variable,
         plt.colorbar(surf, ax=ax, label='CFY Value (scaled by 10)')
 
     # TODO: Change the panel number to be plotted
-    for i in range(88):
+    for i in range(40):
         # Unpack XYZ data
         X = geom_secs[i].XYZ[:, 0]
         Y = geom_secs[i].XYZ[:, 1]

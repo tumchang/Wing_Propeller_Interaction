@@ -16,6 +16,7 @@ Copyright @ Bauhaus Luftfahrt e.V
 
 import subprocess
 import time
+import shutil
 
 
 def xfoil_polar(path_xfoil, airfoil):
@@ -50,7 +51,7 @@ def xfoil_polar(path_xfoil, airfoil):
     process.stdin.flush()
     time.sleep(sleep_time)
 
-    process.stdin.write(f"{0.44}\n")
+    process.stdin.write(f"{0.00}\n")
     process.stdin.flush()
     time.sleep(sleep_time)
 
@@ -115,6 +116,8 @@ def xfoil_polar(path_xfoil, airfoil):
 
     # Ensure the process finishes
     process.wait()
+
+
 
     return
 

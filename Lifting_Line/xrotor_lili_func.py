@@ -17,17 +17,25 @@ Copyright @ Bauhaus Luftfahrt e.V
 """
 
 # Module import
-import subprocess
-import time
-import os
-import shutil
+import xmltodict
 import math
 import xml.etree.ElementTree as ET
 from xrotor import XRotor
 from xrotor.model import Case
-from scipy.interpolate import interp1d
 from scipy.optimize import minimize
 from Lifting_Line_Visualization import *
+from VSP.cpacs_vsp_wrapper import *
+
+
+class OperPNT:
+    def __init__(self):
+        self.beta_70 = None
+        self.rho = None
+        self.hub_radius = None
+        self.tip_radius = None
+        self.RPM_list = None
+        self.Vinf = None
+        self.B = None
 
 
 class AirfoilPolar:
@@ -149,20 +157,21 @@ class Propeller:
     airfoil polar data
     """
 
-    def __init__(self, polar_file_dir, geom_dist, rho, hub_radius, tip_radius, RPM, Vinf, B):
+    def __init__(self, polar_file_dir, geom_dist, oper_pnt, RPM):
         # hold data for the prop operate condition
 
         self.airfoil_polar = AirfoilPolar(polar_file_dir)
         self.geometry = PropellerGeom(geom_dist)
-        self.rho = rho
-        self.hub_radius = hub_radius
-        self.tip_radius = tip_radius
+        self.rho = oper_pnt.rho
+        self.hub_radius = oper_pnt.hub_radius
+        self.tip_radius = oper_pnt.tip_radius
         self.RPM = RPM
         self.omega = (RPM * 2 * np.pi) / 60
-        self.Vinf = Vinf
-        self.B = B
+        self.Vinf = oper_pnt.Vinf
+        self.B = oper_pnt.B
         self.n = RPM / 60
-        self.J = Vinf / ((RPM / 60) * (2 * tip_radius))
+        self.J = oper_pnt.Vinf / ((RPM / 60) * (2 * oper_pnt.tip_radius))
+        self.beta_70 = oper_pnt.beta_70
         self.Result_BEM = ResultBEM()
         self.local_v = None
 
@@ -356,8 +365,8 @@ def geomdata(beta_70=55.31):
     return dense_geom_data
 
 
-def case(beta_70, propeller):
-    geom_data = geomdata(beta_70=beta_70)
+def case(propeller):
+    geom_data = geomdata(beta_70=propeller.beta_70)
     # geom_data = validation_geomdata()
 
     # geom_data = ten_eight_MLH_geomdata()
@@ -446,8 +455,8 @@ def vput_xr(xr, rpm, print_flag=False):
 
     """
     r_norm = xr.station_conditions[0]
-    vt = xr.station_conditions[6]
-    va = xr.station_conditions[7]
+    vt = xr.station_conditions[8]
+    va = xr.station_conditions[9]
 
     data = np.vstack((r_norm, va, vt)).T
 
@@ -640,6 +649,9 @@ def add_slipstream(cpacs_ref, slipstream, RPM, prop_flag=True):
         tangential_str = ';'.join(map(str, tangential))
         elem.text = tangential_str
 
+    # for elem in root.findall(".//ll:chordwise", namespaces=namespace):
+    #     text = elem
+
     # Write the modified xml
     write_path = f'./LILI/{aircraft_name}/prop{prop_flag}_RPM{RPM}'
     # Check if the directory exists or not
@@ -707,12 +719,18 @@ def run_lili(lili_exe_path, xml_path):
 def lili_visualization(xml_dir, save_plot=False):
     aircraft_name = "CPACS4LILI_LILI-Config_1"
 
+    # Get the Overall Lift to Drag ratio
+
     tecplot_dir = xml_dir + '/ReturnDirectory/CPACS4LILI_LILI-Config_1.lili.V3.1/export/tecplot'
     total_tecplot_dir = xml_dir + '/ReturnDirectory'
 
     geom_secs = parse_attributes(tecplot_dir, aircraft_name)
     distribution, distribution_dict = parse_distribution(tecplot_dir, aircraft_name)
     total_distribution = parse_total_dist(total_tecplot_dir)
+    total_coeff = parse_distribution(tecplot_dir, aircraft_name, parse_total=True)
+
+    CD = float(total_coeff[0]['CFX_FROM_CDI'])
+    CL = float(total_coeff[0]['CFZ'])
 
     fig1 = panel_dist_plot(distribution_dict, "CFZ", geom_secs,
                            3, mesh_flag=False)
@@ -741,9 +759,9 @@ def lili_visualization(xml_dir, save_plot=False):
         fig3.savefig(os.path.join(xml_dir, 'lift_distribution.png'), dpi=dpi)
 
     # Show all the figures
-    plt.show()
+    # plt.show()
 
-    return
+    return CL, CD, total_coeff[0]
 
 # def a_phi_equations(vars, cl_val, cd_val):
 #     a, phi = vars
@@ -1201,3 +1219,142 @@ def va_vt_plot_bem(prop):
                data, header=header_str, delimiter="\t", comments="", fmt="%.5f")
 
     plt.show()
+
+
+# ======================================================================================================================
+# This section is used to store all the functions that related
+# to PyoptSparse process
+# ======================================================================================================================
+def variable_change(xdict, xml_path):
+    chord_3, twist_3, half_span, tip_x = xdict["xvars"][0], xdict["xvars"][1], xdict["xvars"][2], xdict["xvars"][3]
+
+    with open(xml_path, "r") as fp:
+        cpacs_dict = xml.parse(fp.read())
+
+    main_wing = cpacs_dict['cpacs']['vehicles']['aircraft']['model']['wings']['wing'][0]
+
+    main_wing['sections']['section'][2]['transformation']['scaling']['x'] = f'{chord_3}'
+    main_wing['sections']['section'][2]['transformation']['rotation']['y'] = f'{twist_3}'
+    main_wing['sections']['section'][2]['transformation']['translation']['y'] = f'{half_span}'
+    main_wing['sections']['section'][2]['transformation']['translation']['x'] = f'{tip_x}'
+
+    new_xml_content = xmltodict.unparse(cpacs_dict)
+
+    with open(xml_path, "w") as fp:
+        fp.write(new_xml_content)
+
+
+def objective_function(x, cpacs_reference):
+    chord_3, twist_3 = x[0], x[1]
+
+    with open(cpacs_reference, "r") as fp:
+        cpacs_dict = xml.parse(fp.read())
+
+    main_wing = cpacs_dict['cpacs']['vehicles']['aircraft']['model']['wings']['wing'][0]
+
+    main_wing['sections']['section'][2]['transformation']['scaling']['x'] = f'{chord_3}'
+    main_wing['sections']['section'][2]['transformation']['rotation']['y'] = f'{twist_3}'
+
+    new_xml_content = xmltodict.unparse(cpacs_dict)
+
+    with open(cpacs_reference, "w") as fp:
+        fp.write(new_xml_content)
+
+
+    # # Pre-allocate data
+    # chord_list = []
+    # twist_list = []
+    # section_x_list = []
+    # section_y_list = []
+    # span_list = []
+    # sweep_list = []
+    #
+    # # Read the cpacs ref file
+    # cpacs = CPACS(cpacs_reference)
+    #
+    # # Extract the main Wing data
+    # main_wing = cpacs.model['wings']['wing'][0]
+    #
+    # for i in range(len(main_wing['sections']['section'])):
+    #     chord_list.append(float(main_wing['sections']['section'][i]['transformation']['scaling']['x']))
+    #     twist_list.append(float(main_wing['sections']['section'][i]['transformation']['rotation']['y']))
+    #     section_x_list.append(float(main_wing['sections']['section'][i]['transformation']['translation']['x']))
+    #     section_y_list.append(float(main_wing['sections']['section'][i]['transformation']['translation']['y']))
+    #
+    # chord = np.asarray(chord_list)
+    # twist = np.asarray(twist_list)
+    # section_x = np.asarray(section_x_list)
+    # section_y = np.asarray(section_y_list)
+    #
+    # for i in range(len(chord) - 1):
+    #     span_list.append(section_span := section_y[i+1] - section_y[i])
+    #     sweep_list.append((section_x[i+1] - section_x[i]) / section_span)
+    #
+    # span = np.asarray(span_list)
+    # sweep = np.asarray(sweep_list)
+
+
+
+
+# TODO: In future it should be replaced with DLR software to estimate parasite drag
+# def parasite_drag(cpacs, operpnt):
+#     # Pre-allocate data
+#     chord_list = []
+#     twist_list = []
+#     thick_list = []
+#     section_x_list = []
+#     section_y_list = []
+#
+#     # Extract the main Wing data
+#     main_wing = cpacs.model['wings']['wing'][0]
+#
+#     for i in range(len(main_wing['sections']['section'])):
+#         chord_list.append(float(main_wing['sections']['section'][i]['transformation']['scaling']['x']))
+#         twist_list.append(float(main_wing['sections']['section'][i]['transformation']['rotation']['y']))
+#         section_x_list.append(float(main_wing['sections']['section'][i]['transformation']['translation']['x']))
+#         section_y_list.append(float(main_wing['sections']['section'][i]['transformation']['translation']['y']))
+#
+#     chord = np.asarray(chord_list)
+#     twist = np.asarray(twist_list)
+#     section_x = np.asarray(section_x_list)
+#     section_y = np.asarray(section_y_list)
+#
+#     # T_C max for Do328 at wing root section
+#     t_c_max = 0.17305
+#
+#     mu = 1.81e-5
+#     Re = operpnt.rho * operpnt.Vinf * cpacs.ref_c / mu
+#     Ma = float(cpacs.aeromap[0]['ns1:specification']['ns1:machNumber'])
+#
+#     # Cut off reynolds number
+#     Re_co = 38 * ((cpacs.ref_c / 1e-5) ** 1.053)
+#
+#     if Re > Re_co:
+#         Re = Re_co
+#
+#     Cf = 0.455 * ((1 + 0.144 * Ma * Ma) ** -0.65) / (math.log10(Re) ** 2.58)
+#
+#
+#     return Cdo
+
+
+if __name__ == '__main__':
+    oper_point = OperPNT()
+    oper_point.beta_70 = 55.31
+    oper_point.rho = 1.225
+    oper_point.hub_radius = 0.376
+    oper_point.tip_radius = 1.88
+    # oper_point.RPM_list = list(range(700, 1001, 100))
+    oper_point.RPM_list = [800]
+    oper_point.Vinf = 142
+    oper_point.B = 6
+
+    cpacs_ref = "./LILI/Do328_out/propTrue_RPM800/propTrue_RPM800.xml"
+    # optimize_wing()
+    # objective_function(cpacs_ref, oper_point)
+
+
+
+
+
+
