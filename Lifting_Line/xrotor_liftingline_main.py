@@ -53,15 +53,15 @@ if not os.path.exists(polar_dir):
     shutil.move(f'./{airfoil_name}_polar.txt', './xfoil')
 
 # Definition of propeller operating point
-oper_point = OperPNT()
-oper_point.beta_70 = 55.31
-oper_point.rho = 1.225
-oper_point.hub_radius = 0.376
-oper_point.tip_radius = 1.88
-# oper_point.RPM_list = list(range(700, 1001, 100))
-oper_point.RPM_list = [800]
-oper_point.Vinf = 142
-oper_point.B = 6
+# oper_point = OperPNT()
+# oper_point.beta_70 = 55.31
+# oper_point.rho = 1.225
+# oper_point.hub_radius = 0.376
+# oper_point.tip_radius = 1.88
+# # oper_point.RPM_list = list(range(700, 1001, 100))
+# oper_point.RPM_list = [800]
+# oper_point.Vinf = 142
+# oper_point.B = 6
 
 """
 ================================================================================================================
@@ -70,7 +70,7 @@ This section is used for Optimization process
 """
 
 
-def xf_xr_lili(oper_pnt, cpacs_init, RPM, xdict):
+def xf_xr_lili(oper_pnt, cpacs_init, RPM, xdict, origin_wing):
     # L_D_list = []
 
     # for RPM in oper_pnt.RPM_list:
@@ -105,19 +105,41 @@ def xf_xr_lili(oper_pnt, cpacs_init, RPM, xdict):
                               RPM, prop_flag=prop_flag)
     print(xml_path)
     print("slipstream added")
-    variable_change(xdict, xml_path)
+
+    Cdo_wing = variable_change(xdict, xml_path, origin_wing.section, oper_pnt)
     print("new variable for new opt iter added")
 
     # Run the Lifting Line.exe for conducting analysis
     xml_dir = run_lili(lili_path, xml_path)
 
+    new_wing = WingShape(xml_path)
+
     # Lifting Line results visualization
-    CL, CD, total_coeff = lili_visualization(xml_dir, save_plot=False)
+    CL, CDi, total_coeff = lili_visualization(xml_dir, save_plot=False)
 
-    # Lift = CL * ((2.21734905105455 + xdict["xvars"][0]) * (xdict["xvars"][2] - 3.66034288011383) / 2 + 4.914513)
-    Drag = CD * ((2.21734905105455 + xdict["xvars"][0]) * (xdict["xvars"][2] - 3.66034288011383) / 2 + 4.914513)
+    Lift = CL * new_wing.area
+    Drag = (CDi + 4 * Cdo_wing) * new_wing.area
 
-    return Drag
+    L_D = Lift/Drag
+    # Lift = CL * (
+    #         ((origin_df['chord'][1] + xdict["chord3"]) * (xdict["half span"] - origin_df['tip_y'][1]) / 2)
+    #         + ((origin_df['chord'][0] + origin_df['chord'][1]) * (origin_df['tip_y'][1] - origin_df['tip_y'][0]) / 2)
+    # )
+    # Drag = (CDi + Cdo) * (
+    #         ((origin_df['chord'][1] + xdict["chord3"]) * (xdict["half span"] - origin_df['tip_y'][1]) / 2)
+    #         + ((origin_df['chord'][0] + origin_df['chord'][1]) * (origin_df['tip_y'][1] - origin_df['tip_y'][0]) / 2)
+    # )
+
+    # Breguet Range Equation
+    # 600 g/kWh (two Engines)
+    PSFC = 600/(1000*1000*3600)
+    s = ((1 / (9.8*PSFC))
+         * L_D *
+         np.log(origin_wing.MTOW / (origin_wing.ZFW_no_wing + new_wing.wing_weight_est)))
+
+    Obj = s
+
+    return Obj, new_wing.wing_weight_est
 
 
 if __name__ == '__main__':

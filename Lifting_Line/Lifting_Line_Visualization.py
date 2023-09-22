@@ -161,7 +161,7 @@ def parse_distribution(tecplot_dir, name, parse_total=False):
 def parse_total_dist(total_dist_dir):
     # 1. Extract Variable Names
     variables = []
-    with open(total_dist_dir + "/CPACS4LILI_Distribution.plt", "r") as file:
+    with open(total_dist_dir + "/CPACS4LILI_LILI-Config_1_total.plt", "r") as file:
         lines = file.readlines()
         start_idx = next(i for i, line in enumerate(lines) if "VARIABLES" in line)
         end_idx = next(i for i, line in enumerate(lines[start_idx:]) if "ZONE" in line) + start_idx
@@ -173,7 +173,7 @@ def parse_total_dist(total_dist_dir):
     sections = []
     current_section = []
     in_data_section = False
-    with open(total_dist_dir + "/CPACS4LILI_Distribution.plt", "r") as file:
+    with open(total_dist_dir + "/CPACS4LILI_LILI-Config_1_total.plt", "r") as file:
         for line in file:
             stripped_line = line.strip()
             if stripped_line.startswith("ZONE"):

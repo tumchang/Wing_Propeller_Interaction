@@ -440,7 +440,7 @@ def operate_xrotor(cases, RPM):
 
     xr.operate(rpm=RPM)
 
-    xr.print_case()
+    # xr.print_case()
 
     return xr
 
@@ -566,7 +566,6 @@ def xr_postprocess(xr):
 
 
 def slipstream_normalize(slip, xr):
-
     slip_norm = slip.copy()
     slip_norm[:, 1:] = slip_norm[:, 1:] / xr.case.conditions.vel
 
@@ -726,42 +725,43 @@ def lili_visualization(xml_dir, save_plot=False):
 
     geom_secs = parse_attributes(tecplot_dir, aircraft_name)
     distribution, distribution_dict = parse_distribution(tecplot_dir, aircraft_name)
-    total_distribution = parse_total_dist(total_tecplot_dir)
+    total_distribution = parse_total_dist(tecplot_dir)
     total_coeff = parse_distribution(tecplot_dir, aircraft_name, parse_total=True)
 
-    CD = float(total_coeff[0]['CFX_FROM_CDI'])
-    CL = float(total_coeff[0]['CFZ'])
+    CD = float(total_distribution[0]['CFX_FROM_CDI'])
+    CL = float(total_distribution[0]['CFZ'])
 
-    fig1 = panel_dist_plot(distribution_dict, "CFZ", geom_secs,
-                           3, mesh_flag=False)
-
-    fig2, df_cl = cl_distribution_2d(total_distribution)
-    fig3, df_Fz = lift_distribution_2d(total_distribution)
-
-    # Save the cl and Lift distribution to csv
-    df_cl.to_csv(xml_dir + '/cl_dist.csv', index=False)
-    df_Fz.to_csv(xml_dir + '/Fz_dist.csv', index=False)
-
-    # Save the plot if necessary
-    if save_plot:
-        dpi = 600
-
-        # List of desired view angles (elev, azim)
-        view_angles = [(30, -135), (0, 180)]  # Example angles
-        ax1 = fig1.axes[0]  # assuming there's only one axis in fig1
-
-        for elev, azim in view_angles:
-            ax1.view_init(elev=elev, azim=azim)
-            filename = f'panel_dist_plot_{elev}_{azim}.png'
-            fig1.savefig(os.path.join(xml_dir, filename), dpi=dpi)
-
-        fig2.savefig(os.path.join(xml_dir, 'cl_distribution.png'), dpi=dpi)
-        fig3.savefig(os.path.join(xml_dir, 'lift_distribution.png'), dpi=dpi)
+    # fig1 = panel_dist_plot(distribution_dict, "CFZ", geom_secs,
+    #                        3, mesh_flag=False)
+    #
+    # fig2, df_cl = cl_distribution_2d(total_distribution)
+    # fig3, df_Fz = lift_distribution_2d(total_distribution)
+    #
+    # # Save the cl and Lift distribution to csv
+    # df_cl.to_csv(xml_dir + '/cl_dist.csv', index=False)
+    # df_Fz.to_csv(xml_dir + '/Fz_dist.csv', index=False)
+    #
+    # # Save the plot if necessary
+    # if save_plot:
+    #     dpi = 600
+    #
+    #     # List of desired view angles (elev, azim)
+    #     view_angles = [(30, -135), (0, 180)]  # Example angles
+    #     ax1 = fig1.axes[0]  # assuming there's only one axis in fig1
+    #
+    #     for elev, azim in view_angles:
+    #         ax1.view_init(elev=elev, azim=azim)
+    #         filename = f'panel_dist_plot_{elev}_{azim}.png'
+    #         fig1.savefig(os.path.join(xml_dir, filename), dpi=dpi)
+    #
+    #     fig2.savefig(os.path.join(xml_dir, 'cl_distribution.png'), dpi=dpi)
+    #     fig3.savefig(os.path.join(xml_dir, 'lift_distribution.png'), dpi=dpi)
 
     # Show all the figures
     # plt.show()
 
     return CL, CD, total_coeff[0]
+
 
 # def a_phi_equations(vars, cl_val, cd_val):
 #     a, phi = vars
@@ -934,7 +934,7 @@ def a_loop(a, a_prime, prop_def, geom_data, loss_model):
         a_prime_new_computed = (sigma_r * K_prime) / (F + sigma_r * K_prime)
 
     elif loss_model == 'Prandtl':
-        a_new_computed = sigma_r * Cn / (4 * F * np.sin(Phi)**2 + sigma_r * Cn)
+        a_new_computed = sigma_r * Cn / (4 * F * np.sin(Phi) ** 2 + sigma_r * Cn)
         a_prime_new_computed = sigma_r * Ct / (4 * F * np.sin(Phi) * np.cos(Phi) - sigma_r * Ct)
 
     # Applying damping to the induction factor updates
@@ -1128,8 +1128,8 @@ def va_vt_plot_xr(xrotor):
 
     plt.figure(figsize=(10, 6))
 
-    plt.plot(r_R_station, va_blade*142, marker='o', label='Va')
-    plt.plot(r_R_station, vt_blade*142, marker='x', label='Vt')
+    plt.plot(r_R_station, va_blade * 142, marker='o', label='Va')
+    plt.plot(r_R_station, vt_blade * 142, marker='x', label='Vt')
 
     plt.title("Va, Vt on blade distribution XRotor")
     plt.xlabel("r/R [-]")
@@ -1165,7 +1165,7 @@ def va_vt_plot_bem(prop):
         vind_gam[i] = blds / (2.0 * pi * prop.Result_BEM.F[i] * xi[i])
 
     # Solve for gam using Numpy's linear algebra solver
-    gam = vind[:]/vind_gam
+    gam = vind[:] / vind_gam
 
     vt_slip = 2 * prop.Result_BEM.F * vt_blade
     va_slip = 2 * prop.Result_BEM.F * va_blade
@@ -1225,8 +1225,79 @@ def va_vt_plot_bem(prop):
 # This section is used to store all the functions that related
 # to PyoptSparse process
 # ======================================================================================================================
-def variable_change(xdict, xml_path):
-    chord_3, twist_3, half_span, tip_x = xdict["xvars"][0], xdict["xvars"][1], xdict["xvars"][2], xdict["xvars"][3]
+class WingShape:
+    def __init__(self, cpacs_init):
+        self.segment = None
+        self.sweep_25 = None
+        wing_original_shape_df, original_area, original_AR, origin_lambda = self.get_original_wing(cpacs_init)
+        self.section = wing_original_shape_df
+        self.area = original_area
+        self.taper_ratio = origin_lambda
+        self.AR = original_AR
+        self.t_c_root = 0.17305
+        self.ult_load_factor = 3.5
+        self.MTOW = 13990
+        self.wing_weight_est = (
+                                0.0051 * (2.205*self.MTOW*self.ult_load_factor)**0.557 * (10.7639104*self.area)**0.649
+                                * self.AR**0.5 * (self.t_c_root**-0.4) * (1 + self.taper_ratio)**0.1
+                                * (np.cos(self.sweep_25))**-1 * (10.7639104*0.1*self.area)**0.1
+                                )
+        self.ZFW_no_wing = 12610 - 3738 - self.wing_weight_est
+
+    def get_original_wing(self, cpacs_init):
+        # Get the section data
+        chord = []
+        twist = []
+        tip_x = []
+        tip_y = []
+
+        with open(cpacs_init, "r") as fp:
+            cpacs_dict = xml.parse(fp.read())
+
+        main_wing = cpacs_dict['cpacs']['vehicles']['aircraft']['model']['wings']['wing'][0]
+
+        for i in range(len(main_wing['sections']['section'])):
+            chord.append(float(main_wing['sections']['section'][i]['transformation']['scaling']['x']))
+            twist.append(float(main_wing['sections']['section'][i]['transformation']['rotation']['y']))
+            tip_x.append(float(main_wing['sections']['section'][i]['transformation']['translation']['x']))
+            tip_y.append(float(main_wing['sections']['section'][i]['transformation']['translation']['y']))
+
+        wing_original_shape_df = pd.DataFrame({
+            'chord': chord,
+            'twist': twist,
+            'tip_x': tip_x,
+            'tip_y': tip_y
+        })
+
+        # Total parameters
+        original_area = (chord[0] + chord[1]) * (tip_y[1] - tip_y[0]) + (chord[1] + chord[2]) * (tip_y[2] - tip_y[1])
+        original_AR = (2*tip_y[2])**2 / original_area
+        origin_lambda = chord[2]/chord[0]
+        sweep_25 = np.arctan(((tip_x[2] + 0.25*chord[2]) - (tip_x[0] + 0.25*chord[0])) / tip_y[2])
+
+        self.sweep_25 = sweep_25
+
+        # Get the segment data
+        sweep = []
+        taper_ratio = []
+        for i in range(1, len(tip_x)):
+            sweep.append(np.arctan((tip_x[i] - tip_x[i-1]) / (tip_y[i] - tip_y[i-1])))
+            taper_ratio.append(chord[i] / chord[i-1])
+        sweep = np.asarray(sweep)
+        taper_ratio = np.asarray(taper_ratio)
+
+        segment_df = pd.DataFrame({
+            'sweep': sweep,
+            'taper_ratio': taper_ratio,
+        })
+
+        self.segment = segment_df
+
+        return wing_original_shape_df, original_area, original_AR, origin_lambda
+
+
+def variable_change(xdict, xml_path, origin_df, operpnt):
+    chord_3, twist_3, half_span = xdict["chord3"], xdict["twist3"], xdict["half span"]
 
     with open(xml_path, "r") as fp:
         cpacs_dict = xml.parse(fp.read())
@@ -1236,106 +1307,56 @@ def variable_change(xdict, xml_path):
     main_wing['sections']['section'][2]['transformation']['scaling']['x'] = f'{chord_3}'
     main_wing['sections']['section'][2]['transformation']['rotation']['y'] = f'{twist_3}'
     main_wing['sections']['section'][2]['transformation']['translation']['y'] = f'{half_span}'
-    main_wing['sections']['section'][2]['transformation']['translation']['x'] = f'{tip_x}'
+
+    # Get the original Sweep angle
+    y_2 = float(main_wing['sections']['section'][2]['transformation']['translation']['y'])
+    y_1 = float(main_wing['sections']['section'][1]['transformation']['translation']['y'])
+    delta_x = float(main_wing['sections']['section'][2]['transformation']['translation']['x'])
+
+    sweep_init = 0.0764765867750202
+
+    tip_x_3 = np.tan(sweep_init) * (half_span - y_1)
+
+    main_wing['sections']['section'][2]['transformation']['translation']['x'] = f'{tip_x_3}'
+
+    # Change the reference area
+    new_area = (
+                 (origin_df["chord"][0] + origin_df["chord"][1]) * (origin_df["tip_y"][1] - origin_df["tip_y"][0])
+                 + (origin_df["chord"][1] + chord_3) * (half_span - origin_df["tip_y"][1])
+                )
+    cpacs_dict['cpacs']['vehicles']['aircraft']['model']['reference']['area'] = f'{new_area}'
+    # Change of the mean chord length
+    l_mac = new_area/(2*half_span)
+    cpacs_dict['cpacs']['vehicles']['aircraft']['model']['reference']['length'] = f'{l_mac}'
+
+    # Parasite Calculation part=========================================================================================
+    # T_C max for Do328 at wing root section
+    t_c_max = 0.17305
+    mu = 1.81e-5
+    Re = operpnt.rho * operpnt.Vinf * l_mac / mu
+    aerocase = cpacs_dict['cpacs']['toolspecific']['tool']['ns1:liftingLine']['ns1:toolInput']['ns1:aeroCases']
+    Ma = float(aerocase['ns1:aeroCase']['ns1:specification']['ns1:machNumber'])
+
+    # Cut off reynolds number
+    Re_co = 38 * ((l_mac / 1e-5) ** 1.053)
+
+    if Re > Re_co:
+        Re = Re_co
+
+    Cf = 0.455 * ((1 + 0.144 * Ma * Ma) ** -0.65) / (np.log10(Re) ** 2.58)
+
+    Fw = (1 + 1.5 * t_c_max + 100 * t_c_max**4) * (1.34 * Ma**0.18)
+
+    Cdo = 2 * Fw * Cf
 
     new_xml_content = xmltodict.unparse(cpacs_dict)
+
+    print(f"Cdo={Cdo}, new_area={new_area}, l_mac={l_mac}")
 
     with open(xml_path, "w") as fp:
         fp.write(new_xml_content)
 
-
-def objective_function(x, cpacs_reference):
-    chord_3, twist_3 = x[0], x[1]
-
-    with open(cpacs_reference, "r") as fp:
-        cpacs_dict = xml.parse(fp.read())
-
-    main_wing = cpacs_dict['cpacs']['vehicles']['aircraft']['model']['wings']['wing'][0]
-
-    main_wing['sections']['section'][2]['transformation']['scaling']['x'] = f'{chord_3}'
-    main_wing['sections']['section'][2]['transformation']['rotation']['y'] = f'{twist_3}'
-
-    new_xml_content = xmltodict.unparse(cpacs_dict)
-
-    with open(cpacs_reference, "w") as fp:
-        fp.write(new_xml_content)
-
-
-    # # Pre-allocate data
-    # chord_list = []
-    # twist_list = []
-    # section_x_list = []
-    # section_y_list = []
-    # span_list = []
-    # sweep_list = []
-    #
-    # # Read the cpacs ref file
-    # cpacs = CPACS(cpacs_reference)
-    #
-    # # Extract the main Wing data
-    # main_wing = cpacs.model['wings']['wing'][0]
-    #
-    # for i in range(len(main_wing['sections']['section'])):
-    #     chord_list.append(float(main_wing['sections']['section'][i]['transformation']['scaling']['x']))
-    #     twist_list.append(float(main_wing['sections']['section'][i]['transformation']['rotation']['y']))
-    #     section_x_list.append(float(main_wing['sections']['section'][i]['transformation']['translation']['x']))
-    #     section_y_list.append(float(main_wing['sections']['section'][i]['transformation']['translation']['y']))
-    #
-    # chord = np.asarray(chord_list)
-    # twist = np.asarray(twist_list)
-    # section_x = np.asarray(section_x_list)
-    # section_y = np.asarray(section_y_list)
-    #
-    # for i in range(len(chord) - 1):
-    #     span_list.append(section_span := section_y[i+1] - section_y[i])
-    #     sweep_list.append((section_x[i+1] - section_x[i]) / section_span)
-    #
-    # span = np.asarray(span_list)
-    # sweep = np.asarray(sweep_list)
-
-
-
-
-# TODO: In future it should be replaced with DLR software to estimate parasite drag
-# def parasite_drag(cpacs, operpnt):
-#     # Pre-allocate data
-#     chord_list = []
-#     twist_list = []
-#     thick_list = []
-#     section_x_list = []
-#     section_y_list = []
-#
-#     # Extract the main Wing data
-#     main_wing = cpacs.model['wings']['wing'][0]
-#
-#     for i in range(len(main_wing['sections']['section'])):
-#         chord_list.append(float(main_wing['sections']['section'][i]['transformation']['scaling']['x']))
-#         twist_list.append(float(main_wing['sections']['section'][i]['transformation']['rotation']['y']))
-#         section_x_list.append(float(main_wing['sections']['section'][i]['transformation']['translation']['x']))
-#         section_y_list.append(float(main_wing['sections']['section'][i]['transformation']['translation']['y']))
-#
-#     chord = np.asarray(chord_list)
-#     twist = np.asarray(twist_list)
-#     section_x = np.asarray(section_x_list)
-#     section_y = np.asarray(section_y_list)
-#
-#     # T_C max for Do328 at wing root section
-#     t_c_max = 0.17305
-#
-#     mu = 1.81e-5
-#     Re = operpnt.rho * operpnt.Vinf * cpacs.ref_c / mu
-#     Ma = float(cpacs.aeromap[0]['ns1:specification']['ns1:machNumber'])
-#
-#     # Cut off reynolds number
-#     Re_co = 38 * ((cpacs.ref_c / 1e-5) ** 1.053)
-#
-#     if Re > Re_co:
-#         Re = Re_co
-#
-#     Cf = 0.455 * ((1 + 0.144 * Ma * Ma) ** -0.65) / (math.log10(Re) ** 2.58)
-#
-#
-#     return Cdo
+    return Cdo
 
 
 if __name__ == '__main__':
@@ -1352,9 +1373,3 @@ if __name__ == '__main__':
     cpacs_ref = "./LILI/Do328_out/propTrue_RPM800/propTrue_RPM800.xml"
     # optimize_wing()
     # objective_function(cpacs_ref, oper_point)
-
-
-
-
-
-

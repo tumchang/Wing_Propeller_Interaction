@@ -1,8 +1,8 @@
-TiGL log file created at: 23/09/20 13:59:29
-WRN 09/20 13:59:29 tigl.cpp:186] CPACS dataset version is higher than TIGL library version!
-ERR 09/20 13:59:29 tigl.cpp:123] [TiXI] Error: duplicated uID 'mMaxFuelWing_mass_location' found!
-WRN 09/20 13:59:29 tigl.cpp:126] [TiXI] Warning: There are duplicated UID's in the data set!
-ERR 09/20 13:59:29 tigl.cpp:123] [TiXI] Error: duplicated uID 'mMaxFuelWing_mass_location' found!
-WRN 09/20 13:59:29 tigl.cpp:126] [TiXI] Warning: There are duplicated UID's in the data set!
-WRN 09/20 13:59:29 CCPACSWingProfile.cpp:84] The points don't seem to be ordered in a mathematical positive sense.
-ERR 09/20 13:59:29 CPACSEngine.cpp:88] Required attribute uID is missing at xpath /cpacs/vehicles/engines/engine[1]
+TiGL log file created at: 23/09/22 16:45:23
+WRN 09/22 16:45:23 tigl.cpp:186] CPACS dataset version is higher than TIGL library version!
+ERR 09/22 16:45:23 tigl.cpp:123] [TiXI] Error: duplicated uID 'mMaxFuelWing_mass_location' found!
+WRN 09/22 16:45:23 tigl.cpp:126] [TiXI] Warning: There are duplicated UID's in the data set!
+ERR 09/22 16:45:23 tigl.cpp:123] [TiXI] Error: duplicated uID 'mMaxFuelWing_mass_location' found!
+WRN 09/22 16:45:23 tigl.cpp:126] [TiXI] Warning: There are duplicated UID's in the data set!
+WRN 09/22 16:45:23 CCPACSWingProfile.cpp:84] The points don't seem to be ordered in a mathematical positive sense.
+ERR 09/22 16:45:23 CPACSEngine.cpp:88] Required attribute uID is missing at xpath /cpacs/vehicles/engines/engine[1]

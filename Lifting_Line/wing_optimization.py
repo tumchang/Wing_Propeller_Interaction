@@ -1,7 +1,12 @@
 from xrotor_liftingline_main import xf_xr_lili
 from xrotor_lili_func import *
-from pyoptsparse import Optimization, SLSQP
+from pyoptsparse import Optimization, SLSQP, NSGA2
 
+# Specify the CPACS file to include engine Nacelle or not
+nonac = True
+prop_flag = False
+
+# Operation Point definition
 oper_point = OperPNT()
 oper_point.beta_70 = 55.31
 oper_point.rho = 1.225
@@ -13,24 +18,65 @@ oper_point.Vinf = 142
 oper_point.B = 6
 
 RPM = 800
+# CPACS Ref File
+if nonac:
+    cpacs_init = "./Do328_nonac.xml"
+else:
+    cpacs_init = "./Do328.xml"
+# cpacs_init = './Do328_nonac.xml'
 
-cpacs_init = './Do328_nonac.xml'
+# Get the origin shape and area of the wing
+original_wing = WingShape(cpacs_init)
+# origin_df, origin_area, origin_AR, origin_lambda = get_original_wing(cpacs_init)
+# origin_wing_weight =
+
 # cpacs_ref = "./LILI/Do328_out/propTrue_RPM800/propTrue_RPM800.xml"
 
 
-# For Xdict x[0]=chord3, x[1]=twist3, x[2]=span, x[3]=section3 tip x position
+# For Xdict x[0]=chord3, x[1]=twist3, x[2]=span, x[3]=section3** tip x position
 def objective_function(xdict):
-    x = xdict["xvars"]
+    x = np.zeros(len(xdict))
+    x[0], x[1], x[2] = xdict["chord3"], xdict["twist3"], xdict["half span"]
 
     funcs = {}
-    funcs["obj"] = 10000 * xf_xr_lili(oper_point, cpacs_init, RPM, xdict)
+    # ================================================================================================================
+    # Definition of optimization object(Breguet Range Function estimation)
+    # ================================================================================================================
+    s, wing_weight_new = xf_xr_lili(oper_point, cpacs_init, RPM, xdict, original_wing)
+
+    funcs["obj"] = -s
 
     print([f"{value:.6f}" for value in x])
     print(funcs["obj"])
 
-    conval = [0] * 1
+    # ================================================================================================================
+    # Definition of constraints
+    # ================================================================================================================
+    # Definition of the number of constraints
+    conval = [0] * 5
+    # 1. Whole Wing Span
     conval[0] = x[2] * 2.0
-    funcs["con"] = conval
+    # 2. Whole Wing Area
+    area = (
+            (original_wing.section["chord"][0] + original_wing.section["chord"][1])
+            * (original_wing.section["tip_y"][1] - original_wing.section["tip_y"][0])
+            + (original_wing.section["chord"][1] + x[0]) * (x[2] - original_wing.section["tip_y"][1])
+            )
+    conval[1] = area
+    # 3. Chord length of the outermost section
+    conval[2] = x[0] / original_wing.section["chord"][1]
+    # 4. Wing structural weight increase percentage
+    AR_new = (2*x[2])**2 / area
+    conval[3] = wing_weight_new / original_wing.wing_weight_est
+    # 5. AR change percentage
+    conval[4] = AR_new/original_wing.AR
+
+    # funcs["con"] = conval
+    funcs["Whole Span"] = conval[0]
+    funcs["Wing Area"] = conval[1]
+    funcs["Taper Ratio"] = conval[2]
+    funcs["Wing Weight Change"] = conval[3]
+    funcs["Aspect Ratio Change"] = conval[4]
 
     fail = False
 
@@ -41,16 +87,31 @@ def optimize_wing():
     optProb = Optimization('WingOptimization', objective_function)
 
     # x[0]=chord3, x[1]=twist3, x[2]=span, x[3]=section3 tip x position
-    # optProb.addVar('chord', 'c', lower=0.01, upper=2.21, value=1.26)
-    # optProb.addVar('twist', 'c', lower=-5, upper=2, value=-0.5)
-    optProb.addVarGroup("xvars", 4, "c",
-                        lower=[0.01, -5, 3.67, 0],
-                        upper=[2.21, 2, 36, 10],
-                        value=[1.26, -0.5, 10.49, 0.523329523674763]
-                        )
+    optProb.addVar("chord3", "c", lower=0.01, upper=2.21, value=original_wing.section["chord"][2])
+    optProb.addVar("twist3", "c", lower=-5, upper=2, value=-0.5)
+    optProb.addVar("half span", "c", lower=5, upper=18, value=original_wing.section["tip_y"][2])
+    # optProb.addVarGroup("xvars", 3, "c",
+    #                     #      chord3,                 twist3,                 span,            sweep
+    #                     lower=[0.01,                        -5,                     5],
+    #                     upper=[2.21,                         2,                    18],
+    #                     value=[origin_df["chord"][2],     -0.5, origin_df["tip_y"][2]],
+    #                     )
 
     # Set constraints
-    optProb.addConGroup("con", 1, lower=None, upper=36)
+    # 1. The whole wing span should not be larger than 36m
+    # 2. The wing area should not be smaller than original area
+    # 3. The taper ratio of the outer section should not be smaller than 0.2 or larger than 0.7
+    # 4. Wing structural weight increase percentage
+    # 5. AR change percentage
+    optProb.addCon("Whole Span", lower=0, upper=36)
+    optProb.addCon("Wing Area", lower=original_wing.area, upper=None)
+    optProb.addCon("Taper Ratio", lower=0.2, upper=0.7)
+    optProb.addCon("Wing Weight Change", lower=0.8, upper=1.2)
+    optProb.addCon("Aspect Ratio Change", lower=0.8, upper=2)
+    # optProb.addConGroup("con", 5,
+    #                     lower=[None, origin_area, origin_df["chord"][1]*0.2, 0.8, 0.8],
+    #                     upper=[36,          None, origin_df["chord"][1]*0.7, 1.2,   2]
+    #                     )
 
     # Set the objective
     optProb.addObj('obj')
@@ -59,7 +120,8 @@ def optimize_wing():
     # rst begin OPT
     # Optimizer
     optOptions = {
-        "IPRINT": 0,
+        "IPRINT": 1,
+        # "PrintOut": 1,
         # "TOLC": 1e-02,
         # "TOLG": 1e-02,
         # "TOLX": 1e-03,
