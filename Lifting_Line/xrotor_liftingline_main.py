@@ -45,7 +45,7 @@ lili_path = "P:/LIFTING_LINE-master/LIFTING_LINE-master/CPACS4LILI.exe"
 # Specify the operation conditions
 # =============================================================================================================
 # Airfoil to be used, generate airfoil polar data.txt
-airfoil_name = '65-212'
+airfoil_name = 'CLARK_Y'
 polar_dir = f'./xfoil/{airfoil_name}_polar.txt'
 if not os.path.exists(polar_dir):
     xfoil_polar(xfoil_path, airfoil_name)
@@ -53,15 +53,17 @@ if not os.path.exists(polar_dir):
     shutil.move(f'./{airfoil_name}_polar.txt', './xfoil')
 
 # Definition of propeller operating point
-# oper_point = OperPNT()
+oper_point = OperPNT()
 # oper_point.beta_70 = 55.31
-# oper_point.rho = 1.225
-# oper_point.hub_radius = 0.376
-# oper_point.tip_radius = 1.88
-# # oper_point.RPM_list = list(range(700, 1001, 100))
-# oper_point.RPM_list = [800]
-# oper_point.Vinf = 142
-# oper_point.B = 6
+oper_point.rho = 1.225
+oper_point.hub_radius = 0.0236
+oper_point.tip_radius = 0.236/2
+# oper_point.RPM_list = list(range(700, 1001, 100))
+# oper_point.RPM_list = [632.5, 674.66667, 722.857, 778.46, 843.33]
+oper_point.RPM_list = [15254]
+# [632.5, 778.46, 843.33]
+oper_point.Vinf = 51  # Q = 1500 Pa = 0.5 * 1.225 * Vinf**2
+oper_point.B = 4
 
 """
 ================================================================================================================
@@ -118,7 +120,7 @@ def xf_xr_lili(oper_pnt, cpacs_init, RPM, xdict, origin_wing):
     CL, CDi, total_coeff = lili_visualization(xml_dir, save_plot=False)
 
     Lift = CL * new_wing.area
-    Drag = (CDi + 4 * Cdo_wing) * new_wing.area
+    Drag = (CDi + 3 * Cdo_wing) * new_wing.area
 
     L_D = Lift/Drag
     # Lift = CL * (
@@ -130,7 +132,7 @@ def xf_xr_lili(oper_pnt, cpacs_init, RPM, xdict, origin_wing):
     #         + ((origin_df['chord'][0] + origin_df['chord'][1]) * (origin_df['tip_y'][1] - origin_df['tip_y'][0]) / 2)
     # )
 
-    # Breguet Range Equation
+    # Breguet Range Equation (at design operating points)
     # 600 g/kWh (two Engines)
     PSFC = 600/(1000*1000*3600)
     s = ((1 / (9.8*PSFC))
@@ -143,5 +145,31 @@ def xf_xr_lili(oper_pnt, cpacs_init, RPM, xdict, origin_wing):
 
 
 if __name__ == '__main__':
-    # xf_xr_lili(oper_point)
+    pass
+    cpacs_init = f'C:/Users/chang.xu/wing_propeller_interaction/prop_plate.xml'
+    # Set up the Propeller, using geometry data and operation points
+    geom_data = validation_geomdata_58689()
+
+    # Initialize the Propeller Class
+    propeller = Propeller(polar_dir, geom_data, oper_point, 15254)
+    propeller.generate_prop_section()
+
+    # Set up xrotor case
+    xrotor_case = case(propeller)
+    # Operate XRotor
+    xr = operate_xrotor(xrotor_case, RPM=15254)
+    # Get the slipstream output
+    slipstream = vput_xr(xr, 15254, print_flag=True)
+    # Normalize the slipstream with Vinf
+    slipstream_norm = slipstream_normalize(slipstream, xr)
+
+    # Add contraction & development factor consideration
+    slipstream_dev_coeff = calc_dev_coeff(oper_point, 0.201)
+    slipstream_norm_contracted = slipstream_norm.copy()
+    slipstream_norm_contracted[:, 1] = slipstream_norm_contracted[:, 1] * slipstream_dev_coeff/2
+
+    # Add the slipstream data to CPACS file
+    xml_path = add_slipstream(cpacs_init, slipstream_norm_contracted,
+                              15254, prop_flag=prop_flag)
+
     print("finished")

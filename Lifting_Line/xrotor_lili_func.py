@@ -277,27 +277,28 @@ class Propeller:
         return T, Ct, Cp
 
 
-def validation_geomdata():
+# APC 10*7 Propeller
+def validation_geomdata_APC107():
     geom_data = np.array([
         # r/R  c/R    t/c     beta
-        [0.15, 0.141, 0.100, 31.67],
-        [0.20, 0.147, 0.100, 37.59],
-        [0.25, 0.183, 0.100, 38.78],
-        [0.30, 0.207, 0.100, 35.90],
-        [0.35, 0.218, 0.100, 32.07],
-        [0.40, 0.223, 0.100, 28.50],
-        [0.45, 0.222, 0.100, 25.81],
-        [0.50, 0.217, 0.100, 23.58],
-        [0.55, 0.209, 0.100, 21.66],
-        [0.60, 0.197, 0.100, 19.99],
-        [0.65, 0.183, 0.100, 18.58],
-        [0.70, 0.167, 0.100, 17.29],
-        [0.75, 0.150, 0.100, 16.37],
-        [0.80, 0.132, 0.100, 15.46],
-        [0.85, 0.114, 0.100, 14.30],
-        [0.90, 0.098, 0.100, 13.40],
-        [0.95, 0.075, 0.100, 12.02],
-        [1.00, 0.051, 0.100, 10.61]
+        [0.15, 0.138, 0.03, 37.86],
+        [0.20, 0.154, 0.03, 45.82],
+        [0.25, 0.175, 0.03, 44.19],
+        [0.30, 0.190, 0.03, 38.35],
+        [0.35, 0.198, 0.03, 33.64],
+        [0.40, 0.202, 0.03, 29.90],
+        [0.45, 0.200, 0.03, 27.02],
+        [0.50, 0.195, 0.03, 24.67],
+        [0.55, 0.186, 0.03, 22.62],
+        [0.60, 0.174, 0.03, 20.88],
+        [0.65, 0.161, 0.120, 19.36],
+        [0.70, 0.145, 0.120, 17.98],
+        [0.75, 0.129, 0.120, 16.74],
+        [0.80, 0.112, 0.120, 15.79],
+        [0.85, 0.096, 0.120, 14.64],
+        [0.90, 0.081, 0.120, 13.86],
+        [0.95, 0.061, 0.120, 12.72],
+        [1.00, 0.040, 0.120, 11.53]
     ])
 
     # Create the interpolation functions for each column
@@ -307,6 +308,70 @@ def validation_geomdata():
 
     # Create a denser r/R array. Here, for example, we interpolate at intervals of 0.025 instead of 0.05.
     dense_r_R = np.arange(0.15, 1.0000, 0.01)
+
+    # Use the dense r/R values to get interpolated values for the other columns
+    dense_c_R = func_c_R(dense_r_R)
+    dense_t_c = func_t_c(dense_r_R)
+    dense_beta = func_beta(dense_r_R)
+
+    # Stack them together to get the new denser geom_data
+    dense_validation_geomdata = np.column_stack((dense_r_R, dense_c_R, dense_t_c, dense_beta))
+
+    return dense_validation_geomdata
+
+
+# Propeller 5868-9
+def validation_geomdata_58689():
+    # geom_data = np.array([
+    #     # r/R  c/R    t/c     beta
+    #     [0.20, 0.154, 0.030, 65.12-10],
+    #     [0.30, 0.190, 0.040, 53.80-10],
+    #     [0.40, 0.202, 0.055, 46.66-10],
+    #     [0.50, 0.195, 0.060, 41.89-10],
+    #     [0.60, 0.174, 0.058, 38.51-10],
+    #     [0.70, 0.145, 0.051, 36.01-10],
+    #     [0.75, 0.129, 0.050, 35.00-10],
+    #     [0.80, 0.112, 0.047, 34.09-10],
+    #     [0.90, 0.081, 0.040, 32.58-10],
+    #     [1.00, 0.040, 0.030, 31.36-10]
+    # ])
+
+    # geom_data = np.array([
+    #     # r/R  c/R    t/c     beta
+    #     [0.20, 0.080, 0.500, 45.90],
+    #     [0.30, 0.106, 0.200, 41.20],
+    #     [0.40, 0.138, 0.125, 46.66-10],
+    #     [0.50, 0.152, 0.115, 41.89-10],
+    #     [0.60, 0.147, 0.100, 38.51-10],
+    #     [0.70, 0.131, 0.080, 36.01-10],
+    #     [0.75, 0.122, 0.070, 35.00-10],
+    #     [0.80, 0.113, 0.060, 34.09-10],
+    #     [0.90, 0.090, 0.050, 32.58-10],
+    #     [1.00, 0.044, 0.030, 31.36-10]
+    # ])
+
+    geom_data = np.array([
+        # r/R  c/R    t/c     beta
+        [0.20, 0.080, 0.500, 45.90],
+        [0.25, 0.089, 0.500, 43.74],
+        [0.30, 0.106, 0.200, 41.51],
+        [0.40, 0.138, 0.125, 36.59],
+        [0.50, 0.152, 0.115, 32.04],
+        [0.60, 0.147, 0.100, 28.46],
+        [0.70, 0.131, 0.080, 25.93],
+        [0.75, 0.122, 0.070, 25],
+        [0.80, 0.113, 0.060, 24.19],
+        [0.90, 0.090, 0.050, 22.89],
+        [1.00, 0.044, 0.030, 21.71]
+    ])
+
+    # Create the interpolation functions for each column
+    func_c_R = interp1d(geom_data[:, 0], geom_data[:, 1], kind='cubic')
+    func_t_c = interp1d(geom_data[:, 0], geom_data[:, 2], kind='cubic')
+    func_beta = interp1d(geom_data[:, 0], geom_data[:, 3], kind='cubic')
+
+    # Create a denser r/R array. Here, for example, we interpolate at intervals of 0.025 instead of 0.05.
+    dense_r_R = np.arange(0.25, 1.0000, 0.01)
 
     # Use the dense r/R values to get interpolated values for the other columns
     dense_c_R = func_c_R(dense_r_R)
@@ -366,8 +431,8 @@ def geomdata(beta_70=55.31):
 
 
 def case(propeller):
-    geom_data = geomdata(beta_70=propeller.beta_70)
-    # geom_data = validation_geomdata()
+    # geom_data = geomdata(beta_70=propeller.beta_70)
+    geom_data = validation_geomdata_58689()
 
     # geom_data = ten_eight_MLH_geomdata()
     #     np.array([
@@ -421,7 +486,73 @@ def case(propeller):
                     'ubody': np.zeros_like(geom_data[:, 0])
                 },
                 'polars': {
-                    0.0: propeller.polar_for_xr
+                    0.0: propeller.polar_for_xr,
+                    # 0.0: np.array([
+                    #             # alfa      Cl      CD        Cm
+                    #             [-7.750, -0.3714, 0.11498, -0.0175],
+                    #             [-7.500, -0.3722, 0.11289, -0.0166],
+                    #             [-7.250, -0.3744, 0.11098, -0.0154],
+                    #             [-7.000, -0.3641, 0.10791, -0.0177],
+                    #             [-6.750, -0.3484, 0.10439, -0.0215],
+                    #             [-6.500, -0.3313, 0.10064, -0.0255],
+                    #             [-6.250, -0.3123, 0.09680, -0.0299],
+                    #             [-6.000, -0.2900, 0.09268, -0.0352],
+                    #             [-5.750, -0.2670, 0.08864, -0.0406],
+                    #             [-5.500, -0.2474, 0.08485, -0.0449],
+                    #             [-5.250, -0.2215, 0.08067, -0.0509],
+                    #             [-5.000, -0.1978, 0.07460, -0.0575],
+                    #             [-4.750, -0.1810, 0.07037, -0.0607],
+                    #             [-4.500, -0.1577, 0.06642, -0.0646],
+                    #             [-4.250, -0.1254, 0.06225, -0.0711],
+                    #             [-4.000, -0.0901, 0.05807, -0.0784],
+                    #             [-3.750, -0.0542, 0.05390, -0.0856],
+                    #             [-3.500, -0.0058, 0.04907, -0.0956],
+                    #             [-3.250, 0.0675, 0.04220, -0.1114],
+                    #             [-3.000, 0.1139, 0.03842, -0.1184],
+                    #             [-2.750, 0.1741, 0.03311, -0.1291],
+                    #             [-2.500, 0.2365, 0.02805, -0.1387],
+                    #             [-2.250, 0.2961, 0.02363, -0.1466],
+                    #             [-2.000, 0.3502, 0.02020, -0.1524],
+                    #             [-1.750, 0.3943, 0.01825, -0.1556],
+                    #             [-1.500, 0.4347, 0.01673, -0.1584],
+                    #             [-1.250, 0.4738, 0.01557, -0.1606],
+                    #             [-1.000, 0.5130, 0.01473, -0.1630],
+                    #             [-0.750, 0.5500, 0.01419, -0.1648],
+                    #             [-0.500, 0.5833, 0.01358, -0.1661],
+                    #             [-0.250, 0.6218, 0.01277, -0.1690],
+                    #             [0.000, 0.6574, 0.01194, -0.1706],
+                    #             [0.250, 0.6763, 0.01139, -0.1681],
+                    #             [0.500, 0.7124, 0.01121, -0.1696],
+                    #             [0.750, 0.7416, 0.01112, -0.1697],
+                    #             [1.000, 0.7774, 0.01089, -0.1711],
+                    #             [1.250, 0.8061, 0.01080, -0.1711],
+                    #             [1.500, 0.8379, 0.01065, -0.1717],
+                    #             [1.750, 0.8723, 0.01044, -0.1727],
+                    #             [2.000, 0.9092, 0.01021, -0.1743],
+                    #             [2.250, 0.9524, 0.00992, -0.1772],
+                    #             [2.500, 1.0035, 0.00966, -0.1819],
+                    #             [2.750, 1.0510, 0.00960, -0.1857],
+                    #             [3.000, 1.0861, 0.00987, -0.1869],
+                    #             [3.250, 1.1113, 0.01039, -0.1860],
+                    #             [3.500, 1.1313, 0.01107, -0.1841],
+                    #             [3.750, 1.1490, 0.01186, -0.1819],
+                    #             [4.000, 1.1664, 0.01271, -0.1798],
+                    #             [4.250, 1.1846, 0.01358, -0.1780],
+                    #             [4.500, 1.2033, 0.01450, -0.1764],
+                    #             [4.750, 1.2225, 0.01547, -0.1749],
+                    #             [5.000, 1.2423, 0.01645, -0.1736],
+                    #             [5.250, 1.2615, 0.01758, -0.1722],
+                    #             [5.500, 1.2809, 0.01874, -0.1709],
+                    #             [5.750, 1.2977, 0.02036, -0.1691],
+                    #             [6.000, 1.3163, 0.02187, -0.1672],
+                    #             [6.250, 1.3359, 0.02316, -0.1654],
+                    #             [6.500, 1.3540, 0.02469, -0.1634],
+                    #             [6.750, 1.3711, 0.02649, -0.1612],
+                    #             [7.000, 1.3883, 0.02859, -0.1590],
+                    #             [7.250, 1.4067, 0.03102, -0.1570],
+                    #             [7.500, 1.4260, 0.03385, -0.1552],
+                    #         ]),
+
                 }
             }
         },
@@ -435,12 +566,14 @@ def case(propeller):
 
 def operate_xrotor(cases, RPM):
     xr = XRotor()
+    xr.vrtx = True
+    xr.use_compr_corr = True
     xr.max_iter = 100
     xr.case = Case.from_dict(cases)
 
     xr.operate(rpm=RPM)
 
-    # xr.print_case()
+    xr.print_case()
 
     return xr
 
@@ -570,6 +703,13 @@ def slipstream_normalize(slip, xr):
     slip_norm[:, 1:] = slip_norm[:, 1:] / xr.case.conditions.vel
 
     return slip_norm
+
+
+def calc_dev_coeff(oper_pnt, dist):
+
+    kd = 1 + dist/(np.sqrt(dist**2 + oper_pnt.tip_radius**2))
+
+    return kd
 
 
 def add_slipstream(cpacs_ref, slipstream, RPM, prop_flag=True):
@@ -1118,7 +1258,7 @@ def va_vt_plot_xr(xrotor):
     plt.ylabel("V [m/s]")
 
     plt.xlim(0.0, 1.2)
-    plt.ylim(0.0, 9)
+    plt.ylim(0.0, 40)
 
     plt.legend()
     plt.grid(True)
@@ -1136,7 +1276,7 @@ def va_vt_plot_xr(xrotor):
     plt.ylabel("V [m/s]")
 
     plt.xlim(0.0, 1.2)
-    plt.ylim(0.0, 9)
+    plt.ylim(0.0, 40)
 
     plt.legend()
     plt.grid(True)
@@ -1144,13 +1284,17 @@ def va_vt_plot_xr(xrotor):
     file_path = "./bem_solver/xrotor_mybem/xrotor-Va-Vt-blade.png"
     plt.savefig(file_path, dpi=600)
 
+    data = np.vstack((r_R_station, va_slip/51.4096, vt_slip/51.4096)).T
+
+    np.savetxt(f"./VALIDATION/vali_slip.txt", data, fmt="%.5f")
+
     # plt.show()
 
 
 def va_vt_plot_bem(prop):
     a = prop.Result_BEM.a
     va_blade = a * prop.Vinf
-    vt_blade = 2 * prop.geometry.r_R * prop.omega * prop.Result_BEM.a_prime
+    vt_blade = prop.geometry.r * prop.omega * prop.Result_BEM.a_prime
 
     # Calculation of slipstream velocity based on induced velocity on blades
     blds = prop.B
@@ -1167,11 +1311,11 @@ def va_vt_plot_bem(prop):
     # Solve for gam using Numpy's linear algebra solver
     gam = vind[:] / vind_gam
 
-    vt_slip = 2 * prop.Result_BEM.F * vt_blade
-    va_slip = 2 * prop.Result_BEM.F * va_blade
+    # vt_slip = 2 * prop.Result_BEM.F * vt_blade
+    # va_slip = 2 * prop.Result_BEM.F * va_blade
 
-    # vt_slip = 2 * blds * gam / (2 * pi * xi)
-    # va_slip = vt_slip * xi / (prop.J/np.pi)
+    vt_slip = 2 * blds * gam / (2 * pi * xi)
+    va_slip = vt_slip * xi / (prop.J/np.pi)
 
     # Plot the induced velocity on blade
     plt.figure(figsize=(10, 6))
@@ -1184,7 +1328,7 @@ def va_vt_plot_bem(prop):
     plt.ylabel("V [m/s]")
 
     plt.xlim(0.0, 1.2)
-    plt.ylim(0.0, 9)
+    plt.ylim(0.0, 40)
 
     plt.legend()
     plt.grid(True)
@@ -1203,7 +1347,7 @@ def va_vt_plot_bem(prop):
     plt.ylabel("V [m/s]")
 
     plt.xlim(0.0, 1.2)
-    plt.ylim(0.0, 9)
+    plt.ylim(0.0, 40)
 
     plt.legend()
     plt.grid(True)
@@ -1242,7 +1386,7 @@ class WingShape:
                                 * self.AR**0.5 * (self.t_c_root**-0.4) * (1 + self.taper_ratio)**0.1
                                 * (np.cos(self.sweep_25))**-1 * (10.7639104*0.1*self.area)**0.1
                                 )
-        self.ZFW_no_wing = 12610 - 3738 - self.wing_weight_est
+        self.ZFW_no_wing = 12610 - 3738 - self.wing_weight_est + 1704
 
     def get_original_wing(self, cpacs_init):
         # Get the section data

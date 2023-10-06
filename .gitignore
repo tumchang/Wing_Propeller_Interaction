@@ -9,9 +9,11 @@ VSP/test_model/
 VSP/airfoil/
 VSP/fuselage/
 VSP/_pycache_/
+VSP/validation/
 
 Lifting_Line/LILI/archive/
 Lifting_Line/bem_solver/APC_Propeller_data/
 Lifting_Line/LILI/atr72-500_out/
 Lifting_Line/LILI/Do328_out/
 Lifting_Line/_pycache_/
+Lifting_Line/VALIDATION/

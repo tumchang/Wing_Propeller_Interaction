@@ -6,7 +6,7 @@
     <cpacsVersion>3.3</cpacsVersion>
     <creator>LIFTING_LINE</creator>
     <description>Aerodynamic calculation result</description>
-    <timestamp>2023-09-22T16:45:30</timestamp>
+    <timestamp>2023-09-26T16:25:58</timestamp>
   </header>
   <vehicles>
     <aircraft>
@@ -40,18 +40,18 @@
                     <targetCl>0.8</targetCl>
                   </specification>
                   <aeroData>
-                    <angleOfAttack>3.46919</angleOfAttack>
+                    <angleOfAttack>2.82398</angleOfAttack>
                     <angleOfSideslip>0</angleOfSideslip>
                     <vehicle>
                       <coefficients>
-                        <cd>0.0186719</cd>
-                        <cs>1.04704e-07</cs>
+                        <cd>0.0152426</cd>
+                        <cs>1.42035e-08</cs>
                         <cl>0.8</cl>
                         <cmd>-1.94302</cmd>
-                        <cms>-0.440439</cms>
-                        <cml>0.0453505</cml>
+                        <cms>-0.39834</cms>
+                        <cml>0.037021</cml>
                         <dragContributions>
-                          <cdInduced>0.0186719</cdInduced>
+                          <cdInduced>0.0152426</cdInduced>
                         </dragContributions>
                       </coefficients>
                       <coefficientsBreakdown>
@@ -59,511 +59,534 @@
                           <wing>
                             <wingUID>wing</wingUID>
                             <coefficients>
-                              <cd>0.0176041</cd>
-                              <cs>-2.70357e-12</cs>
-                              <cl>0.77637</cl>
-                              <cmd>-1.88563</cmd>
-                              <cms>-0.294311</cms>
-                              <cml>0.0427565</cml>
+                              <cd>0.0146142</cd>
+                              <cs>-2.36329e-12</cs>
+                              <cl>0.78396</cl>
+                              <cmd>-1.90406</cmd>
+                              <cms>-0.299295</cms>
+                              <cml>0.0354947</cml>
                               <dragContributions>
-                                <cdInduced>0.0176041</cdInduced>
+                                <cdInduced>0.0146142</cdInduced>
                               </dragContributions>
                             </coefficients>
                             <segments>
                               <segment>
                                 <segmentUID>wing_segment_from_wing_section_1_element_1_to_wing_section_2_element_1_symm</segmentUID>
                                 <coefficients>
-                                  <cd>0.00410589</cd>
-                                  <cs>-0.000887975</cs>
-                                  <cl>0.212639</cl>
-                                  <cmd>-1.22326</cmd>
-                                  <cms>-0.0845569</cms>
-                                  <cml>0.0238688</cml>
+                                  <cd>0.00338126</cd>
+                                  <cs>-0.000914697</cs>
+                                  <cl>0.227484</cl>
+                                  <cmd>-1.36402</cmd>
+                                  <cms>-0.0892427</cms>
+                                  <cml>0.0204579</cml>
                                   <dragContributions>
-                                    <cdInduced>0.00410589</cdInduced>
+                                    <cdInduced>0.00338126</cdInduced>
                                   </dragContributions>
                                 </coefficients>
                                 <strips>
                                   <strip>
-                                    <toSegmentEta>0.047619</toSegmentEta>
+                                    <toSegmentEta>0.0454545</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0121167</cd>
-                                      <cs>-0.000824536</cs>
-                                      <cl>0.260307</cl>
-                                      <cmd>0.00890053</cmd>
-                                      <cms>-0.0417381</cms>
-                                      <cml>-0.00127832</cml>
+                                      <cd>0.01771</cd>
+                                      <cs>-0.00146309</cs>
+                                      <cl>0.37741</cl>
+                                      <cmd>0.0219831</cmd>
+                                      <cms>-0.0801461</cms>
+                                      <cml>-0.00298194</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0121167</cdInduced>
+                                        <cdInduced>0.01771</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.418309</area>
-                                      <length>1.28659</length>
+                                      <area>0.305643</area>
+                                      <length>0.837241</length>
                                       <geometryPoint>
-                                        <x>8.48237</x>
-                                        <y>-10.3255</y>
-                                        <z>2.00281</z>
+                                        <x>8.46072</x>
+                                        <y>-11.5091</y>
+                                        <z>2.00351</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.0952381</toSegmentEta>
+                                    <toSegmentEta>0.0909091</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0170229</cd>
-                                      <cs>-0.00163291</cs>
-                                      <cl>0.472259</cl>
-                                      <cmd>0.00241517</cmd>
-                                      <cms>-0.0711472</cms>
-                                      <cml>0.000137462</cml>
+                                      <cd>0.0205666</cd>
+                                      <cs>-0.00245246</cs>
+                                      <cl>0.634681</cl>
+                                      <cmd>0.00460569</cmd>
+                                      <cms>-0.12009</cms>
+                                      <cml>0.000123834</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0170229</cdInduced>
+                                        <cdInduced>0.0205666</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.433075</area>
-                                      <length>1.33199</length>
+                                      <area>0.329076</area>
+                                      <length>0.901429</length>
                                       <geometryPoint>
-                                        <x>8.46881</x>
-                                        <y>-10.0004</y>
-                                        <z>2.00291</z>
+                                        <x>8.4488</x>
+                                        <y>-11.1441</y>
+                                        <z>2.00357</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.142857</toSegmentEta>
+                                    <toSegmentEta>0.136364</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0155239</cd>
-                                      <cs>-0.00203575</cs>
-                                      <cl>0.557637</cl>
-                                      <cmd>0.00172682</cmd>
-                                      <cms>-0.0799108</cms>
-                                      <cml>1.57397e-05</cml>
+                                      <cd>0.0159623</cd>
+                                      <cs>-0.00277078</cs>
+                                      <cl>0.706605</cl>
+                                      <cmd>0.00315134</cmd>
+                                      <cms>-0.123188</cms>
+                                      <cml>-0.000167369</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0155239</cdInduced>
+                                        <cdInduced>0.0159623</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.447834</area>
-                                      <length>1.3774</length>
+                                      <area>0.352509</area>
+                                      <length>0.965618</length>
                                       <geometryPoint>
-                                        <x>8.45524</x>
-                                        <y>-9.67526</y>
-                                        <z>2.003</z>
+                                        <x>8.43687</x>
+                                        <y>-10.779</y>
+                                        <z>2.00363</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.190476</toSegmentEta>
+                                    <toSegmentEta>0.181818</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.014997</cd>
-                                      <cs>-0.00234111</cs>
-                                      <cl>0.614402</cl>
-                                      <cmd>0.00126228</cmd>
-                                      <cms>-0.0854626</cms>
-                                      <cml>6.6408e-05</cml>
+                                      <cd>0.0137871</cd>
+                                      <cs>-0.00299962</cs>
+                                      <cl>0.745486</cl>
+                                      <cmd>0.00218631</cmd>
+                                      <cms>-0.124005</cms>
+                                      <cml>-0.000114601</cml>
                                       <dragContributions>
-                                        <cdInduced>0.014997</cdInduced>
+                                        <cdInduced>0.0137871</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.462595</area>
-                                      <length>1.4228</length>
+                                      <area>0.375941</area>
+                                      <length>1.02981</length>
                                       <geometryPoint>
-                                        <x>8.44168</x>
-                                        <y>-9.35013</y>
-                                        <z>2.0031</z>
-                                      </geometryPoint>
-                                    </reference>
-                                  </strip>
-                                  <strip>
-                                    <toSegmentEta>0.238095</toSegmentEta>
-                                    <coefficients>
-                                      <cd>0.0143262</cd>
-                                      <cs>-0.00257472</cs>
-                                      <cl>0.653943</cl>
-                                      <cmd>0.000996734</cmd>
-                                      <cms>-0.0892475</cms>
-                                      <cml>8.90321e-05</cml>
-                                      <dragContributions>
-                                        <cdInduced>0.0143262</cdInduced>
-                                      </dragContributions>
-                                    </coefficients>
-                                    <reference>
-                                      <area>0.477358</area>
-                                      <length>1.4682</length>
-                                      <geometryPoint>
-                                        <x>8.42812</x>
-                                        <y>-9.025</y>
-                                        <z>2.0032</z>
-                                      </geometryPoint>
-                                    </reference>
-                                  </strip>
-                                  <strip>
-                                    <toSegmentEta>0.285714</toSegmentEta>
-                                    <coefficients>
-                                      <cd>0.0137517</cd>
-                                      <cs>-0.00275717</cs>
-                                      <cl>0.68302</cl>
-                                      <cmd>0.000822363</cmd>
-                                      <cms>-0.0920965</cms>
-                                      <cml>0.000105145</cml>
-                                      <dragContributions>
-                                        <cdInduced>0.0137517</cdInduced>
-                                      </dragContributions>
-                                    </coefficients>
-                                    <reference>
-                                      <area>0.49212</area>
-                                      <length>1.51361</length>
-                                      <geometryPoint>
-                                        <x>8.41456</x>
-                                        <y>-8.69987</y>
-                                        <z>2.0033</z>
-                                      </geometryPoint>
-                                    </reference>
-                                  </strip>
-                                  <strip>
-                                    <toSegmentEta>0.333333</toSegmentEta>
-                                    <coefficients>
-                                      <cd>0.0132993</cd>
-                                      <cs>-0.00290132</cs>
-                                      <cl>0.705127</cl>
-                                      <cmd>0.000699887</cmd>
-                                      <cms>-0.0943733</cms>
-                                      <cml>0.000116404</cml>
-                                      <dragContributions>
-                                        <cdInduced>0.0132993</cdInduced>
-                                      </dragContributions>
-                                    </coefficients>
-                                    <reference>
-                                      <area>0.506882</area>
-                                      <length>1.55901</length>
-                                      <geometryPoint>
-                                        <x>8.40099</x>
-                                        <y>-8.37474</y>
-                                        <z>2.0034</z>
-                                      </geometryPoint>
-                                    </reference>
-                                  </strip>
-                                  <strip>
-                                    <toSegmentEta>0.380952</toSegmentEta>
-                                    <coefficients>
-                                      <cd>0.0129692</cd>
-                                      <cs>-0.00301607</cs>
-                                      <cl>0.722338</cl>
-                                      <cmd>0.000609159</cmd>
-                                      <cms>-0.0962712</cms>
-                                      <cml>0.000124303</cml>
-                                      <dragContributions>
-                                        <cdInduced>0.0129692</cdInduced>
-                                      </dragContributions>
-                                    </coefficients>
-                                    <reference>
-                                      <area>0.521642</area>
-                                      <length>1.60441</length>
-                                      <geometryPoint>
-                                        <x>8.38743</x>
-                                        <y>-8.04961</y>
-                                        <z>2.0035</z>
-                                      </geometryPoint>
-                                    </reference>
-                                  </strip>
-                                  <strip>
-                                    <toSegmentEta>0.428571</toSegmentEta>
-                                    <coefficients>
-                                      <cd>0.0127495</cd>
-                                      <cs>-0.00310765</cs>
-                                      <cl>0.735967</cl>
-                                      <cmd>0.000539121</cmd>
-                                      <cms>-0.097902</cms>
-                                      <cml>0.000129745</cml>
-                                      <dragContributions>
-                                        <cdInduced>0.0127495</cdInduced>
-                                      </dragContributions>
-                                    </coefficients>
-                                    <reference>
-                                      <area>0.536405</area>
-                                      <length>1.64981</length>
-                                      <geometryPoint>
-                                        <x>8.37387</x>
-                                        <y>-7.72448</y>
-                                        <z>2.0036</z>
-                                      </geometryPoint>
-                                    </reference>
-                                  </strip>
-                                  <strip>
-                                    <toSegmentEta>0.47619</toSegmentEta>
-                                    <coefficients>
-                                      <cd>0.0126259</cd>
-                                      <cs>-0.00318159</cs>
-                                      <cl>0.746887</cl>
-                                      <cmd>0.0004832</cmd>
-                                      <cms>-0.0993349</cms>
-                                      <cml>0.000132874</cml>
-                                      <dragContributions>
-                                        <cdInduced>0.0126259</cdInduced>
-                                      </dragContributions>
-                                    </coefficients>
-                                    <reference>
-                                      <area>0.551167</area>
-                                      <length>1.69522</length>
-                                      <geometryPoint>
-                                        <x>8.3603</x>
-                                        <y>-7.39935</y>
+                                        <x>8.42494</x>
+                                        <y>-10.4139</y>
                                         <z>2.0037</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.52381</toSegmentEta>
+                                    <toSegmentEta>0.227273</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0125846</cd>
-                                      <cs>-0.0032396</cs>
-                                      <cl>0.755704</cl>
-                                      <cmd>0.000437376</cmd>
-                                      <cms>-0.100615</cms>
-                                      <cml>0.000135145</cml>
+                                      <cd>0.012183</cd>
+                                      <cs>-0.00313363</cs>
+                                      <cl>0.766379</cl>
+                                      <cmd>0.00167064</cmd>
+                                      <cms>-0.123554</cms>
+                                      <cml>-9.95334e-05</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0125846</cdInduced>
+                                        <cdInduced>0.012183</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.565929</area>
-                                      <length>1.74062</length>
+                                      <area>0.399369</area>
+                                      <length>1.094</length>
                                       <geometryPoint>
-                                        <x>8.34674</x>
-                                        <y>-7.07421</y>
-                                        <z>2.0038</z>
+                                        <x>8.41302</x>
+                                        <y>-10.0489</y>
+                                        <z>2.00376</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.571429</toSegmentEta>
+                                    <toSegmentEta>0.272727</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0126134</cd>
-                                      <cs>-0.00328497</cs>
-                                      <cl>0.762848</cl>
-                                      <cmd>0.000398947</cmd>
-                                      <cms>-0.101775</cms>
-                                      <cml>0.000135991</cml>
+                                      <cd>0.0110969</cd>
+                                      <cs>-0.00321099</cs>
+                                      <cl>0.777791</cl>
+                                      <cmd>0.00134355</cmd>
+                                      <cms>-0.122677</cms>
+                                      <cml>-8.71284e-05</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0126134</cdInduced>
+                                        <cdInduced>0.0110969</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.580689</area>
-                                      <length>1.78602</length>
+                                      <area>0.422807</area>
+                                      <length>1.15819</length>
                                       <geometryPoint>
-                                        <x>8.33318</x>
-                                        <y>-6.74909</y>
-                                        <z>2.0039</z>
+                                        <x>8.40109</x>
+                                        <y>-9.68382</y>
+                                        <z>2.00382</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.619048</toSegmentEta>
+                                    <toSegmentEta>0.318182</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0127023</cd>
-                                      <cs>-0.00332068</cs>
-                                      <cl>0.768637</cl>
-                                      <cmd>0.00036615</cmd>
-                                      <cms>-0.102836</cms>
-                                      <cml>0.000135725</cml>
+                                      <cd>0.0103728</cd>
+                                      <cs>-0.00325085</cs>
+                                      <cl>0.783657</cl>
+                                      <cmd>0.00111806</cmd>
+                                      <cms>-0.121645</cms>
+                                      <cml>-7.86678e-05</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0127023</cdInduced>
+                                        <cdInduced>0.0103728</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.595453</area>
-                                      <length>1.83143</length>
+                                      <area>0.44624</area>
+                                      <length>1.22238</length>
                                       <geometryPoint>
-                                        <x>8.31962</x>
-                                        <y>-6.42396</y>
+                                        <x>8.38917</x>
+                                        <y>-9.31876</y>
+                                        <z>2.00388</z>
+                                      </geometryPoint>
+                                    </reference>
+                                  </strip>
+                                  <strip>
+                                    <toSegmentEta>0.363636</toSegmentEta>
+                                    <coefficients>
+                                      <cd>0.00990536</cd>
+                                      <cs>-0.00326939</cs>
+                                      <cl>0.786092</cl>
+                                      <cmd>0.000952573</cmd>
+                                      <cms>-0.120577</cms>
+                                      <cml>-7.24299e-05</cml>
+                                      <dragContributions>
+                                        <cdInduced>0.00990536</cdInduced>
+                                      </dragContributions>
+                                    </coefficients>
+                                    <reference>
+                                      <area>0.469673</area>
+                                      <length>1.28657</length>
+                                      <geometryPoint>
+                                        <x>8.37724</x>
+                                        <y>-8.9537</y>
+                                        <z>2.00394</z>
+                                      </geometryPoint>
+                                    </reference>
+                                  </strip>
+                                  <strip>
+                                    <toSegmentEta>0.409091</toSegmentEta>
+                                    <coefficients>
+                                      <cd>0.00962199</cd>
+                                      <cs>-0.00326925</cs>
+                                      <cl>0.786314</cl>
+                                      <cmd>0.000825472</cmd>
+                                      <cms>-0.119525</cms>
+                                      <cml>-6.72657e-05</cml>
+                                      <dragContributions>
+                                        <cdInduced>0.00962199</cdInduced>
+                                      </dragContributions>
+                                    </coefficients>
+                                    <reference>
+                                      <area>0.493107</area>
+                                      <length>1.35076</length>
+                                      <geometryPoint>
+                                        <x>8.36532</x>
+                                        <y>-8.58864</y>
                                         <z>2.004</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.666667</toSegmentEta>
+                                    <toSegmentEta>0.454545</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0128431</cd>
-                                      <cs>-0.0033475</cs>
-                                      <cl>0.77331</cl>
-                                      <cmd>0.000337748</cmd>
-                                      <cms>-0.103817</cms>
-                                      <cml>0.00013452</cml>
+                                      <cd>0.00947274</cd>
+                                      <cs>-0.00325852</cs>
+                                      <cl>0.785059</cl>
+                                      <cmd>0.000724414</cmd>
+                                      <cms>-0.118513</cms>
+                                      <cml>-6.43571e-05</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0128431</cdInduced>
+                                        <cdInduced>0.00947274</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.610215</area>
-                                      <length>1.87683</length>
+                                      <area>0.51654</area>
+                                      <length>1.41495</length>
                                       <geometryPoint>
-                                        <x>8.30605</x>
-                                        <y>-6.09882</y>
-                                        <z>2.00409</z>
+                                        <x>8.35339</x>
+                                        <y>-8.22358</y>
+                                        <z>2.00407</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.714286</toSegmentEta>
+                                    <toSegmentEta>0.5</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0130297</cd>
-                                      <cs>-0.00336689</cs>
-                                      <cl>0.777053</cl>
-                                      <cmd>0.000312887</cmd>
-                                      <cms>-0.10473</cms>
-                                      <cml>0.000132597</cml>
+                                      <cd>0.0094227</cd>
+                                      <cs>-0.00324045</cs>
+                                      <cl>0.782795</cl>
+                                      <cmd>0.000642013</cmd>
+                                      <cms>-0.11755</cms>
+                                      <cml>-6.1439e-05</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0130297</cdInduced>
+                                        <cdInduced>0.0094227</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.624977</area>
-                                      <length>1.92223</length>
+                                      <area>0.539974</area>
+                                      <length>1.47914</length>
                                       <geometryPoint>
-                                        <x>8.29249</x>
-                                        <y>-5.77369</y>
+                                        <x>8.34147</x>
+                                        <y>-7.85852</y>
+                                        <z>2.00413</z>
+                                      </geometryPoint>
+                                    </reference>
+                                  </strip>
+                                  <strip>
+                                    <toSegmentEta>0.545455</toSegmentEta>
+                                    <coefficients>
+                                      <cd>0.00944724</cd>
+                                      <cs>-0.00321582</cs>
+                                      <cl>0.779828</cl>
+                                      <cmd>0.000573412</cmd>
+                                      <cms>-0.11664</cms>
+                                      <cml>-6.01321e-05</cml>
+                                      <dragContributions>
+                                        <cdInduced>0.00944724</cdInduced>
+                                      </dragContributions>
+                                    </coefficients>
+                                    <reference>
+                                      <area>0.563408</area>
+                                      <length>1.54333</length>
+                                      <geometryPoint>
+                                        <x>8.32954</x>
+                                        <y>-7.49346</y>
                                         <z>2.00419</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.761905</toSegmentEta>
+                                    <toSegmentEta>0.590909</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0132578</cd>
-                                      <cs>-0.00338057</cs>
-                                      <cl>0.780014</cl>
-                                      <cmd>0.000290936</cmd>
-                                      <cms>-0.105587</cms>
-                                      <cml>0.000129542</cml>
+                                      <cd>0.0095288</cd>
+                                      <cs>-0.00318958</cs>
+                                      <cl>0.776362</cl>
+                                      <cmd>0.000515427</cmd>
+                                      <cms>-0.115783</cms>
+                                      <cml>-5.96414e-05</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0132578</cdInduced>
+                                        <cdInduced>0.0095288</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.639737</area>
-                                      <length>1.96763</length>
+                                      <area>0.586841</area>
+                                      <length>1.60752</length>
                                       <geometryPoint>
-                                        <x>8.27893</x>
-                                        <y>-5.44856</y>
-                                        <z>2.00429</z>
+                                        <x>8.31762</x>
+                                        <y>-7.1284</y>
+                                        <z>2.00425</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.809524</toSegmentEta>
+                                    <toSegmentEta>0.636364</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0135253</cd>
-                                      <cs>-0.00338663</cs>
-                                      <cl>0.782317</cl>
-                                      <cmd>0.000271542</cmd>
-                                      <cms>-0.106399</cms>
-                                      <cml>0.000126656</cml>
+                                      <cd>0.00965451</cd>
+                                      <cs>-0.00315835</cs>
+                                      <cl>0.772543</cl>
+                                      <cmd>0.000465845</cmd>
+                                      <cms>-0.114979</cms>
+                                      <cml>-5.91548e-05</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0135253</cdInduced>
+                                        <cdInduced>0.00965451</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.654501</area>
-                                      <length>2.01304</length>
+                                      <area>0.610275</area>
+                                      <length>1.67172</length>
                                       <geometryPoint>
-                                        <x>8.26536</x>
-                                        <y>-5.12343</y>
-                                        <z>2.00439</z>
+                                        <x>8.30569</x>
+                                        <y>-6.76334</y>
+                                        <z>2.00431</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.857143</toSegmentEta>
+                                    <toSegmentEta>0.681818</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.013834</cd>
-                                      <cs>-0.0033879</cs>
-                                      <cl>0.784071</cl>
-                                      <cmd>0.000254341</cmd>
-                                      <cms>-0.107172</cms>
-                                      <cml>0.000122619</cml>
+                                      <cd>0.009815</cd>
+                                      <cs>-0.00312555</cs>
+                                      <cl>0.768474</cl>
+                                      <cmd>0.000423018</cmd>
+                                      <cms>-0.114224</cms>
+                                      <cml>-6.00928e-05</cml>
                                       <dragContributions>
-                                        <cdInduced>0.013834</cdInduced>
+                                        <cdInduced>0.009815</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.669262</area>
-                                      <length>2.05844</length>
+                                      <area>0.633709</area>
+                                      <length>1.73591</length>
                                       <geometryPoint>
-                                        <x>8.2518</x>
-                                        <y>-4.7983</y>
-                                        <z>2.00449</z>
+                                        <x>8.29377</x>
+                                        <y>-6.39828</y>
+                                        <z>2.00437</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.904762</toSegmentEta>
+                                    <toSegmentEta>0.727273</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0141949</cd>
-                                      <cs>-0.00338295</cs>
-                                      <cl>0.785374</cl>
-                                      <cmd>0.000239117</cmd>
-                                      <cms>-0.107908</cms>
-                                      <cml>0.00011749</cml>
+                                      <cd>0.0100036</cd>
+                                      <cs>-0.00309145</cs>
+                                      <cl>0.764235</cl>
+                                      <cmd>0.000385867</cmd>
+                                      <cms>-0.113517</cms>
+                                      <cml>-6.04977e-05</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0141949</cdInduced>
+                                        <cdInduced>0.0100036</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.684024</area>
-                                      <length>2.10384</length>
+                                      <area>0.657143</area>
+                                      <length>1.8001</length>
                                       <geometryPoint>
-                                        <x>8.23824</x>
-                                        <y>-4.47317</y>
-                                        <z>2.00459</z>
+                                        <x>8.28184</x>
+                                        <y>-6.03323</y>
+                                        <z>2.00444</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.952381</toSegmentEta>
+                                    <toSegmentEta>0.772727</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0146528</cd>
-                                      <cs>-0.00336738</cs>
-                                      <cl>0.786304</cl>
-                                      <cmd>0.000225164</cmd>
-                                      <cms>-0.108581</cms>
-                                      <cml>0.000110427</cml>
+                                      <cd>0.0102156</cd>
+                                      <cs>-0.00305543</cs>
+                                      <cl>0.759892</cl>
+                                      <cmd>0.000353494</cmd>
+                                      <cms>-0.112858</cms>
+                                      <cml>-6.19248e-05</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0146528</cdInduced>
+                                        <cdInduced>0.0102156</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.698784</area>
-                                      <length>2.14925</length>
+                                      <area>0.680575</area>
+                                      <length>1.86429</length>
                                       <geometryPoint>
-                                        <x>8.22467</x>
-                                        <y>-4.14804</y>
-                                        <z>2.00469</z>
+                                        <x>8.26992</x>
+                                        <y>-5.66817</y>
+                                        <z>2.0045</z>
+                                      </geometryPoint>
+                                    </reference>
+                                  </strip>
+                                  <strip>
+                                    <toSegmentEta>0.818182</toSegmentEta>
+                                    <coefficients>
+                                      <cd>0.0104487</cd>
+                                      <cs>-0.00302089</cs>
+                                      <cl>0.755507</cl>
+                                      <cmd>0.000325342</cmd>
+                                      <cms>-0.112246</cms>
+                                      <cml>-6.39072e-05</cml>
+                                      <dragContributions>
+                                        <cdInduced>0.0104487</cdInduced>
+                                      </dragContributions>
+                                    </coefficients>
+                                    <reference>
+                                      <area>0.70401</area>
+                                      <length>1.92848</length>
+                                      <geometryPoint>
+                                        <x>8.25799</x>
+                                        <y>-5.30311</y>
+                                        <z>2.00456</z>
+                                      </geometryPoint>
+                                    </reference>
+                                  </strip>
+                                  <strip>
+                                    <toSegmentEta>0.863636</toSegmentEta>
+                                    <coefficients>
+                                      <cd>0.0107034</cd>
+                                      <cs>-0.00298327</cs>
+                                      <cl>0.751143</cl>
+                                      <cmd>0.00030106</cmd>
+                                      <cms>-0.111683</cms>
+                                      <cml>-6.56616e-05</cml>
+                                      <dragContributions>
+                                        <cdInduced>0.0107034</cdInduced>
+                                      </dragContributions>
+                                    </coefficients>
+                                    <reference>
+                                      <area>0.727444</area>
+                                      <length>1.99268</length>
+                                      <geometryPoint>
+                                        <x>8.24607</x>
+                                        <y>-4.93805</y>
+                                        <z>2.00462</z>
+                                      </geometryPoint>
+                                    </reference>
+                                  </strip>
+                                  <strip>
+                                    <toSegmentEta>0.909091</toSegmentEta>
+                                    <coefficients>
+                                      <cd>0.0109867</cd>
+                                      <cs>-0.00294471</cs>
+                                      <cl>0.746874</cl>
+                                      <cmd>0.000280345</cmd>
+                                      <cms>-0.111165</cms>
+                                      <cml>-6.89688e-05</cml>
+                                      <dragContributions>
+                                        <cdInduced>0.0109867</cdInduced>
+                                      </dragContributions>
+                                    </coefficients>
+                                    <reference>
+                                      <area>0.750878</area>
+                                      <length>2.05687</length>
+                                      <geometryPoint>
+                                        <x>8.23414</x>
+                                        <y>-4.57299</y>
+                                        <z>2.00468</z>
+                                      </geometryPoint>
+                                    </reference>
+                                  </strip>
+                                  <strip>
+                                    <toSegmentEta>0.954545</toSegmentEta>
+                                    <coefficients>
+                                      <cd>0.0113248</cd>
+                                      <cs>-0.00290089</cs>
+                                      <cl>0.742784</cl>
+                                      <cmd>0.000262899</cmd>
+                                      <cms>-0.110673</cms>
+                                      <cml>-7.21541e-05</cml>
+                                      <dragContributions>
+                                        <cdInduced>0.0113248</cdInduced>
+                                      </dragContributions>
+                                    </coefficients>
+                                    <reference>
+                                      <area>0.774312</area>
+                                      <length>2.12106</length>
+                                      <geometryPoint>
+                                        <x>8.22222</x>
+                                        <y>-4.20793</y>
+                                        <z>2.00475</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
                                     <toSegmentEta>1</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0174659</cd>
-                                      <cs>-0.00314341</cs>
-                                      <cl>0.786149</cl>
-                                      <cmd>0.000173129</cmd>
-                                      <cms>-0.108755</cms>
-                                      <cml>-3.37516e-05</cml>
+                                      <cd>0.0125129</cd>
+                                      <cs>-0.00267251</cs>
+                                      <cl>0.738322</cl>
+                                      <cmd>0.000214186</cmd>
+                                      <cms>-0.109829</cms>
+                                      <cml>-0.000109594</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0174659</cdInduced>
+                                        <cdInduced>0.0125129</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.713548</area>
-                                      <length>2.19465</length>
+                                      <area>0.797746</area>
+                                      <length>2.18525</length>
                                       <geometryPoint>
-                                        <x>8.21111</x>
-                                        <y>-3.82291</y>
-                                        <z>2.00479</z>
+                                        <x>8.21029</x>
+                                        <y>-3.84287</y>
+                                        <z>2.00481</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
@@ -572,281 +595,258 @@
                               <segment>
                                 <segmentUID>wing_segment_from_wing_section_0_element_1_to_wing_section_1_element_1_symm</segmentUID>
                                 <coefficients>
-                                  <cd>0.00469617</cd>
-                                  <cs>0.00140665</cs>
-                                  <cl>0.175546</cl>
-                                  <cmd>-0.585821</cmd>
-                                  <cms>-0.0625984</cms>
-                                  <cml>0.016135</cml>
+                                  <cd>0.00392586</cd>
+                                  <cs>0.00135066</cs>
+                                  <cl>0.164496</cl>
+                                  <cmd>-0.548878</cmd>
+                                  <cms>-0.0604046</cms>
+                                  <cml>0.0135171</cml>
                                   <dragContributions>
-                                    <cdInduced>0.00469617</cdInduced>
+                                    <cdInduced>0.00392586</cdInduced>
                                   </dragContributions>
                                 </coefficients>
                                 <strips>
                                   <strip>
-                                    <toSegmentEta>0.0857156</toSegmentEta>
+                                    <toSegmentEta>0.0942871</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.018083</cd>
-                                      <cs>0.00651055</cs>
-                                      <cl>0.794213</cl>
-                                      <cmd>0.000343976</cmd>
-                                      <cms>-0.109376</cms>
-                                      <cml>0.0024111</cml>
+                                      <cd>0.0131057</cd>
+                                      <cs>0.00626289</cs>
+                                      <cl>0.744519</cl>
+                                      <cmd>0.000330583</cmd>
+                                      <cms>-0.110014</cms>
+                                      <cml>0.00228842</cml>
                                       <dragContributions>
-                                        <cdInduced>0.018083</cdInduced>
+                                        <cdInduced>0.0131057</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.69572</area>
-                                      <length>2.21733</length>
+                                      <area>0.765292</area>
+                                      <length>2.21732</length>
                                       <geometryPoint>
                                         <x>8.20433</x>
-                                        <y>-3.50347</y>
-                                        <z>2.00401</z>
+                                        <y>-3.48778</y>
+                                        <z>2.00393</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.171431</toSegmentEta>
+                                    <toSegmentEta>0.188574</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0169561</cd>
-                                      <cs>0.00661656</cs>
-                                      <cl>0.810279</cl>
-                                      <cmd>0.000309948</cmd>
-                                      <cms>-0.110307</cms>
-                                      <cml>0.00233864</cml>
+                                      <cd>0.0136106</cd>
+                                      <cs>0.00636634</cs>
+                                      <cl>0.760606</cl>
+                                      <cmd>0.00030309</cmd>
+                                      <cms>-0.110911</cms>
+                                      <cml>0.00228492</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0169561</cdInduced>
+                                        <cdInduced>0.0136106</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.69571</area>
-                                      <length>2.21729</length>
+                                      <area>0.765278</area>
+                                      <length>2.21728</length>
                                       <geometryPoint>
                                         <x>8.20432</x>
-                                        <y>-3.18972</y>
-                                        <z>2.00235</z>
+                                        <y>-3.14266</y>
+                                        <z>2.0021</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.257147</toSegmentEta>
+                                    <toSegmentEta>0.282861</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0180203</cd>
-                                      <cs>0.00670166</cs>
-                                      <cl>0.82506</cl>
-                                      <cmd>0.000311594</cmd>
-                                      <cms>-0.110705</cms>
-                                      <cml>0.00236052</cml>
+                                      <cd>0.014867</cd>
+                                      <cs>0.00645441</cs>
+                                      <cl>0.775698</cl>
+                                      <cmd>0.000305836</cmd>
+                                      <cms>-0.111332</cms>
+                                      <cml>0.00230577</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0180203</cdInduced>
+                                        <cdInduced>0.014867</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.695702</area>
+                                      <area>0.765275</area>
                                       <length>2.21727</length>
                                       <geometryPoint>
                                         <x>8.20432</x>
-                                        <y>-2.87597</y>
-                                        <z>2.00069</z>
+                                        <y>-2.79753</y>
+                                        <z>2.00028</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.342862</toSegmentEta>
+                                    <toSegmentEta>0.377148</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0192781</cd>
-                                      <cs>0.00678271</cs>
-                                      <cl>0.839248</cl>
-                                      <cmd>0.000314157</cmd>
-                                      <cms>-0.111005</cms>
-                                      <cml>0.00238056</cml>
+                                      <cd>0.0161998</cd>
+                                      <cs>0.00653773</cs>
+                                      <cl>0.790271</cl>
+                                      <cmd>0.000308653</cmd>
+                                      <cms>-0.111657</cms>
+                                      <cml>0.00232904</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0192781</cdInduced>
+                                        <cdInduced>0.0161998</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.695703</area>
-                                      <length>2.21727</length>
+                                      <area>0.765275</area>
+                                      <length>2.21728</length>
                                       <geometryPoint>
                                         <x>8.20432</x>
-                                        <y>-2.56222</y>
-                                        <z>1.99903</z>
+                                        <y>-2.45241</y>
+                                        <z>1.99845</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.428578</toSegmentEta>
+                                    <toSegmentEta>0.471436</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0205494</cd>
-                                      <cs>0.00686118</cs>
-                                      <cl>0.852994</cl>
-                                      <cmd>0.000316837</cmd>
-                                      <cms>-0.111324</cms>
-                                      <cml>0.00239847</cml>
+                                      <cd>0.0175954</cd>
+                                      <cs>0.00662044</cs>
+                                      <cl>0.804391</cl>
+                                      <cmd>0.000310614</cmd>
+                                      <cms>-0.111998</cms>
+                                      <cml>0.00234795</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0205494</cdInduced>
+                                        <cdInduced>0.0175954</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.695712</area>
-                                      <length>2.21729</length>
+                                      <area>0.765287</area>
+                                      <length>2.21731</length>
                                       <geometryPoint>
                                         <x>8.20432</x>
-                                        <y>-2.24848</y>
-                                        <z>1.99737</z>
+                                        <y>-2.10729</y>
+                                        <z>1.99663</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.514293</toSegmentEta>
+                                    <toSegmentEta>0.565723</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0219218</cd>
-                                      <cs>0.00693763</cs>
-                                      <cl>0.86611</cl>
-                                      <cmd>0.000316832</cmd>
-                                      <cms>-0.111646</cms>
-                                      <cml>0.00241726</cml>
+                                      <cd>0.0190969</cd>
+                                      <cs>0.00669628</cs>
+                                      <cl>0.817796</cl>
+                                      <cmd>0.000308536</cmd>
+                                      <cms>-0.112338</cms>
+                                      <cml>0.00236685</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0219218</cdInduced>
+                                        <cdInduced>0.0190969</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.695723</area>
-                                      <length>2.21733</length>
+                                      <area>0.765306</area>
+                                      <length>2.21737</length>
                                       <geometryPoint>
                                         <x>8.20433</x>
-                                        <y>-1.93473</y>
-                                        <z>1.99571</z>
+                                        <y>-1.76217</y>
+                                        <z>1.9948</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.600009</toSegmentEta>
+                                    <toSegmentEta>0.66001</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0233857</cd>
-                                      <cs>0.00700753</cs>
-                                      <cl>0.878399</cl>
-                                      <cmd>0.000314671</cmd>
-                                      <cms>-0.111953</cms>
-                                      <cml>0.00243383</cml>
+                                      <cd>0.0207014</cd>
+                                      <cs>0.00676872</cs>
+                                      <cl>0.830206</cl>
+                                      <cmd>0.000302971</cmd>
+                                      <cms>-0.112655</cms>
+                                      <cml>0.00238446</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0233857</cdInduced>
+                                        <cdInduced>0.0207014</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.695742</area>
-                                      <length>2.21739</length>
-                                      <geometryPoint>
-                                        <x>8.20434</x>
-                                        <y>-1.62098</y>
-                                        <z>1.99405</z>
-                                      </geometryPoint>
-                                    </reference>
-                                  </strip>
-                                  <strip>
-                                    <toSegmentEta>0.685724</toSegmentEta>
-                                    <coefficients>
-                                      <cd>0.024948</cd>
-                                      <cs>0.00707273</cs>
-                                      <cl>0.889667</cl>
-                                      <cmd>0.000310082</cmd>
-                                      <cms>-0.112237</cms>
-                                      <cml>0.00244966</cml>
-                                      <dragContributions>
-                                        <cdInduced>0.024948</cdInduced>
-                                      </dragContributions>
-                                    </coefficients>
-                                    <reference>
-                                      <area>0.695769</area>
-                                      <length>2.21748</length>
+                                      <area>0.765334</area>
+                                      <length>2.21745</length>
                                       <geometryPoint>
                                         <x>8.20435</x>
-                                        <y>-1.30723</y>
-                                        <z>1.9924</z>
+                                        <y>-1.41704</y>
+                                        <z>1.99298</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.77144</toSegmentEta>
+                                    <toSegmentEta>0.754297</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0266182</cd>
-                                      <cs>0.0071302</cs>
-                                      <cl>0.899678</cl>
-                                      <cmd>0.000302271</cmd>
-                                      <cms>-0.112493</cms>
-                                      <cml>0.00246294</cml>
+                                      <cd>0.022421</cd>
+                                      <cs>0.00683202</cs>
+                                      <cl>0.841317</cl>
+                                      <cmd>0.000293002</cmd>
+                                      <cms>-0.112942</cms>
+                                      <cml>0.00239926</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0266182</cdInduced>
+                                        <cdInduced>0.022421</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.695799</area>
-                                      <length>2.21758</length>
+                                      <area>0.765371</area>
+                                      <length>2.21755</length>
                                       <geometryPoint>
-                                        <x>8.20437</x>
-                                        <y>-0.993482</y>
-                                        <z>1.99074</z>
+                                        <x>8.20436</x>
+                                        <y>-1.07192</y>
+                                        <z>1.99115</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.857156</toSegmentEta>
+                                    <toSegmentEta>0.848584</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0284112</cd>
-                                      <cs>0.0071801</cs>
-                                      <cl>0.908124</cl>
-                                      <cmd>0.000290272</cmd>
-                                      <cms>-0.112726</cms>
-                                      <cml>0.00247471</cml>
+                                      <cd>0.024274</cd>
+                                      <cs>0.00688771</cs>
+                                      <cl>0.850743</cl>
+                                      <cmd>0.000277207</cmd>
+                                      <cms>-0.1132</cms>
+                                      <cml>0.0024117</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0284112</cdInduced>
+                                        <cdInduced>0.024274</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.695837</area>
-                                      <length>2.2177</length>
+                                      <area>0.765415</area>
+                                      <length>2.21768</length>
                                       <geometryPoint>
                                         <x>8.20439</x>
-                                        <y>-0.679734</y>
-                                        <z>1.98908</z>
+                                        <y>-0.726796</y>
+                                        <z>1.98933</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
                                     <toSegmentEta>0.942871</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0303365</cd>
-                                      <cs>0.00721741</cs>
-                                      <cl>0.914604</cl>
-                                      <cmd>0.000273129</cmd>
-                                      <cms>-0.112971</cms>
-                                      <cml>0.0024842</cml>
+                                      <cd>0.0262708</cd>
+                                      <cs>0.0069297</cs>
+                                      <cl>0.857959</cl>
+                                      <cmd>0.000253677</cmd>
+                                      <cms>-0.113463</cms>
+                                      <cml>0.00242317</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0303365</cdInduced>
+                                        <cdInduced>0.0262708</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.695881</area>
-                                      <length>2.21784</length>
+                                      <area>0.765467</area>
+                                      <length>2.21783</length>
                                       <geometryPoint>
                                         <x>8.20441</x>
-                                        <y>-0.365986</y>
-                                        <z>1.98742</z>
+                                        <y>-0.381673</y>
+                                        <z>1.9875</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
                                     <toSegmentEta>0.971436</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0317315</cd>
-                                      <cs>0.00724124</cs>
-                                      <cl>0.917946</cl>
-                                      <cmd>0.000221618</cmd>
-                                      <cms>-0.113278</cms>
-                                      <cml>0.00251098</cml>
+                                      <cd>0.0276845</cd>
+                                      <cs>0.00695436</cs>
+                                      <cl>0.861516</cl>
+                                      <cmd>0.000188601</cmd>
+                                      <cms>-0.113775</cms>
+                                      <cml>0.0024532</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0317315</cdInduced>
+                                        <cdInduced>0.0276845</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
@@ -862,14 +862,14 @@
                                   <strip>
                                     <toSegmentEta>1</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0327035</cd>
-                                      <cs>0.00731457</cs>
-                                      <cl>0.924052</cl>
-                                      <cmd>0.000297495</cmd>
-                                      <cms>-0.115182</cms>
-                                      <cml>0.00254061</cml>
+                                      <cd>0.0285458</cd>
+                                      <cs>0.00702382</cs>
+                                      <cl>0.867204</cl>
+                                      <cmd>0.00025831</cmd>
+                                      <cms>-0.115599</cms>
+                                      <cml>0.00248249</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0327035</cdInduced>
+                                        <cdInduced>0.0285458</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
@@ -887,28 +887,28 @@
                               <segment>
                                 <segmentUID>wing_segment_from_wing_section_0_element_1_to_wing_section_1_element_1</segmentUID>
                                 <coefficients>
-                                  <cd>0.00469617</cd>
-                                  <cs>-0.00140665</cs>
-                                  <cl>0.175546</cl>
-                                  <cmd>-0.266902</cmd>
-                                  <cms>-0.0625984</cms>
-                                  <cml>0.00667685</cml>
+                                  <cd>0.00392586</cd>
+                                  <cs>-0.00135066</cs>
+                                  <cl>0.164496</cl>
+                                  <cmd>-0.25017</cmd>
+                                  <cms>-0.0604046</cms>
+                                  <cml>0.00555297</cml>
                                   <dragContributions>
-                                    <cdInduced>0.00469617</cdInduced>
+                                    <cdInduced>0.00392586</cdInduced>
                                   </dragContributions>
                                 </coefficients>
                                 <strips>
                                   <strip>
                                     <toSegmentEta>0.0285645</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0327035</cd>
-                                      <cs>-0.00731457</cs>
-                                      <cl>0.924052</cl>
-                                      <cmd>-0.000297495</cmd>
-                                      <cms>-0.115182</cms>
-                                      <cml>-0.00254061</cml>
+                                      <cd>0.0285458</cd>
+                                      <cs>-0.00702382</cs>
+                                      <cl>0.867204</cl>
+                                      <cmd>-0.00025831</cmd>
+                                      <cms>-0.115599</cms>
+                                      <cml>-0.00248249</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0327035</cdInduced>
+                                        <cdInduced>0.0285458</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
@@ -924,14 +924,14 @@
                                   <strip>
                                     <toSegmentEta>0.0571289</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0317315</cd>
-                                      <cs>-0.00724124</cs>
-                                      <cl>0.917946</cl>
-                                      <cmd>-0.000221618</cmd>
-                                      <cms>-0.113278</cms>
-                                      <cml>-0.00251098</cml>
+                                      <cd>0.0276845</cd>
+                                      <cs>-0.00695436</cs>
+                                      <cl>0.861516</cl>
+                                      <cmd>-0.000188601</cmd>
+                                      <cms>-0.113775</cms>
+                                      <cml>-0.0024532</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0317315</cdInduced>
+                                        <cdInduced>0.0276845</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
@@ -945,255 +945,232 @@
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.142844</toSegmentEta>
+                                    <toSegmentEta>0.151416</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0303365</cd>
-                                      <cs>-0.00721741</cs>
-                                      <cl>0.914604</cl>
-                                      <cmd>-0.000273129</cmd>
-                                      <cms>-0.112971</cms>
-                                      <cml>-0.0024842</cml>
+                                      <cd>0.0262708</cd>
+                                      <cs>-0.0069297</cs>
+                                      <cl>0.857959</cl>
+                                      <cmd>-0.000253677</cmd>
+                                      <cms>-0.113463</cms>
+                                      <cml>-0.00242317</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0303365</cdInduced>
+                                        <cdInduced>0.0262708</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.695881</area>
-                                      <length>2.21784</length>
+                                      <area>0.765467</area>
+                                      <length>2.21783</length>
                                       <geometryPoint>
                                         <x>8.20441</x>
-                                        <y>0.365986</y>
-                                        <z>1.98742</z>
+                                        <y>0.381673</y>
+                                        <z>1.9875</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.22856</toSegmentEta>
+                                    <toSegmentEta>0.245703</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0284112</cd>
-                                      <cs>-0.0071801</cs>
-                                      <cl>0.908124</cl>
-                                      <cmd>-0.000290272</cmd>
-                                      <cms>-0.112726</cms>
-                                      <cml>-0.00247471</cml>
+                                      <cd>0.024274</cd>
+                                      <cs>-0.00688771</cs>
+                                      <cl>0.850743</cl>
+                                      <cmd>-0.000277207</cmd>
+                                      <cms>-0.1132</cms>
+                                      <cml>-0.0024117</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0284112</cdInduced>
+                                        <cdInduced>0.024274</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.695837</area>
-                                      <length>2.2177</length>
+                                      <area>0.765415</area>
+                                      <length>2.21768</length>
                                       <geometryPoint>
                                         <x>8.20439</x>
-                                        <y>0.679734</y>
-                                        <z>1.98908</z>
+                                        <y>0.726796</y>
+                                        <z>1.98933</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.314276</toSegmentEta>
+                                    <toSegmentEta>0.33999</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0266182</cd>
-                                      <cs>-0.0071302</cs>
-                                      <cl>0.899678</cl>
-                                      <cmd>-0.000302271</cmd>
-                                      <cms>-0.112493</cms>
-                                      <cml>-0.00246294</cml>
+                                      <cd>0.022421</cd>
+                                      <cs>-0.00683202</cs>
+                                      <cl>0.841317</cl>
+                                      <cmd>-0.000293002</cmd>
+                                      <cms>-0.112942</cms>
+                                      <cml>-0.00239926</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0266182</cdInduced>
+                                        <cdInduced>0.022421</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.695799</area>
-                                      <length>2.21758</length>
+                                      <area>0.765371</area>
+                                      <length>2.21755</length>
                                       <geometryPoint>
-                                        <x>8.20437</x>
-                                        <y>0.993482</y>
-                                        <z>1.99074</z>
+                                        <x>8.20436</x>
+                                        <y>1.07192</y>
+                                        <z>1.99115</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.399991</toSegmentEta>
+                                    <toSegmentEta>0.434277</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.024948</cd>
-                                      <cs>-0.00707273</cs>
-                                      <cl>0.889667</cl>
-                                      <cmd>-0.000310082</cmd>
-                                      <cms>-0.112237</cms>
-                                      <cml>-0.00244966</cml>
+                                      <cd>0.0207014</cd>
+                                      <cs>-0.00676872</cs>
+                                      <cl>0.830206</cl>
+                                      <cmd>-0.000302971</cmd>
+                                      <cms>-0.112655</cms>
+                                      <cml>-0.00238446</cml>
                                       <dragContributions>
-                                        <cdInduced>0.024948</cdInduced>
+                                        <cdInduced>0.0207014</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.695769</area>
-                                      <length>2.21748</length>
+                                      <area>0.765334</area>
+                                      <length>2.21745</length>
                                       <geometryPoint>
                                         <x>8.20435</x>
-                                        <y>1.30723</y>
-                                        <z>1.9924</z>
+                                        <y>1.41704</y>
+                                        <z>1.99298</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.485707</toSegmentEta>
+                                    <toSegmentEta>0.528564</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0233857</cd>
-                                      <cs>-0.00700753</cs>
-                                      <cl>0.878399</cl>
-                                      <cmd>-0.000314671</cmd>
-                                      <cms>-0.111953</cms>
-                                      <cml>-0.00243383</cml>
+                                      <cd>0.0190969</cd>
+                                      <cs>-0.00669628</cs>
+                                      <cl>0.817796</cl>
+                                      <cmd>-0.000308536</cmd>
+                                      <cms>-0.112338</cms>
+                                      <cml>-0.00236685</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0233857</cdInduced>
+                                        <cdInduced>0.0190969</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.695742</area>
-                                      <length>2.21739</length>
-                                      <geometryPoint>
-                                        <x>8.20434</x>
-                                        <y>1.62098</y>
-                                        <z>1.99405</z>
-                                      </geometryPoint>
-                                    </reference>
-                                  </strip>
-                                  <strip>
-                                    <toSegmentEta>0.571422</toSegmentEta>
-                                    <coefficients>
-                                      <cd>0.0219218</cd>
-                                      <cs>-0.00693763</cs>
-                                      <cl>0.86611</cl>
-                                      <cmd>-0.000316832</cmd>
-                                      <cms>-0.111646</cms>
-                                      <cml>-0.00241726</cml>
-                                      <dragContributions>
-                                        <cdInduced>0.0219218</cdInduced>
-                                      </dragContributions>
-                                    </coefficients>
-                                    <reference>
-                                      <area>0.695723</area>
-                                      <length>2.21733</length>
+                                      <area>0.765306</area>
+                                      <length>2.21737</length>
                                       <geometryPoint>
                                         <x>8.20433</x>
-                                        <y>1.93473</y>
-                                        <z>1.99571</z>
+                                        <y>1.76217</y>
+                                        <z>1.9948</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.657138</toSegmentEta>
+                                    <toSegmentEta>0.622852</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0205494</cd>
-                                      <cs>-0.00686118</cs>
-                                      <cl>0.852994</cl>
-                                      <cmd>-0.000316837</cmd>
-                                      <cms>-0.111324</cms>
-                                      <cml>-0.00239847</cml>
+                                      <cd>0.0175954</cd>
+                                      <cs>-0.00662044</cs>
+                                      <cl>0.804391</cl>
+                                      <cmd>-0.000310614</cmd>
+                                      <cms>-0.111998</cms>
+                                      <cml>-0.00234795</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0205494</cdInduced>
+                                        <cdInduced>0.0175954</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.695712</area>
-                                      <length>2.21729</length>
+                                      <area>0.765287</area>
+                                      <length>2.21731</length>
                                       <geometryPoint>
                                         <x>8.20432</x>
-                                        <y>2.24848</y>
-                                        <z>1.99737</z>
+                                        <y>2.10729</y>
+                                        <z>1.99663</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.742853</toSegmentEta>
+                                    <toSegmentEta>0.717139</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0192781</cd>
-                                      <cs>-0.00678271</cs>
-                                      <cl>0.839248</cl>
-                                      <cmd>-0.000314157</cmd>
-                                      <cms>-0.111005</cms>
-                                      <cml>-0.00238056</cml>
+                                      <cd>0.0161998</cd>
+                                      <cs>-0.00653773</cs>
+                                      <cl>0.790271</cl>
+                                      <cmd>-0.000308653</cmd>
+                                      <cms>-0.111657</cms>
+                                      <cml>-0.00232904</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0192781</cdInduced>
+                                        <cdInduced>0.0161998</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.695703</area>
+                                      <area>0.765275</area>
+                                      <length>2.21728</length>
+                                      <geometryPoint>
+                                        <x>8.20432</x>
+                                        <y>2.45241</y>
+                                        <z>1.99845</z>
+                                      </geometryPoint>
+                                    </reference>
+                                  </strip>
+                                  <strip>
+                                    <toSegmentEta>0.811426</toSegmentEta>
+                                    <coefficients>
+                                      <cd>0.014867</cd>
+                                      <cs>-0.00645441</cs>
+                                      <cl>0.775698</cl>
+                                      <cmd>-0.000305836</cmd>
+                                      <cms>-0.111332</cms>
+                                      <cml>-0.00230577</cml>
+                                      <dragContributions>
+                                        <cdInduced>0.014867</cdInduced>
+                                      </dragContributions>
+                                    </coefficients>
+                                    <reference>
+                                      <area>0.765275</area>
                                       <length>2.21727</length>
                                       <geometryPoint>
                                         <x>8.20432</x>
-                                        <y>2.56222</y>
-                                        <z>1.99903</z>
+                                        <y>2.79753</y>
+                                        <z>2.00028</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.828569</toSegmentEta>
+                                    <toSegmentEta>0.905713</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0180203</cd>
-                                      <cs>-0.00670166</cs>
-                                      <cl>0.82506</cl>
-                                      <cmd>-0.000311594</cmd>
-                                      <cms>-0.110705</cms>
-                                      <cml>-0.00236052</cml>
+                                      <cd>0.0136106</cd>
+                                      <cs>-0.00636634</cs>
+                                      <cl>0.760606</cl>
+                                      <cmd>-0.00030309</cmd>
+                                      <cms>-0.110911</cms>
+                                      <cml>-0.00228492</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0180203</cdInduced>
+                                        <cdInduced>0.0136106</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.695702</area>
-                                      <length>2.21727</length>
+                                      <area>0.765278</area>
+                                      <length>2.21728</length>
                                       <geometryPoint>
                                         <x>8.20432</x>
-                                        <y>2.87597</y>
-                                        <z>2.00069</z>
-                                      </geometryPoint>
-                                    </reference>
-                                  </strip>
-                                  <strip>
-                                    <toSegmentEta>0.914284</toSegmentEta>
-                                    <coefficients>
-                                      <cd>0.0169561</cd>
-                                      <cs>-0.00661656</cs>
-                                      <cl>0.810279</cl>
-                                      <cmd>-0.000309948</cmd>
-                                      <cms>-0.110307</cms>
-                                      <cml>-0.00233864</cml>
-                                      <dragContributions>
-                                        <cdInduced>0.0169561</cdInduced>
-                                      </dragContributions>
-                                    </coefficients>
-                                    <reference>
-                                      <area>0.69571</area>
-                                      <length>2.21729</length>
-                                      <geometryPoint>
-                                        <x>8.20432</x>
-                                        <y>3.18972</y>
-                                        <z>2.00235</z>
+                                        <y>3.14266</y>
+                                        <z>2.0021</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
                                     <toSegmentEta>1</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.018083</cd>
-                                      <cs>-0.00651055</cs>
-                                      <cl>0.794213</cl>
-                                      <cmd>-0.000343976</cmd>
-                                      <cms>-0.109376</cms>
-                                      <cml>-0.0024111</cml>
+                                      <cd>0.0131057</cd>
+                                      <cs>-0.00626289</cs>
+                                      <cl>0.744519</cl>
+                                      <cmd>-0.000330583</cmd>
+                                      <cms>-0.110014</cms>
+                                      <cml>-0.00228842</cml>
                                       <dragContributions>
-                                        <cdInduced>0.018083</cdInduced>
+                                        <cdInduced>0.0131057</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.69572</area>
-                                      <length>2.21733</length>
+                                      <area>0.765292</area>
+                                      <length>2.21732</length>
                                       <geometryPoint>
                                         <x>8.20433</x>
-                                        <y>3.50347</y>
-                                        <z>2.00401</z>
+                                        <y>3.48778</y>
+                                        <z>2.00393</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
@@ -1202,497 +1179,520 @@
                               <segment>
                                 <segmentUID>wing_segment_from_wing_section_1_element_1_to_wing_section_2_element_1</segmentUID>
                                 <coefficients>
-                                  <cd>0.00410589</cd>
-                                  <cs>0.000887975</cs>
-                                  <cl>0.212639</cl>
-                                  <cmd>0.190352</cmd>
-                                  <cms>-0.0845569</cms>
-                                  <cml>-0.00392422</cml>
+                                  <cd>0.00338126</cd>
+                                  <cs>0.000914697</cs>
+                                  <cl>0.227484</cl>
+                                  <cmd>0.259004</cmd>
+                                  <cms>-0.0892427</cms>
+                                  <cml>-0.0040332</cml>
                                   <dragContributions>
-                                    <cdInduced>0.00410589</cdInduced>
+                                    <cdInduced>0.00338126</cdInduced>
                                   </dragContributions>
                                 </coefficients>
                                 <strips>
                                   <strip>
-                                    <toSegmentEta>0.047619</toSegmentEta>
+                                    <toSegmentEta>0.0454545</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0174659</cd>
-                                      <cs>0.00314341</cs>
-                                      <cl>0.786149</cl>
-                                      <cmd>-0.000173129</cmd>
-                                      <cms>-0.108755</cms>
-                                      <cml>3.37516e-05</cml>
+                                      <cd>0.0125129</cd>
+                                      <cs>0.00267251</cs>
+                                      <cl>0.738322</cl>
+                                      <cmd>-0.000214186</cmd>
+                                      <cms>-0.109829</cms>
+                                      <cml>0.000109594</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0174659</cdInduced>
+                                        <cdInduced>0.0125129</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.713548</area>
-                                      <length>2.19465</length>
+                                      <area>0.797746</area>
+                                      <length>2.18525</length>
                                       <geometryPoint>
-                                        <x>8.21111</x>
-                                        <y>3.82291</y>
-                                        <z>2.00479</z>
+                                        <x>8.21029</x>
+                                        <y>3.84287</y>
+                                        <z>2.00481</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.0952381</toSegmentEta>
+                                    <toSegmentEta>0.0909091</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0146528</cd>
-                                      <cs>0.00336738</cs>
-                                      <cl>0.786304</cl>
-                                      <cmd>-0.000225164</cmd>
-                                      <cms>-0.108581</cms>
-                                      <cml>-0.000110427</cml>
+                                      <cd>0.0113248</cd>
+                                      <cs>0.00290089</cs>
+                                      <cl>0.742784</cl>
+                                      <cmd>-0.000262899</cmd>
+                                      <cms>-0.110673</cms>
+                                      <cml>7.21541e-05</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0146528</cdInduced>
+                                        <cdInduced>0.0113248</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.698784</area>
-                                      <length>2.14925</length>
+                                      <area>0.774312</area>
+                                      <length>2.12106</length>
                                       <geometryPoint>
-                                        <x>8.22467</x>
-                                        <y>4.14804</y>
-                                        <z>2.00469</z>
+                                        <x>8.22222</x>
+                                        <y>4.20793</y>
+                                        <z>2.00475</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.142857</toSegmentEta>
+                                    <toSegmentEta>0.136364</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0141949</cd>
-                                      <cs>0.00338295</cs>
-                                      <cl>0.785374</cl>
-                                      <cmd>-0.000239117</cmd>
-                                      <cms>-0.107908</cms>
-                                      <cml>-0.00011749</cml>
+                                      <cd>0.0109867</cd>
+                                      <cs>0.00294471</cs>
+                                      <cl>0.746874</cl>
+                                      <cmd>-0.000280345</cmd>
+                                      <cms>-0.111165</cms>
+                                      <cml>6.89688e-05</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0141949</cdInduced>
+                                        <cdInduced>0.0109867</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.684024</area>
-                                      <length>2.10384</length>
+                                      <area>0.750878</area>
+                                      <length>2.05687</length>
                                       <geometryPoint>
-                                        <x>8.23824</x>
-                                        <y>4.47317</y>
-                                        <z>2.00459</z>
+                                        <x>8.23414</x>
+                                        <y>4.57299</y>
+                                        <z>2.00468</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.190476</toSegmentEta>
+                                    <toSegmentEta>0.181818</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.013834</cd>
-                                      <cs>0.0033879</cs>
-                                      <cl>0.784071</cl>
-                                      <cmd>-0.000254341</cmd>
-                                      <cms>-0.107172</cms>
-                                      <cml>-0.000122619</cml>
+                                      <cd>0.0107034</cd>
+                                      <cs>0.00298327</cs>
+                                      <cl>0.751143</cl>
+                                      <cmd>-0.00030106</cmd>
+                                      <cms>-0.111683</cms>
+                                      <cml>6.56616e-05</cml>
                                       <dragContributions>
-                                        <cdInduced>0.013834</cdInduced>
+                                        <cdInduced>0.0107034</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.669262</area>
-                                      <length>2.05844</length>
+                                      <area>0.727444</area>
+                                      <length>1.99268</length>
                                       <geometryPoint>
-                                        <x>8.2518</x>
-                                        <y>4.7983</y>
-                                        <z>2.00449</z>
+                                        <x>8.24607</x>
+                                        <y>4.93805</y>
+                                        <z>2.00462</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.238095</toSegmentEta>
+                                    <toSegmentEta>0.227273</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0135253</cd>
-                                      <cs>0.00338663</cs>
-                                      <cl>0.782317</cl>
-                                      <cmd>-0.000271542</cmd>
-                                      <cms>-0.106399</cms>
-                                      <cml>-0.000126656</cml>
+                                      <cd>0.0104487</cd>
+                                      <cs>0.00302089</cs>
+                                      <cl>0.755507</cl>
+                                      <cmd>-0.000325342</cmd>
+                                      <cms>-0.112246</cms>
+                                      <cml>6.39072e-05</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0135253</cdInduced>
+                                        <cdInduced>0.0104487</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.654501</area>
-                                      <length>2.01304</length>
+                                      <area>0.70401</area>
+                                      <length>1.92848</length>
                                       <geometryPoint>
-                                        <x>8.26536</x>
-                                        <y>5.12343</y>
-                                        <z>2.00439</z>
+                                        <x>8.25799</x>
+                                        <y>5.30311</y>
+                                        <z>2.00456</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.285714</toSegmentEta>
+                                    <toSegmentEta>0.272727</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0132578</cd>
-                                      <cs>0.00338057</cs>
-                                      <cl>0.780014</cl>
-                                      <cmd>-0.000290936</cmd>
-                                      <cms>-0.105587</cms>
-                                      <cml>-0.000129542</cml>
+                                      <cd>0.0102156</cd>
+                                      <cs>0.00305543</cs>
+                                      <cl>0.759892</cl>
+                                      <cmd>-0.000353494</cmd>
+                                      <cms>-0.112858</cms>
+                                      <cml>6.19248e-05</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0132578</cdInduced>
+                                        <cdInduced>0.0102156</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.639737</area>
-                                      <length>1.96763</length>
+                                      <area>0.680575</area>
+                                      <length>1.86429</length>
                                       <geometryPoint>
-                                        <x>8.27893</x>
-                                        <y>5.44856</y>
-                                        <z>2.00429</z>
+                                        <x>8.26992</x>
+                                        <y>5.66817</y>
+                                        <z>2.0045</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.333333</toSegmentEta>
+                                    <toSegmentEta>0.318182</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0130297</cd>
-                                      <cs>0.00336689</cs>
-                                      <cl>0.777053</cl>
-                                      <cmd>-0.000312887</cmd>
-                                      <cms>-0.10473</cms>
-                                      <cml>-0.000132597</cml>
+                                      <cd>0.0100036</cd>
+                                      <cs>0.00309145</cs>
+                                      <cl>0.764235</cl>
+                                      <cmd>-0.000385867</cmd>
+                                      <cms>-0.113517</cms>
+                                      <cml>6.04977e-05</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0130297</cdInduced>
+                                        <cdInduced>0.0100036</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.624977</area>
-                                      <length>1.92223</length>
+                                      <area>0.657143</area>
+                                      <length>1.8001</length>
                                       <geometryPoint>
-                                        <x>8.29249</x>
-                                        <y>5.77369</y>
+                                        <x>8.28184</x>
+                                        <y>6.03323</y>
+                                        <z>2.00444</z>
+                                      </geometryPoint>
+                                    </reference>
+                                  </strip>
+                                  <strip>
+                                    <toSegmentEta>0.363636</toSegmentEta>
+                                    <coefficients>
+                                      <cd>0.009815</cd>
+                                      <cs>0.00312555</cs>
+                                      <cl>0.768474</cl>
+                                      <cmd>-0.000423018</cmd>
+                                      <cms>-0.114224</cms>
+                                      <cml>6.00928e-05</cml>
+                                      <dragContributions>
+                                        <cdInduced>0.009815</cdInduced>
+                                      </dragContributions>
+                                    </coefficients>
+                                    <reference>
+                                      <area>0.633709</area>
+                                      <length>1.73591</length>
+                                      <geometryPoint>
+                                        <x>8.29377</x>
+                                        <y>6.39828</y>
+                                        <z>2.00437</z>
+                                      </geometryPoint>
+                                    </reference>
+                                  </strip>
+                                  <strip>
+                                    <toSegmentEta>0.409091</toSegmentEta>
+                                    <coefficients>
+                                      <cd>0.00965451</cd>
+                                      <cs>0.00315835</cs>
+                                      <cl>0.772543</cl>
+                                      <cmd>-0.000465845</cmd>
+                                      <cms>-0.114979</cms>
+                                      <cml>5.91548e-05</cml>
+                                      <dragContributions>
+                                        <cdInduced>0.00965451</cdInduced>
+                                      </dragContributions>
+                                    </coefficients>
+                                    <reference>
+                                      <area>0.610275</area>
+                                      <length>1.67172</length>
+                                      <geometryPoint>
+                                        <x>8.30569</x>
+                                        <y>6.76334</y>
+                                        <z>2.00431</z>
+                                      </geometryPoint>
+                                    </reference>
+                                  </strip>
+                                  <strip>
+                                    <toSegmentEta>0.454545</toSegmentEta>
+                                    <coefficients>
+                                      <cd>0.0095288</cd>
+                                      <cs>0.00318958</cs>
+                                      <cl>0.776362</cl>
+                                      <cmd>-0.000515427</cmd>
+                                      <cms>-0.115783</cms>
+                                      <cml>5.96414e-05</cml>
+                                      <dragContributions>
+                                        <cdInduced>0.0095288</cdInduced>
+                                      </dragContributions>
+                                    </coefficients>
+                                    <reference>
+                                      <area>0.586841</area>
+                                      <length>1.60752</length>
+                                      <geometryPoint>
+                                        <x>8.31762</x>
+                                        <y>7.1284</y>
+                                        <z>2.00425</z>
+                                      </geometryPoint>
+                                    </reference>
+                                  </strip>
+                                  <strip>
+                                    <toSegmentEta>0.5</toSegmentEta>
+                                    <coefficients>
+                                      <cd>0.00944724</cd>
+                                      <cs>0.00321582</cs>
+                                      <cl>0.779828</cl>
+                                      <cmd>-0.000573412</cmd>
+                                      <cms>-0.11664</cms>
+                                      <cml>6.01321e-05</cml>
+                                      <dragContributions>
+                                        <cdInduced>0.00944724</cdInduced>
+                                      </dragContributions>
+                                    </coefficients>
+                                    <reference>
+                                      <area>0.563408</area>
+                                      <length>1.54333</length>
+                                      <geometryPoint>
+                                        <x>8.32954</x>
+                                        <y>7.49346</y>
                                         <z>2.00419</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.380952</toSegmentEta>
+                                    <toSegmentEta>0.545455</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0128431</cd>
-                                      <cs>0.0033475</cs>
-                                      <cl>0.77331</cl>
-                                      <cmd>-0.000337748</cmd>
-                                      <cms>-0.103817</cms>
-                                      <cml>-0.00013452</cml>
+                                      <cd>0.0094227</cd>
+                                      <cs>0.00324045</cs>
+                                      <cl>0.782795</cl>
+                                      <cmd>-0.000642013</cmd>
+                                      <cms>-0.11755</cms>
+                                      <cml>6.1439e-05</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0128431</cdInduced>
+                                        <cdInduced>0.0094227</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.610215</area>
-                                      <length>1.87683</length>
+                                      <area>0.539974</area>
+                                      <length>1.47914</length>
                                       <geometryPoint>
-                                        <x>8.30605</x>
-                                        <y>6.09882</y>
-                                        <z>2.00409</z>
+                                        <x>8.34147</x>
+                                        <y>7.85852</y>
+                                        <z>2.00413</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.428571</toSegmentEta>
+                                    <toSegmentEta>0.590909</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0127023</cd>
-                                      <cs>0.00332068</cs>
-                                      <cl>0.768637</cl>
-                                      <cmd>-0.00036615</cmd>
-                                      <cms>-0.102836</cms>
-                                      <cml>-0.000135725</cml>
+                                      <cd>0.00947274</cd>
+                                      <cs>0.00325852</cs>
+                                      <cl>0.785059</cl>
+                                      <cmd>-0.000724414</cmd>
+                                      <cms>-0.118513</cms>
+                                      <cml>6.43571e-05</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0127023</cdInduced>
+                                        <cdInduced>0.00947274</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.595453</area>
-                                      <length>1.83143</length>
+                                      <area>0.51654</area>
+                                      <length>1.41495</length>
                                       <geometryPoint>
-                                        <x>8.31962</x>
-                                        <y>6.42396</y>
+                                        <x>8.35339</x>
+                                        <y>8.22358</y>
+                                        <z>2.00407</z>
+                                      </geometryPoint>
+                                    </reference>
+                                  </strip>
+                                  <strip>
+                                    <toSegmentEta>0.636364</toSegmentEta>
+                                    <coefficients>
+                                      <cd>0.00962199</cd>
+                                      <cs>0.00326925</cs>
+                                      <cl>0.786314</cl>
+                                      <cmd>-0.000825472</cmd>
+                                      <cms>-0.119525</cms>
+                                      <cml>6.72657e-05</cml>
+                                      <dragContributions>
+                                        <cdInduced>0.00962199</cdInduced>
+                                      </dragContributions>
+                                    </coefficients>
+                                    <reference>
+                                      <area>0.493107</area>
+                                      <length>1.35076</length>
+                                      <geometryPoint>
+                                        <x>8.36532</x>
+                                        <y>8.58864</y>
                                         <z>2.004</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.47619</toSegmentEta>
+                                    <toSegmentEta>0.681818</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0126134</cd>
-                                      <cs>0.00328497</cs>
-                                      <cl>0.762848</cl>
-                                      <cmd>-0.000398947</cmd>
-                                      <cms>-0.101775</cms>
-                                      <cml>-0.000135991</cml>
+                                      <cd>0.00990536</cd>
+                                      <cs>0.00326939</cs>
+                                      <cl>0.786092</cl>
+                                      <cmd>-0.000952573</cmd>
+                                      <cms>-0.120577</cms>
+                                      <cml>7.24299e-05</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0126134</cdInduced>
+                                        <cdInduced>0.00990536</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.580689</area>
-                                      <length>1.78602</length>
+                                      <area>0.469673</area>
+                                      <length>1.28657</length>
                                       <geometryPoint>
-                                        <x>8.33318</x>
-                                        <y>6.74909</y>
-                                        <z>2.0039</z>
+                                        <x>8.37724</x>
+                                        <y>8.9537</y>
+                                        <z>2.00394</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.52381</toSegmentEta>
+                                    <toSegmentEta>0.727273</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0125846</cd>
-                                      <cs>0.0032396</cs>
-                                      <cl>0.755704</cl>
-                                      <cmd>-0.000437376</cmd>
-                                      <cms>-0.100615</cms>
-                                      <cml>-0.000135145</cml>
+                                      <cd>0.0103728</cd>
+                                      <cs>0.00325085</cs>
+                                      <cl>0.783657</cl>
+                                      <cmd>-0.00111806</cmd>
+                                      <cms>-0.121645</cms>
+                                      <cml>7.86678e-05</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0125846</cdInduced>
+                                        <cdInduced>0.0103728</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.565929</area>
-                                      <length>1.74062</length>
+                                      <area>0.44624</area>
+                                      <length>1.22238</length>
                                       <geometryPoint>
-                                        <x>8.34674</x>
-                                        <y>7.07421</y>
-                                        <z>2.0038</z>
+                                        <x>8.38917</x>
+                                        <y>9.31876</y>
+                                        <z>2.00388</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.571429</toSegmentEta>
+                                    <toSegmentEta>0.772727</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0126259</cd>
-                                      <cs>0.00318159</cs>
-                                      <cl>0.746887</cl>
-                                      <cmd>-0.0004832</cmd>
-                                      <cms>-0.0993349</cms>
-                                      <cml>-0.000132874</cml>
+                                      <cd>0.0110969</cd>
+                                      <cs>0.00321099</cs>
+                                      <cl>0.777791</cl>
+                                      <cmd>-0.00134355</cmd>
+                                      <cms>-0.122677</cms>
+                                      <cml>8.71284e-05</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0126259</cdInduced>
+                                        <cdInduced>0.0110969</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.551167</area>
-                                      <length>1.69522</length>
+                                      <area>0.422807</area>
+                                      <length>1.15819</length>
                                       <geometryPoint>
-                                        <x>8.3603</x>
-                                        <y>7.39935</y>
+                                        <x>8.40109</x>
+                                        <y>9.68382</y>
+                                        <z>2.00382</z>
+                                      </geometryPoint>
+                                    </reference>
+                                  </strip>
+                                  <strip>
+                                    <toSegmentEta>0.818182</toSegmentEta>
+                                    <coefficients>
+                                      <cd>0.012183</cd>
+                                      <cs>0.00313363</cs>
+                                      <cl>0.766379</cl>
+                                      <cmd>-0.00167064</cmd>
+                                      <cms>-0.123554</cms>
+                                      <cml>9.95334e-05</cml>
+                                      <dragContributions>
+                                        <cdInduced>0.012183</cdInduced>
+                                      </dragContributions>
+                                    </coefficients>
+                                    <reference>
+                                      <area>0.399369</area>
+                                      <length>1.094</length>
+                                      <geometryPoint>
+                                        <x>8.41302</x>
+                                        <y>10.0489</y>
+                                        <z>2.00376</z>
+                                      </geometryPoint>
+                                    </reference>
+                                  </strip>
+                                  <strip>
+                                    <toSegmentEta>0.863636</toSegmentEta>
+                                    <coefficients>
+                                      <cd>0.0137871</cd>
+                                      <cs>0.00299962</cs>
+                                      <cl>0.745486</cl>
+                                      <cmd>-0.00218631</cmd>
+                                      <cms>-0.124005</cms>
+                                      <cml>0.000114601</cml>
+                                      <dragContributions>
+                                        <cdInduced>0.0137871</cdInduced>
+                                      </dragContributions>
+                                    </coefficients>
+                                    <reference>
+                                      <area>0.375941</area>
+                                      <length>1.02981</length>
+                                      <geometryPoint>
+                                        <x>8.42494</x>
+                                        <y>10.4139</y>
                                         <z>2.0037</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.619048</toSegmentEta>
+                                    <toSegmentEta>0.909091</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0127495</cd>
-                                      <cs>0.00310765</cs>
-                                      <cl>0.735967</cl>
-                                      <cmd>-0.000539121</cmd>
-                                      <cms>-0.097902</cms>
-                                      <cml>-0.000129745</cml>
+                                      <cd>0.0159623</cd>
+                                      <cs>0.00277078</cs>
+                                      <cl>0.706605</cl>
+                                      <cmd>-0.00315134</cmd>
+                                      <cms>-0.123188</cms>
+                                      <cml>0.000167369</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0127495</cdInduced>
+                                        <cdInduced>0.0159623</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.536405</area>
-                                      <length>1.64981</length>
+                                      <area>0.352509</area>
+                                      <length>0.965618</length>
                                       <geometryPoint>
-                                        <x>8.37387</x>
-                                        <y>7.72448</y>
-                                        <z>2.0036</z>
+                                        <x>8.43687</x>
+                                        <y>10.779</y>
+                                        <z>2.00363</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
-                                    <toSegmentEta>0.666667</toSegmentEta>
+                                    <toSegmentEta>0.954545</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0129692</cd>
-                                      <cs>0.00301607</cs>
-                                      <cl>0.722338</cl>
-                                      <cmd>-0.000609159</cmd>
-                                      <cms>-0.0962712</cms>
-                                      <cml>-0.000124303</cml>
+                                      <cd>0.0205666</cd>
+                                      <cs>0.00245246</cs>
+                                      <cl>0.634681</cl>
+                                      <cmd>-0.00460569</cmd>
+                                      <cms>-0.12009</cms>
+                                      <cml>-0.000123834</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0129692</cdInduced>
+                                        <cdInduced>0.0205666</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.521642</area>
-                                      <length>1.60441</length>
+                                      <area>0.329076</area>
+                                      <length>0.901429</length>
                                       <geometryPoint>
-                                        <x>8.38743</x>
-                                        <y>8.04961</y>
-                                        <z>2.0035</z>
-                                      </geometryPoint>
-                                    </reference>
-                                  </strip>
-                                  <strip>
-                                    <toSegmentEta>0.714286</toSegmentEta>
-                                    <coefficients>
-                                      <cd>0.0132993</cd>
-                                      <cs>0.00290132</cs>
-                                      <cl>0.705127</cl>
-                                      <cmd>-0.000699887</cmd>
-                                      <cms>-0.0943733</cms>
-                                      <cml>-0.000116404</cml>
-                                      <dragContributions>
-                                        <cdInduced>0.0132993</cdInduced>
-                                      </dragContributions>
-                                    </coefficients>
-                                    <reference>
-                                      <area>0.506882</area>
-                                      <length>1.55901</length>
-                                      <geometryPoint>
-                                        <x>8.40099</x>
-                                        <y>8.37474</y>
-                                        <z>2.0034</z>
-                                      </geometryPoint>
-                                    </reference>
-                                  </strip>
-                                  <strip>
-                                    <toSegmentEta>0.761905</toSegmentEta>
-                                    <coefficients>
-                                      <cd>0.0137517</cd>
-                                      <cs>0.00275717</cs>
-                                      <cl>0.68302</cl>
-                                      <cmd>-0.000822363</cmd>
-                                      <cms>-0.0920965</cms>
-                                      <cml>-0.000105145</cml>
-                                      <dragContributions>
-                                        <cdInduced>0.0137517</cdInduced>
-                                      </dragContributions>
-                                    </coefficients>
-                                    <reference>
-                                      <area>0.49212</area>
-                                      <length>1.51361</length>
-                                      <geometryPoint>
-                                        <x>8.41456</x>
-                                        <y>8.69987</y>
-                                        <z>2.0033</z>
-                                      </geometryPoint>
-                                    </reference>
-                                  </strip>
-                                  <strip>
-                                    <toSegmentEta>0.809524</toSegmentEta>
-                                    <coefficients>
-                                      <cd>0.0143262</cd>
-                                      <cs>0.00257472</cs>
-                                      <cl>0.653943</cl>
-                                      <cmd>-0.000996734</cmd>
-                                      <cms>-0.0892475</cms>
-                                      <cml>-8.90321e-05</cml>
-                                      <dragContributions>
-                                        <cdInduced>0.0143262</cdInduced>
-                                      </dragContributions>
-                                    </coefficients>
-                                    <reference>
-                                      <area>0.477358</area>
-                                      <length>1.4682</length>
-                                      <geometryPoint>
-                                        <x>8.42812</x>
-                                        <y>9.025</y>
-                                        <z>2.0032</z>
-                                      </geometryPoint>
-                                    </reference>
-                                  </strip>
-                                  <strip>
-                                    <toSegmentEta>0.857143</toSegmentEta>
-                                    <coefficients>
-                                      <cd>0.014997</cd>
-                                      <cs>0.00234111</cs>
-                                      <cl>0.614402</cl>
-                                      <cmd>-0.00126228</cmd>
-                                      <cms>-0.0854626</cms>
-                                      <cml>-6.6408e-05</cml>
-                                      <dragContributions>
-                                        <cdInduced>0.014997</cdInduced>
-                                      </dragContributions>
-                                    </coefficients>
-                                    <reference>
-                                      <area>0.462595</area>
-                                      <length>1.4228</length>
-                                      <geometryPoint>
-                                        <x>8.44168</x>
-                                        <y>9.35013</y>
-                                        <z>2.0031</z>
-                                      </geometryPoint>
-                                    </reference>
-                                  </strip>
-                                  <strip>
-                                    <toSegmentEta>0.904762</toSegmentEta>
-                                    <coefficients>
-                                      <cd>0.0155239</cd>
-                                      <cs>0.00203575</cs>
-                                      <cl>0.557637</cl>
-                                      <cmd>-0.00172682</cmd>
-                                      <cms>-0.0799108</cms>
-                                      <cml>-1.57397e-05</cml>
-                                      <dragContributions>
-                                        <cdInduced>0.0155239</cdInduced>
-                                      </dragContributions>
-                                    </coefficients>
-                                    <reference>
-                                      <area>0.447834</area>
-                                      <length>1.3774</length>
-                                      <geometryPoint>
-                                        <x>8.45524</x>
-                                        <y>9.67526</y>
-                                        <z>2.003</z>
-                                      </geometryPoint>
-                                    </reference>
-                                  </strip>
-                                  <strip>
-                                    <toSegmentEta>0.952381</toSegmentEta>
-                                    <coefficients>
-                                      <cd>0.0170229</cd>
-                                      <cs>0.00163291</cs>
-                                      <cl>0.472259</cl>
-                                      <cmd>-0.00241517</cmd>
-                                      <cms>-0.0711472</cms>
-                                      <cml>-0.000137462</cml>
-                                      <dragContributions>
-                                        <cdInduced>0.0170229</cdInduced>
-                                      </dragContributions>
-                                    </coefficients>
-                                    <reference>
-                                      <area>0.433075</area>
-                                      <length>1.33199</length>
-                                      <geometryPoint>
-                                        <x>8.46881</x>
-                                        <y>10.0004</y>
-                                        <z>2.00291</z>
+                                        <x>8.4488</x>
+                                        <y>11.1441</y>
+                                        <z>2.00357</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
                                   <strip>
                                     <toSegmentEta>1</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0121167</cd>
-                                      <cs>0.000824536</cs>
-                                      <cl>0.260307</cl>
-                                      <cmd>-0.00890053</cmd>
-                                      <cms>-0.0417381</cms>
-                                      <cml>0.00127832</cml>
+                                      <cd>0.01771</cd>
+                                      <cs>0.00146309</cs>
+                                      <cl>0.37741</cl>
+                                      <cmd>-0.0219831</cmd>
+                                      <cms>-0.0801461</cms>
+                                      <cml>0.00298194</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0121167</cdInduced>
+                                        <cdInduced>0.01771</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
-                                      <area>0.418309</area>
-                                      <length>1.28659</length>
+                                      <area>0.305643</area>
+                                      <length>0.837241</length>
                                       <geometryPoint>
-                                        <x>8.48237</x>
-                                        <y>10.3255</y>
-                                        <z>2.00281</z>
+                                        <x>8.46072</x>
+                                        <y>11.5091</y>
+                                        <z>2.00351</z>
                                       </geometryPoint>
                                     </reference>
                                   </strip>
@@ -1705,14 +1705,14 @@
                                 <description>Contributions from rounding errors</description>
                                 <type>numerical</type>
                                 <coefficients>
-                                  <cd>1.96318e-09</cd>
-                                  <cs>1.46892e-11</cs>
-                                  <cl>6.88496e-08</cl>
-                                  <cmd>3.78778e-07</cmd>
-                                  <cms>-9.95876e-08</cms>
-                                  <cml>3.46105e-09</cml>
+                                  <cd>7.28246e-09</cd>
+                                  <cs>-2.36328e-12</cs>
+                                  <cl>7.15654e-08</cl>
+                                  <cmd>3.32028e-07</cmd>
+                                  <cms>-1.21342e-07</cms>
+                                  <cml>5.50147e-09</cml>
                                   <dragContributions>
-                                    <cdInduced>1.96318e-09</cdInduced>
+                                    <cdInduced>7.28246e-09</cdInduced>
                                   </dragContributions>
                                 </coefficients>
                               </remainingContribution>
@@ -1721,42 +1721,42 @@
                           <wing>
                             <wingUID>htp</wingUID>
                             <coefficients>
-                              <cd>0.00106779</cd>
-                              <cs>4.36717e-09</cs>
-                              <cl>0.0236297</cl>
-                              <cmd>-0.0573916</cmd>
-                              <cms>-0.146129</cms>
-                              <cml>0.00259348</cml>
+                              <cd>0.000628376</cd>
+                              <cs>2.06288e-09</cs>
+                              <cl>0.0160404</cl>
+                              <cmd>-0.0389587</cmd>
+                              <cms>-0.0990459</cms>
+                              <cml>0.00152621</cml>
                               <dragContributions>
-                                <cdInduced>0.00106779</cdInduced>
+                                <cdInduced>0.000628376</cdInduced>
                               </dragContributions>
                             </coefficients>
                             <segments>
                               <segment>
                                 <segmentUID>htp_segment_from_htp_section_0_element_1_to_htp_section_1_element_1_symm</segmentUID>
                                 <coefficients>
-                                  <cd>0.000533914</cd>
-                                  <cs>-2.39938e-05</cs>
-                                  <cl>0.0118149</cl>
-                                  <cmd>-0.037312</cmd>
-                                  <cms>-0.0730648</cms>
-                                  <cml>0.00151264</cml>
+                                  <cd>0.000314196</cd>
+                                  <cs>-1.07986e-05</cs>
+                                  <cl>0.00802022</cl>
+                                  <cmd>-0.0253747</cmd>
+                                  <cms>-0.0495232</cms>
+                                  <cml>0.00091514</cml>
                                   <dragContributions>
-                                    <cdInduced>0.000533914</cdInduced>
+                                    <cdInduced>0.000314196</cdInduced>
                                   </dragContributions>
                                 </coefficients>
                                 <strips>
                                   <strip>
                                     <toSegmentEta>0.324707</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.00370764</cd>
-                                      <cs>-0.000226437</cs>
-                                      <cl>0.0893567</cl>
-                                      <cmd>0.0126295</cmd>
-                                      <cms>0.00170986</cms>
-                                      <cml>-0.00066096</cml>
+                                      <cd>0.00224599</cd>
+                                      <cs>-0.000106646</cs>
+                                      <cl>0.061753</cl>
+                                      <cmd>0.00867774</cmd>
+                                      <cms>0.00117442</cms>
+                                      <cml>-0.000384109</cml>
                                       <dragContributions>
-                                        <cdInduced>0.00370764</cdInduced>
+                                        <cdInduced>0.00224599</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
@@ -1772,14 +1772,14 @@
                                   <strip>
                                     <toSegmentEta>0.649414</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.00497323</cd>
-                                      <cs>-0.00027649</cs>
-                                      <cl>0.116529</cl>
-                                      <cmd>0.00115155</cmd>
-                                      <cms>0.00015582</cms>
-                                      <cml>-4.99966e-05</cml>
+                                      <cd>0.00297164</cd>
+                                      <cs>-0.000124812</cs>
+                                      <cl>0.0792591</cl>
+                                      <cmd>0.000687665</cmd>
+                                      <cms>9.30483e-05</cms>
+                                      <cml>-2.77209e-05</cml>
                                       <dragContributions>
-                                        <cdInduced>0.00497323</cdInduced>
+                                        <cdInduced>0.00297164</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
@@ -1795,14 +1795,14 @@
                                   <strip>
                                     <toSegmentEta>0.974121</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.00473897</cd>
-                                      <cs>-0.000207078</cs>
-                                      <cl>0.104148</cl>
-                                      <cmd>0.000310906</cmd>
-                                      <cms>4.23626e-05</cms>
-                                      <cml>-4.92854e-05</cml>
+                                      <cd>0.00277038</cd>
+                                      <cs>-9.01757e-05</cs>
+                                      <cl>0.0699605</cl>
+                                      <cmd>0.000182357</cmd>
+                                      <cms>2.47834e-05</cms>
+                                      <cml>-2.36422e-05</cml>
                                       <dragContributions>
-                                        <cdInduced>0.00473897</cdInduced>
+                                        <cdInduced>0.00277038</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
@@ -1818,14 +1818,14 @@
                                   <strip>
                                     <toSegmentEta>0.975334</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.00528319</cd>
-                                      <cs>-7.25703e-05</cs>
-                                      <cl>0.0968154</cl>
-                                      <cmd>2.02844e-10</cmd>
-                                      <cms>6.60645e-11</cms>
-                                      <cml>-4.77814e-09</cml>
+                                      <cd>0.00296826</cd>
+                                      <cs>-2.93714e-05</cs>
+                                      <cl>0.0648895</cl>
+                                      <cmd>3.05398e-10</cmd>
+                                      <cms>5.74255e-11</cms>
+                                      <cml>-2.48223e-09</cml>
                                       <dragContributions>
-                                        <cdInduced>0.00528319</cdInduced>
+                                        <cdInduced>0.00296826</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
@@ -1841,14 +1841,14 @@
                                   <strip>
                                     <toSegmentEta>0.988823</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0057711</cd>
-                                      <cs>-3.33625e-06</cs>
-                                      <cl>0.096416</cl>
-                                      <cmd>-1.1829e-07</cmd>
-                                      <cms>5.37062e-09</cms>
-                                      <cml>-2.60802e-06</cml>
+                                      <cd>0.00318555</cd>
+                                      <cs>1.65633e-06</cs>
+                                      <cl>0.06463</cl>
+                                      <cmd>-3.4732e-08</cmd>
+                                      <cms>3.13053e-09</cms>
+                                      <cml>-1.17431e-06</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0057711</cdInduced>
+                                        <cdInduced>0.00318555</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
@@ -1864,14 +1864,14 @@
                                   <strip>
                                     <toSegmentEta>1</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0132238</cd>
-                                      <cs>0.00102019</cs>
-                                      <cl>0.0953363</cl>
-                                      <cmd>-2.79218e-06</cmd>
-                                      <cms>-3.12231e-09</cms>
-                                      <cml>-4.56767e-05</cml>
+                                      <cd>0.00653781</cd>
+                                      <cs>0.000460491</cs>
+                                      <cl>0.0640452</cl>
+                                      <cmd>-1.01837e-06</cmd>
+                                      <cms>-5.19652e-10</cms>
+                                      <cml>-2.0567e-05</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0132238</cdInduced>
+                                        <cdInduced>0.00653781</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
@@ -1889,28 +1889,28 @@
                               <segment>
                                 <segmentUID>htp_segment_from_htp_section_0_element_1_to_htp_section_1_element_1</segmentUID>
                                 <coefficients>
-                                  <cd>0.000533881</cd>
-                                  <cs>2.39982e-05</cs>
-                                  <cl>0.0118148</cl>
-                                  <cmd>-0.0200796</cmd>
-                                  <cms>-0.0730639</cms>
-                                  <cml>0.00108084</cml>
+                                  <cd>0.00031418</cd>
+                                  <cs>1.08006e-05</cs>
+                                  <cl>0.00802013</cl>
+                                  <cmd>-0.013584</cmd>
+                                  <cms>-0.0495227</cms>
+                                  <cml>0.000611065</cml>
                                   <dragContributions>
-                                    <cdInduced>0.000533881</cdInduced>
+                                    <cdInduced>0.00031418</cdInduced>
                                   </dragContributions>
                                 </coefficients>
                                 <strips>
                                   <strip>
                                     <toSegmentEta>0.0112305</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.0131803</cd>
-                                      <cs>-0.00101334</cs>
-                                      <cl>0.0953402</cl>
-                                      <cmd>2.79185e-06</cmd>
-                                      <cms>-3.05855e-09</cms>
-                                      <cml>4.56787e-05</cml>
+                                      <cd>0.00651822</cd>
+                                      <cs>-0.000457414</cs>
+                                      <cl>0.064047</cl>
+                                      <cmd>1.01828e-06</cmd>
+                                      <cms>-5.02409e-10</cms>
+                                      <cml>2.05678e-05</cml>
                                       <dragContributions>
-                                        <cdInduced>0.0131803</cdInduced>
+                                        <cdInduced>0.00651822</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
@@ -1926,14 +1926,14 @@
                                   <strip>
                                     <toSegmentEta>0.0252316</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.00575028</cd>
-                                      <cs>6.30935e-06</cs>
-                                      <cl>0.0964325</cl>
-                                      <cmd>1.20339e-07</cmd>
-                                      <cms>5.9993e-09</cms>
-                                      <cml>2.71794e-06</cml>
+                                      <cd>0.0031762</cd>
+                                      <cs>-3.16377e-07</cs>
+                                      <cl>0.0646409</cl>
+                                      <cmd>3.36853e-08</cmd>
+                                      <cms>3.46047e-09</cms>
+                                      <cml>1.20212e-06</cml>
                                       <dragContributions>
-                                        <cdInduced>0.00575028</cdInduced>
+                                        <cdInduced>0.0031762</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
@@ -1949,14 +1949,14 @@
                                   <strip>
                                     <toSegmentEta>0.350154</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.00473979</cd>
-                                      <cs>0.000206767</cs>
-                                      <cl>0.104123</cl>
-                                      <cmd>-0.000310172</cmd>
-                                      <cms>4.2267e-05</cms>
-                                      <cml>4.96468e-05</cml>
+                                      <cd>0.00277059</cd>
+                                      <cs>9.00353e-05</cs>
+                                      <cl>0.0699435</cl>
+                                      <cmd>-0.000181922</cmd>
+                                      <cms>2.4726e-05</cms>
+                                      <cml>2.37997e-05</cml>
                                       <dragContributions>
-                                        <cdInduced>0.00473979</cdInduced>
+                                        <cdInduced>0.00277059</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
@@ -1972,14 +1972,14 @@
                                   <strip>
                                     <toSegmentEta>0.675077</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.00497321</cd>
-                                      <cs>0.000276426</cs>
-                                      <cl>0.116523</cl>
-                                      <cmd>-0.00115128</cmd>
-                                      <cms>0.000155776</cms>
-                                      <cml>5.0006e-05</cml>
+                                      <cd>0.00297157</cd>
+                                      <cs>0.000124778</cs>
+                                      <cl>0.0792536</cl>
+                                      <cmd>-0.000687426</cmd>
+                                      <cms>9.30108e-05</cms>
+                                      <cml>2.77223e-05</cml>
                                       <dragContributions>
-                                        <cdInduced>0.00497321</cdInduced>
+                                        <cdInduced>0.00297157</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
@@ -1995,14 +1995,14 @@
                                   <strip>
                                     <toSegmentEta>1</toSegmentEta>
                                     <coefficients>
-                                      <cd>0.00370819</cd>
-                                      <cs>0.000226474</cs>
-                                      <cl>0.0893702</cl>
-                                      <cmd>-0.0126381</cmd>
-                                      <cms>0.00171105</cms>
-                                      <cml>0.000661384</cml>
+                                      <cd>0.00224632</cd>
+                                      <cs>0.000106662</cs>
+                                      <cl>0.0617619</cl>
+                                      <cmd>-0.0086836</cmd>
+                                      <cms>0.00117522</cms>
+                                      <cml>0.000384357</cml>
                                       <dragContributions>
-                                        <cdInduced>0.00370819</cdInduced>
+                                        <cdInduced>0.00224632</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
@@ -2024,14 +2024,14 @@
                                 <description>Contributions from rounding errors</description>
                                 <type>numerical</type>
                                 <coefficients>
-                                  <cd>-6.63468e-11</cd>
-                                  <cs>-5.26983e-12</cs>
-                                  <cl>7.54601e-09</cl>
-                                  <cmd>-3.01655e-09</cmd>
-                                  <cms>-4.33185e-08</cms>
-                                  <cml>3.17249e-10</cml>
+                                  <cd>1.12208e-10</cd>
+                                  <cs>6.55781e-13</cs>
+                                  <cl>-1.49835e-11</cl>
+                                  <cmd>6.15141e-11</cmd>
+                                  <cms>-2.44006e-08</cms>
+                                  <cml>-8.24661e-11</cml>
                                   <dragContributions>
-                                    <cdInduced>-6.63468e-11</cdInduced>
+                                    <cdInduced>1.12208e-10</cdInduced>
                                   </dragContributions>
                                 </coefficients>
                               </remainingContribution>
@@ -2040,42 +2040,42 @@
                           <wing>
                             <wingUID>vtp</wingUID>
                             <coefficients>
-                              <cd>-1.04761e-14</cd>
-                              <cs>1.00339e-07</cs>
-                              <cl>8.15673e-15</cl>
-                              <cmd>-9.19548e-08</cmd>
-                              <cms>-6.78261e-14</cms>
-                              <cml>6.02069e-07</cml>
+                              <cd>-6.58619e-16</cd>
+                              <cs>1.2143e-08</cs>
+                              <cl>4.9904e-16</cl>
+                              <cmd>-1.23863e-08</cmd>
+                              <cms>-4.02692e-15</cms>
+                              <cml>7.30625e-08</cml>
                               <dragContributions>
-                                <cdInduced>-1.04761e-14</cdInduced>
+                                <cdInduced>-6.58619e-16</cdInduced>
                               </dragContributions>
                             </coefficients>
                             <segments>
                               <segment>
                                 <segmentUID>vtp_segment_from_vtp_section_0_element_1_to_vtp_section_1_element_1</segmentUID>
                                 <coefficients>
-                                  <cd>-1.04761e-14</cd>
-                                  <cs>1.00339e-07</cs>
-                                  <cl>8.15673e-15</cl>
-                                  <cmd>-9.27019e-08</cmd>
-                                  <cms>-6.78261e-14</cms>
-                                  <cml>6.02646e-07</cml>
+                                  <cd>-6.58619e-16</cd>
+                                  <cs>1.2143e-08</cs>
+                                  <cl>4.99039e-16</cl>
+                                  <cmd>-1.23863e-08</cmd>
+                                  <cms>-4.02692e-15</cms>
+                                  <cml>7.30625e-08</cml>
                                   <dragContributions>
-                                    <cdInduced>-1.04761e-14</cdInduced>
+                                    <cdInduced>-6.58619e-16</cdInduced>
                                   </dragContributions>
                                 </coefficients>
                                 <strips>
                                   <strip>
                                     <toSegmentEta>0.0131836</toSegmentEta>
                                     <coefficients>
-                                      <cd>2.80601e-16</cd>
-                                      <cs>9.44709e-09</cs>
-                                      <cl>-2.18433e-16</cl>
+                                      <cd>8.52841e-18</cd>
+                                      <cs>1.66576e-09</cs>
+                                      <cl>-6.46069e-18</cl>
                                       <cmd>0</cmd>
                                       <cms>0</cms>
                                       <cml>0</cml>
                                       <dragContributions>
-                                        <cdInduced>2.80601e-16</cdInduced>
+                                        <cdInduced>8.52841e-18</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
@@ -2091,14 +2091,14 @@
                                   <strip>
                                     <toSegmentEta>0.0406487</toSegmentEta>
                                     <coefficients>
-                                      <cd>4.22755e-16</cd>
-                                      <cs>2.23325e-08</cs>
-                                      <cl>-3.29176e-16</cl>
+                                      <cd>1.19328e-17</cd>
+                                      <cs>3.87282e-09</cs>
+                                      <cl>-9.04199e-18</cl>
                                       <cmd>0</cmd>
                                       <cms>0</cms>
                                       <cml>0</cml>
                                       <dragContributions>
-                                        <cdInduced>4.22755e-16</cdInduced>
+                                        <cdInduced>1.19328e-17</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
@@ -2114,14 +2114,14 @@
                                   <strip>
                                     <toSegmentEta>0.0664125</toSegmentEta>
                                     <coefficients>
-                                      <cd>5.27597e-16</cd>
-                                      <cs>3.26201e-08</cs>
-                                      <cl>-4.10775e-16</cl>
+                                      <cd>1.32623e-17</cd>
+                                      <cs>5.53045e-09</cs>
+                                      <cl>-1.00486e-17</cl>
                                       <cmd>0</cmd>
                                       <cms>0</cms>
                                       <cml>0</cml>
                                       <dragContributions>
-                                        <cdInduced>5.27597e-16</cdInduced>
+                                        <cdInduced>1.32623e-17</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
@@ -2137,14 +2137,14 @@
                                   <strip>
                                     <toSegmentEta>0.377608</toSegmentEta>
                                     <coefficients>
-                                      <cd>8.75592e-16</cd>
-                                      <cs>8.5934e-08</cs>
-                                      <cl>-6.81749e-16</cl>
+                                      <cd>-4.61007e-18</cd>
+                                      <cs>1.04536e-08</cs>
+                                      <cl>3.49312e-18</cl>
                                       <cmd>0</cmd>
                                       <cms>0</cms>
                                       <cml>0</cml>
                                       <dragContributions>
-                                        <cdInduced>8.75592e-16</cdInduced>
+                                        <cdInduced>-4.61007e-18</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
@@ -2160,14 +2160,14 @@
                                   <strip>
                                     <toSegmentEta>0.688804</toSegmentEta>
                                     <coefficients>
-                                      <cd>3.28191e-14</cd>
-                                      <cs>3.61981e-07</cs>
-                                      <cl>-2.55532e-14</cl>
+                                      <cd>2.14494e-16</cd>
+                                      <cs>3.69591e-08</cs>
+                                      <cl>-1.62523e-16</cl>
                                       <cmd>0</cmd>
                                       <cms>0</cms>
                                       <cml>0</cml>
                                       <dragContributions>
-                                        <cdInduced>3.28191e-14</cdInduced>
+                                        <cdInduced>2.14494e-16</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
@@ -2183,14 +2183,14 @@
                                   <strip>
                                     <toSegmentEta>1</toSegmentEta>
                                     <coefficients>
-                                      <cd>-1.95779e-13</cd>
-                                      <cs>8.53147e-07</cs>
-                                      <cl>1.52435e-13</cl>
+                                      <cd>-9.84559e-15</cd>
+                                      <cs>1.11478e-07</cs>
+                                      <cl>7.46006e-15</cl>
                                       <cmd>0</cmd>
                                       <cms>0</cms>
                                       <cml>0</cml>
                                       <dragContributions>
-                                        <cdInduced>-1.95779e-13</cdInduced>
+                                        <cdInduced>-9.84559e-15</cdInduced>
                                       </dragContributions>
                                     </coefficients>
                                     <reference>
@@ -2214,14 +2214,14 @@
                             <description>Contributions from rounding errors</description>
                             <type>numerical</type>
                             <coefficients>
-                              <cd>-3.68324e-09</cd>
-                              <cs>-3.0953e-14</cs>
-                              <cl>-7.38943e-08</cl>
-                              <cmd>7.93989e-08</cmd>
-                              <cms>2.77845e-07</cms>
-                              <cml>-2.61408e-09</cml>
+                              <cd>-8.47313e-09</cd>
+                              <cs>-5.73253e-15</cs>
+                              <cl>-5.96968e-08</cl>
+                              <cmd>-8.64203e-08</cmd>
+                              <cms>2.78748e-07</cms>
+                              <cml>-4.70981e-10</cml>
                               <dragContributions>
-                                <cdInduced>-3.68324e-09</cdInduced>
+                                <cdInduced>-8.47313e-09</cdInduced>
                               </dragContributions>
                             </coefficients>
                           </remainingContribution>

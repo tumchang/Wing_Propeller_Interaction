@@ -27,8 +27,8 @@ xfoil_path = "./xfoil/xfoil.exe"
 save_to_csv = False
 
 # Airfoil to be used
-airfoil_name = '65-212'
-polar_dir = f'./xfoil/{airfoil_name}_test.txt'
+airfoil_name = 'CLARK_Y'
+polar_dir = f'./xfoil/{airfoil_name}_polar.txt'
 if not os.path.exists(polar_dir):
     xfoil_polar(xfoil_path, airfoil_name)
 else:
@@ -38,28 +38,36 @@ else:
 # This Section is used for defining the operating and geometry parameters of the Propeller
 # =====================================================================================================================
 beta_70 = 55.31
-geom_data = geomdata(beta_70=beta_70)
-# geom_data = validation_geomdata()
+# geom_data = geomdata(beta_70=beta_70)
+geom_data = validation_geomdata_58689()
 
 # tip_loss_model = 'A&L'
 tip_loss_model = 'Veldhuis'
 # tip_loss_model = 'Prandtl'
 
-rho = 1.225
-hub_radius = 0.376
-tip_radius = 1.88
-# RPM_list = list(range(700, 1001, 25))
-RPM_list = [800]
-Vinf = 142
-B = 6
+oper_point = OperPNT()
+oper_point.beta_70 = 55.31
+oper_point.rho = 1.225
+oper_point.hub_radius = 0.0236
+oper_point.tip_radius = 0.236/2
+# oper_point.RPM_list = list(range(700, 1001, 100))
+# oper_point.RPM_list = [632.5, 674.66667, 722.857, 778.46, 843.33]
+oper_point.RPM_list = [15376]
+# [632.5, 778.46, 843.33]
+oper_point.Vinf = 51.4096
+oper_point.B = 4
 
-# rho = 1.225
-# hub_radius = 0.01722
-# tip_radius = 0.1143
-# # RPM_list = list(range(3500, 5751, 250))
-# RPM_list = [5000]
-# Vinf = 10.49
-# B = 2
+# oper_point = OperPNT()
+# oper_point.beta_70 = 55.31
+# oper_point.rho = 1.225
+# oper_point.hub_radius = 0.376
+# oper_point.tip_radius = 1.88
+# # oper_point.RPM_list = list(range(700, 1001, 100))
+# # oper_point.RPM_list = [632.5, 674.66667, 722.857, 778.46, 843.33]
+# oper_point.RPM_list = [800]
+# # [632.5, 778.46, 843.33]
+# oper_point.Vinf = 142
+# oper_point.B = 6
 
 # propeller = Propeller(polar_dir, geom_data, rho, hub_radius, tip_radius, RPM, Vinf, B)
 
@@ -87,15 +95,15 @@ cd_history_list = []
 # convergence results
 convergence_his = []
 
-for RPM in RPM_list:
-    propeller = Propeller(polar_dir, geom_data, rho, hub_radius, tip_radius, RPM, Vinf, B)
+for RPM in oper_point.RPM_list:
+    propeller = Propeller(polar_dir, geom_data, oper_point, RPM)
 
     propeller.generate_prop_section()
 
     # =====================================================================================================================
     # This section is used to conduct Xrotor analysis for comparison
     # =====================================================================================================================
-    xrotor_case = case(beta_70, propeller)
+    xrotor_case = case(propeller)
     # xrotor_case = case(airfoil_polars, propeller)
     xr = operate_xrotor(xrotor_case, RPM=RPM)
 
@@ -163,7 +171,7 @@ for RPM in RPM_list:
     # Getting CT and CP based on BEM results
     my_thrust, my_Ct, my_Cp = propeller.calculate_thrust()
 
-    J_list.append(Vinf / ((RPM / 60) * (2 * tip_radius)))
+    J_list.append(oper_point.Vinf / ((RPM / 60) * (2 * oper_point.tip_radius)))
     my_thrust_list.append(my_thrust)
     my_Ct_list.append(my_Ct)
     my_Cp_list.append(my_Cp)

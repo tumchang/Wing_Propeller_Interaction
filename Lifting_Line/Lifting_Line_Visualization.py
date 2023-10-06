@@ -307,11 +307,11 @@ def panel_dist_plot(distribution_dic, variable,
     zi = griddata((X, Y), Z, (xi, yi), method='linear')
 
     if mesh_flag:
-        surf = ax.plot_surface(xi, yi, zi*10, cmap='viridis')
-        plt.colorbar(surf, ax=ax, label='CFY Value (scaled by 10)')
+        surf = ax.plot_surface(xi, yi, zi, cmap='viridis')
+        plt.colorbar(surf, ax=ax, label='CFY Value')
 
     # TODO: Change the panel number to be plotted
-    for i in range(40):
+    for i in range(63):
         # Unpack XYZ data
         X = geom_secs[i].XYZ[:, 0]
         Y = geom_secs[i].XYZ[:, 1]
@@ -331,11 +331,16 @@ def panel_dist_plot(distribution_dic, variable,
         poly3d = Poly3DCollection(panels, facecolors='cyan', linewidths=1, edgecolors='k', alpha=0.5)
         ax.add_collection3d(poly3d)
 
-    ax.set_xlim(10, 15)
-    ax.set_ylim(-15, 15)
-    ax.set_zlim(-4, 4)
+    # ax.set_xlim(10, 15)
+    # ax.set_ylim(-15, 15)
+    # ax.set_zlim(-4, 4)
 
-    ax.set_box_aspect([5/30, 1, 8/30])
+    # ax.set_box_aspect([5/30, 1, 8/30])
+
+    ax.set_xlim(-1, 1)
+    ax.set_ylim(-1, 1)
+    ax.set_zlim(-0.1, 0.1)
+    ax.set_box_aspect([1, 1, 0.1])
 
     # elevation_angle = 30  # for example
     # azimuthal_angle = -135  # for example
@@ -392,31 +397,32 @@ def lift_distribution_2d(distribution_dic):
 
 
 if __name__ == '__main__':
+    # aircraft_name = "CPACS4LILI_LILI-Config_1"
+    #
+    # # Tecplot directory
+    # tecplot_dir = fr"C:\Users\chang.xu\wing_propeller_interaction\Lifting_Line\ReturnDirectory\CPACS4LILI_LILI-Config_1.lili.V3.1\export\tecplot"
+    #
+    # # Execute the function to parse the data and plot as figures
+    # geom_secs = parse_attributes(tecplot_dir, aircraft_name)
+    # distribution, distribution_dict = parse_distribution(tecplot_dir, aircraft_name)
+    #
+    # panel_dist_plot(distribution_dict, "CFZ", geom_secs, 3)
+    #
+    # cl_distribution_2d(distribution_dict)
+    # lift_distribution_2d(distribution_dict)
+
     aircraft_name = "CPACS4LILI_LILI-Config_1"
 
-    # Tecplot directory
-    # tecplot_dir = f"./aircraft.lili.V3.1/export/tecplot"
+    # Get the Overall Lift to Drag ratio
 
-    # tecplot_dir = fr".\LILI\atr72\chord0\CPACS4LILI_LILI-Config_1.lili.V3.1\export\tecplot"
-    # tecplot_dir = fr".\LILI\atr72\nofuse\CPACS4LILI_LILI-Config_1.lili.V3.1\export\tecplot"
+    tecplot_dir = fr'.\VALIDATION\All_AC\CPACS4LILI_LILI-Config_1.lili.V3.1\export\tecplot'
+    # total_tecplot_dir = fr'.\VALIDATION\normal rotation\4deg_test'
 
-    # tecplot_dir = f"./PROPELLER_COMPLEX/export/tecplot"
-    # tecplot_dir = fr"P:\LIFTING_LINE-master\LIFTING_LINE-master\ReturnDirectory\CPACS4LILI_LILI-Config_1.lili.V3.1\export\tecplot"
-    tecplot_dir = fr"C:\Users\chang.xu\wing_propeller_interaction\Lifting_Line\ReturnDirectory\CPACS4LILI_LILI-Config_1.lili.V3.1\export\tecplot"
-    # tecplot_dir = fr"C:\Users\chang.xu\wing_propeller_interaction\Lifting_Line\{aircraft_name}.lili.V3.1\export\tecplot"
-
-    # Execute the function to parse the data and plot as figures
     geom_secs = parse_attributes(tecplot_dir, aircraft_name)
-    distribution, distribution_dict = parse_distribution(tecplot_dir, aircraft_name)
-
-    # num_plot = 10
-
-    # plot_geom_secs(geom_secs, 50)
-    # plot_distribution(distribution_dict, "CFZ", 9)
+    distribution, distribution_dict = parse_distribution(tecplot_dir, aircraft_name, parse_total=False)
     panel_dist_plot(distribution_dict, "CFZ", geom_secs, 3)
+    # lift_distribution_2d(distribution_dict)
 
-    cl_distribution_2d(distribution_dict)
-    lift_distribution_2d(distribution_dict)
 
     # Show all the figures
     plt.show()

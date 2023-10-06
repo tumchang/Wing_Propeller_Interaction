@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<cpacs xmlns:ns1="http://www.cpacs.de/liftingLine" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:c:/blade/cpacs-schema/bhl_cpacs_schema.xsd" xsi:schemaLocation="cafe file:c:/blade/cpacs-schema/cafe_toolspecific.xsd        wingsizer file:c:/blade/cpacs-schema/wingsizer_toolspecific.xsd        reporter file:c:/blade/cpacs-schema/reporter_toolspecific.xsd        sempt file:c:/blade/cpacs-schema/sempt_toolspecific.xsd        emica file:c:/blade/cpacs-schema/emica_toolspecific.xsd        cope file:c:/blade/cpacs-schema/cope_toolspecific.xsd        loopdriver file:c:/blade/cpacs-schema/loopdriver_toolspecific.xsd        seapt file:c:/blade/cpacs-schema/seapt_toolspecific.xsd        empennagesizer file:c:/blade/cpacs-schema/empennagesizer_toolspecific.xsd        hydra file:c:/blade/cpacs-schema/hydra_toolspecific.xsd        propsi file:c:/blade/cpacs-schema/propsi_toolspecific.xsd">
+  <header>
+    <name>prop_plate</name>
+    <timestamp>2023-08-18T12:00:00</timestamp>
+    <version>1.0</version>
+    <creator>Chang Xu</creator>
+    <cpacsVersion cpacsExtended="true">3.3</cpacsVersion>
+    <versionInfos>
+      <versionInfo version="1.0">
+        <cpacsVersion>3.4</cpacsVersion>
+        <description>atr72-500_out</description>
+        <timestamp>2023-06-19T11:10:18</timestamp>
+        <creator>Marc Engelmann</creator>
+      </versionInfo>
+    </versionInfos>
+  </header>
+  <vehicles>
+    <profiles>
+      <wingAirfoils>
+        <wingAirfoil uID="NACA642015A">
+          <name>NACA642015A</name>
+          <description>NACA642015A</description>
+          <pointList>
+            <x mapType="vector">1
+;0.95
+;0.9
+;0.85
+;0.8
+;0.75
+;0.7
+;0.65
+;0.6
+;0.55
+;0.5
+;0.45
+;0.4
+;0.35
+;0.3
+;0.25
+;0.2
+;0.15
+;0.1
+;0.075
+;0.05
+;0.025
+;0.0125
+;0.0075
+;0.005
+;0
+;0.005
+;0.0075
+;0.0125
+;0.025
+;0.05
+;0.075
+;0.1
+;0.15
+;0.2
+;0.25
+;0.3
+;0.35
+;0.4
+;0.45
+;0.5
+;0.55
+;0.6
+;0.65
+;0.7
+;0.75
+;0.8
+;0.85
+;0.9
+;0.95
+;1
+
+</x>
+            <y mapType="vector">0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0</y>
+            <z mapType="vector">0.00032;0.00795;0.01558;0.02321;0.03084;0.03847;0.046;0.05311;0.05956;0.06517;0.06978;0.07313;0.07487;0.07463;0.0727;0.06926;0.06423;0.05732;0.04799;0.04202;0.03477;0.02508;0.01815;0.01436;0.01193;0;-0.01193;-0.01436;-0.01815;-0.02508;-0.03477;-0.04202;-0.04799;-0.05732;-0.06423;-0.06926;-0.0727;-0.07463;-0.07487;-0.07313;-0.06978;-0.06517;-0.05956;-0.05311;-0.046;-0.03847;-0.03084;-0.02321;-0.01558;-0.00795;-0.00032
+
+
+
+
+</z>
+          </pointList>
+        </wingAirfoil>
+      </wingAirfoils>
+    </profiles>
+    <aircraft>
+      <model uID="AircraftModel">
+        <name>plate</name>
+        <description>plate</description>
+        <reference>
+          <area>0.3072</area>
+          <length>0.24</length>
+          <point uID="mac">
+            <x>11.369476259531545</x>
+            <y>6.150399168865609</y>
+            <z>1.3234158804279534</z>
+          </point>
+        </reference>
+        <wings>
+          <wing uID="wing" symmetry="x-z-plane">
+            <name>wing</name>
+            <transformation>
+              <scaling>
+                <x>1.0</x>
+                <y>1.0</y>
+                <z>1.0</z>
+              </scaling>
+              <rotation>
+                <x>0.0</x>
+                <y>0.0</y>
+                <z>0.0</z>
+              </rotation>
+              <translation>
+                <x>0.0</x>
+                <y>0.0</y>
+                <z>0.0</z>
+              </translation>
+            </transformation>
+            <sections>
+              <section uID="wing_section_0">
+                <name>wing_section_0</name>
+                <transformation>
+                  <scaling>
+                    <x>0.24</x>
+                    <y>1.0</y>
+                    <z>0.24</z>
+                  </scaling>
+                  <rotation>
+                    <x>0.0</x>
+                    <y>0.0</y>
+                    <z>0.0</z>
+                  </rotation>
+                  <translation>
+                    <x>0.0</x>
+                    <y>0.0</y>
+                    <z>0.0</z>
+                  </translation>
+                </transformation>
+                <elements>
+                  <element uID="wing_section_0_element_1">
+                    <name>wing_section_0_element_1</name>
+                    <airfoilUID>NACA642015A</airfoilUID>
+                    <transformation>
+                      <scaling>
+                        <x>1.0</x>
+                        <y>1.0</y>
+                        <z>1.0</z>
+                      </scaling>
+                      <rotation>
+                        <x>0.0</x>
+                        <y>0.0</y>
+                        <z>0.0</z>
+                      </rotation>
+                      <translation>
+                        <x>0.0</x>
+                        <y>0.0</y>
+                        <z>0.0</z>
+                      </translation>
+                    </transformation>
+                  </element>
+                </elements>
+              </section>
+              <section uID="wing_section_1">
+                <name>wing_section_1</name>
+                <transformation>
+                  <scaling>
+                    <x>0.24</x>
+                    <y>1.0</y>
+                    <z>0.24</z>
+                  </scaling>
+                  <rotation>
+                    <x>0.0</x>
+                    <y>0.0</y>
+                    <z>0.0</z>
+                  </rotation>
+                  <translation>
+                    <x>0</x>
+                    <y>0.6</y>
+                    <z>0</z>
+                  </translation>
+                </transformation>
+                <elements>
+                  <element uID="wing_section_1_element_1">
+                    <name>wing_section_1_element_1</name>
+                    <airfoilUID>NACA642015A</airfoilUID>
+                    <transformation>
+                      <scaling>
+                        <x>1.0</x>
+                        <y>1.0</y>
+                        <z>1.0</z>
+                      </scaling>
+                      <rotation>
+                        <x>0.0</x>
+                        <y>0.0</y>
+                        <z>0.0</z>
+                      </rotation>
+                      <translation>
+                        <x>0.0</x>
+                        <y>0.0</y>
+                        <z>0.0</z>
+                      </translation>
+                    </transformation>
+                  </element>
+                </elements>
+              </section>
+            </sections>
+            <positionings>
+              <positioning uID="wing_positioning_from_origin_to_wing_section_0">
+                <name>wing_positioning_from_origin_to_wing_section_0</name>
+                <length>0.0</length>
+                <sweepAngle>0.0</sweepAngle>
+                <dihedralAngle>0.0</dihedralAngle>
+                <toSectionUID>wing_section_0</toSectionUID>
+              </positioning>
+              <positioning uID="wing_positioning_from_wing_section_0_to_wing_section_1">
+                <name>wing_positioning_from_wing_section_0_to_wing_section_1</name>
+                <length>0.0</length>
+                <sweepAngle>0.0</sweepAngle>
+                <dihedralAngle>0.0</dihedralAngle>
+                <fromSectionUID>wing_section_0</fromSectionUID>
+                <toSectionUID>wing_section_1</toSectionUID>
+              </positioning>
+              <positioning uID="wing_positioning_from_wing_section_1_to_wing_section_2">
+                <name>wing_positioning_from_wing_section_1_to_wing_section_2</name>
+                <length>0.0</length>
+                <sweepAngle>0.0</sweepAngle>
+                <dihedralAngle>0.0</dihedralAngle>
+                <fromSectionUID>wing_section_1</fromSectionUID>
+                <toSectionUID>wing_section_2</toSectionUID>
+              </positioning>
+            </positionings>
+            <segments>
+              <segment uID="wing_segment_from_wing_section_0_element_1_to_wing_section_1_element_1">
+                <name>wing_segment_from_wing_section_0_element_1_to_wing_section_1_element_1</name>
+                <fromElementUID>wing_section_0_element_1</fromElementUID>
+                <toElementUID>wing_section_1_element_1</toElementUID>
+              </segment>
+            </segments>
+          </wing>
+        </wings>
+      </model>
+    </aircraft>
+  </vehicles>
+  <toolspecific>
+    <tool>
+      <name>LIFTING_LINE</name>
+      <version>3.1.1</version>
+      <ns1:liftingLine schemaLocation="http://www.cpacs.de/liftingLine CPACS_Schema_liftingLine.xsd" schemaVersion="3.3.0">
+        <ns1:aircraftModelUID>AircraftModel</ns1:aircraftModelUID>
+        <ns1:datasetName>AircraftModel</ns1:datasetName>
+        <ns1:toolInput>
+          <ns1:referenceValues>
+            <ns1:area>0.3072</ns1:area>
+            <ns1:cmdLength>0.24</ns1:cmdLength>
+            <ns1:cmsLength>0.24</ns1:cmsLength>
+            <ns1:cmlLength>0.24</ns1:cmlLength>
+            <ns1:momentReferencePoint>
+              <ns1:x>11.369476259531545</ns1:x>
+              <ns1:y>6.150399168865609</ns1:y>
+              <ns1:z>1.3234158804279534</ns1:z>
+            </ns1:momentReferencePoint>
+          </ns1:referenceValues>
+          <ns1:aeroCases>
+            <ns1:aeroCase>
+              <ns1:aeroCaseUID>AC_1</ns1:aeroCaseUID>
+              <ns1:name>AC_1</ns1:name>
+              <ns1:description>AC_1 (ISA, TargetCl)</ns1:description>
+              <ns1:specification>
+                <ns1:environment>
+                  <ns1:atmosphericModel>ISA</ns1:atmosphericModel>
+                  <ns1:deltaTemperature>0</ns1:deltaTemperature>
+                </ns1:environment>
+                <ns1:altitude>0</ns1:altitude>
+                <ns1:machNumber>0.15</ns1:machNumber>
+                <ns1:angleOfSideslip>0</ns1:angleOfSideslip>
+                <ns1:angleOfAttack>8</ns1:angleOfAttack>
+              </ns1:specification>
+            </ns1:aeroCase>
+          </ns1:aeroCases>
+        </ns1:toolInput>
+        <ns1:toolParameters>
+          <ns1:usePOLINT>false</ns1:usePOLINT>
+          <ns1:usePropModule>true</ns1:usePropModule>
+          <ns1:archiveMode>2</ns1:archiveMode>
+          <ns1:parallelComputation>0</ns1:parallelComputation>
+          <ns1:wingPanelings>
+            <ns1:wingPaneling>
+              <ns1:wingUID>wing</ns1:wingUID>
+              <ns1:spanwise>30</ns1:spanwise>
+              <ns1:chordwise>1</ns1:chordwise>
+            </ns1:wingPaneling>&gt;
+	             </ns1:wingPanelings>
+          <ns1:propModule>
+            <ns1:propellers>
+              <ns1:propeller uID="prop1">
+                <ns1:name>prop1</ns1:name>
+                <ns1:description>prop1</ns1:description>
+                <ns1:location>
+                  <ns1:x>-0.20180</ns1:x>
+                  <ns1:y>0.3</ns1:y>
+                  <ns1:z>0</ns1:z>
+                </ns1:location>
+                <ns1:diameter>0.236</ns1:diameter>
+                <ns1:tiltAngle>0.000000</ns1:tiltAngle>
+                <ns1:toeAngle>0.000000</ns1:toeAngle>
+                <ns1:propInducedVelocityFieldUID>Field1</ns1:propInducedVelocityFieldUID>
+                <ns1:senseOfRotation>1</ns1:senseOfRotation>
+              </ns1:propeller>
+              <ns1:propeller uID="prop2">
+                <ns1:name>prop2</ns1:name>
+                <ns1:description>prop2</ns1:description>
+                <ns1:location>
+                  <ns1:x>-0.20180</ns1:x>
+                  <ns1:y>-0.3</ns1:y>
+                  <ns1:z>0</ns1:z>
+                </ns1:location>
+                <ns1:diameter>0.236</ns1:diameter>
+                <ns1:tiltAngle>0.000000</ns1:tiltAngle>
+                <ns1:toeAngle>0.000000</ns1:toeAngle>
+                <ns1:propInducedVelocityFieldUID>Field1</ns1:propInducedVelocityFieldUID>
+                <ns1:senseOfRotation>-1</ns1:senseOfRotation>
+              </ns1:propeller>
+            </ns1:propellers>
+            <ns1:propInducedVelocityFields>
+              <ns1:propInducedVelocityField uID="Field1">
+                <ns1:name>Field1</ns1:name>
+                <ns1:description>propInducedVelocityField1</ns1:description>
+                <ns1:numberOfAngles>4</ns1:numberOfAngles>
+                <ns1:numberOfRelativeRadii>20</ns1:numberOfRelativeRadii>
+                <ns1:angles>0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;90.0;90.0;90.0;90.0;90.0;90.0;90.0;90.0;90.0;90.0;90.0;90.0;90.0;90.0;90.0;90.0;90.0;90.0;90.0;90.0;180.0;180.0;180.0;180.0;180.0;180.0;180.0;180.0;180.0;180.0;180.0;180.0;180.0;180.0;180.0;180.0;180.0;180.0;180.0;180.0;270.0;270.0;270.0;270.0;270.0;270.0;270.0;270.0;270.0;270.0;270.0;270.0;270.0;270.0;270.0;270.0;270.0;270.0;270.0;270.0</ns1:angles>
+                <ns1:relativeRadii>0.20323455333709717;0.2451349559583162;0.2870353585795352;0.3289357612007543;0.37083616382197326;0.41273656644319234;0.45463696906441137;0.4965373716856304;0.5384377743068494;0.5803381769280684;0.6222385795492875;0.6641389821705065;0.7060393847917256;0.7479397874129445;0.7898401900341636;0.8317405926553826;0.8736409952766017;0.9155413978978207;0.9574418005190397;0.9993422031402588;0.20323455333709717;0.2451349559583162;0.2870353585795352;0.3289357612007543;0.37083616382197326;0.41273656644319234;0.45463696906441137;0.4965373716856304;0.5384377743068494;0.5803381769280684;0.6222385795492875;0.6641389821705065;0.7060393847917256;0.7479397874129445;0.7898401900341636;0.8317405926553826;0.8736409952766017;0.9155413978978207;0.9574418005190397;0.9993422031402588;0.20323455333709717;0.2451349559583162;0.2870353585795352;0.3289357612007543;0.37083616382197326;0.41273656644319234;0.45463696906441137;0.4965373716856304;0.5384377743068494;0.5803381769280684;0.6222385795492875;0.6641389821705065;0.7060393847917256;0.7479397874129445;0.7898401900341636;0.8317405926553826;0.8736409952766017;0.9155413978978207;0.9574418005190397;0.9993422031402588;0.20323455333709717;0.2451349559583162;0.2870353585795352;0.3289357612007543;0.37083616382197326;0.41273656644319234;0.45463696906441137;0.4965373716856304;0.5384377743068494;0.5803381769280684;0.6222385795492875;0.6641389821705065;0.7060393847917256;0.7479397874129445;0.7898401900341636;0.8317405926553826;0.8736409952766017;0.9155413978978207;0.9574418005190397;0.9993422031402588</ns1:relativeRadii>
+                <ns1:relativeAxialFlowSpeeds>0.08954004943370819;0.09764229289793769;0.1118408807220051;0.12939703321530766;0.149138799534341;0.16990546926525876;0.19065476869064105;0.2105435669925189;0.22880756579004136;0.24474580697255988;0.2577080701092419;0.2671448046391094;0.27244212204022844;0.273491265984548;0.270433012866521;0.2628892053064227;0.24831104167491558;0.2238904450279242;0.18070341476233118;0.04655061289668083;0.08954004943370819;0.09764229289793769;0.1118408807220051;0.12939703321530766;0.149138799534341;0.16990546926525876;0.19065476869064105;0.2105435669925189;0.22880756579004136;0.24474580697255988;0.2577080701092419;0.2671448046391094;0.27244212204022844;0.273491265984548;0.270433012866521;0.2628892053064227;0.24831104167491558;0.2238904450279242;0.18070341476233118;0.04655061289668083;0.08954004943370819;0.09764229289793769;0.1118408807220051;0.12939703321530766;0.149138799534341;0.16990546926525876;0.19065476869064105;0.2105435669925189;0.22880756579004136;0.24474580697255988;0.2577080701092419;0.2671448046391094;0.27244212204022844;0.273491265984548;0.270433012866521;0.2628892053064227;0.24831104167491558;0.2238904450279242;0.18070341476233118;0.04655061289668083;0.08954004943370819;0.09764229289793769;0.1118408807220051;0.12939703321530766;0.149138799534341;0.16990546926525876;0.19065476869064105;0.2105435669925189;0.22880756579004136;0.24474580697255988;0.2577080701092419;0.2671448046391094;0.27244212204022844;0.273491265984548;0.270433012866521;0.2628892053064227;0.24831104167491558;0.2238904450279242;0.18070341476233118;0.04655061289668083</ns1:relativeAxialFlowSpeeds>
+                <ns1:relativeTangentialFlowSpeeds>0.11920924484729767;0.10783969174816821;0.10543476909853226;0.10639426215344128;0.10875752847941933;0.11133169367742692;0.11343167026360272;0.11471346925539422;0.11498117373906644;0.11412394451103218;0.11208193332885495;0.10884898346559263;0.10442423696359482;0.09898250776289781;0.09268986759634917;0.08552224804145493;0.0769427372793292;0.06620132313049801;0.0510830488470426;0.012603797018527985;0.11920924484729767;0.10783969174816821;0.10543476909853226;0.10639426215344128;0.10875752847941933;0.11133169367742692;0.11343167026360272;0.11471346925539422;0.11498117373906644;0.11412394451103218;0.11208193332885495;0.10884898346559263;0.10442423696359482;0.09898250776289781;0.09268986759634917;0.08552224804145493;0.0769427372793292;0.06620132313049801;0.0510830488470426;0.012603797018527985;0.11920924484729767;0.10783969174816821;0.10543476909853226;0.10639426215344128;0.10875752847941933;0.11133169367742692;0.11343167026360272;0.11471346925539422;0.11498117373906644;0.11412394451103218;0.11208193332885495;0.10884898346559263;0.10442423696359482;0.09898250776289781;0.09268986759634917;0.08552224804145493;0.0769427372793292;0.06620132313049801;0.0510830488470426;0.012603797018527985;0.11920924484729767;0.10783969174816821;0.10543476909853226;0.10639426215344128;0.10875752847941933;0.11133169367742692;0.11343167026360272;0.11471346925539422;0.11498117373906644;0.11412394451103218;0.11208193332885495;0.10884898346559263;0.10442423696359482;0.09898250776289781;0.09268986759634917;0.08552224804145493;0.0769427372793292;0.06620132313049801;0.0510830488470426;0.012603797018527985</ns1:relativeTangentialFlowSpeeds>
+              </ns1:propInducedVelocityField>
+            </ns1:propInducedVelocityFields>
+            <ns1:slipstreamDevelopmentParameters>
+              <ns1:slipstreamDeflectionVertical>0.000000</ns1:slipstreamDeflectionVertical>
+              <ns1:slipstreamDeflectionHorizontal>0.000000</ns1:slipstreamDeflectionHorizontal>
+              <ns1:sdp3>0.000000</ns1:sdp3>
+              <ns1:sdp4>0.000000</ns1:sdp4>
+              <ns1:sdp5>0.000000</ns1:sdp5>
+              <ns1:sdp6>0.000000</ns1:sdp6>
+              <ns1:sdp7>0.000000</ns1:sdp7>
+              <ns1:sdp8>0.000000</ns1:sdp8>
+            </ns1:slipstreamDevelopmentParameters>
+          </ns1:propModule>
+        </ns1:toolParameters>
+      </ns1:liftingLine>
+    </tool>
+  </toolspecific>
+</cpacs>

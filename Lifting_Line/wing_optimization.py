@@ -1,6 +1,20 @@
+"""
+============================================================================
+This script is used for the wing optimization loop using
+PyoptSparse module
+
+-------------
+Author: Chang Xu   TUM   03739064  Sep.2023
+Supervisor: Yiyuan Ma & Alexandros Lessis
+
+Copyright @ Bauhaus Luftfahrt e.V
+============================================================================
+"""
+
 from xrotor_liftingline_main import xf_xr_lili
 from xrotor_lili_func import *
 from pyoptsparse import Optimization, SLSQP, NSGA2
+from pyoptsparse.pyOpt_history import History
 
 # Specify the CPACS file to include engine Nacelle or not
 nonac = True
@@ -132,12 +146,18 @@ def optimize_wing():
 
     # rst begin solve
     # Solve
-    sol = opt(optProb, sens="CD")
+    sol = opt(optProb, sens="CD", storeHistory='opt_history_noprop.hst')
 
     # Check Solution
     print(sol)
+
+    # History visualization
+    history = History('opt_history_noprop.hst', optProb=SLSQP)
 
 
 if __name__ == '__main__':
     solution = optimize_wing()
     print(solution)
+    # history = History('opt_history_noprop.hst', optProb=SLSQP)
+
+    pass

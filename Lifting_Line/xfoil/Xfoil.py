@@ -59,7 +59,7 @@ def xfoil_polar(path_xfoil, airfoil):
     process.stdin.flush()
     time.sleep(sleep_time)
 
-    process.stdin.write(f"{40}\n")
+    process.stdin.write(f"{100}\n")
     process.stdin.flush()
     time.sleep(sleep_time)
 
@@ -68,6 +68,22 @@ def xfoil_polar(path_xfoil, airfoil):
     time.sleep(sleep_time)
 
     process.stdin.write(f"{-5}\n")
+    process.stdin.flush()
+    time.sleep(sleep_time)
+
+    process.stdin.write("alfa\n")
+    process.stdin.flush()
+    time.sleep(sleep_time)
+
+    process.stdin.write(f"{-7}\n")
+    process.stdin.flush()
+    time.sleep(sleep_time)
+
+    process.stdin.write("alfa\n")
+    process.stdin.flush()
+    time.sleep(sleep_time)
+
+    process.stdin.write(f"{-9}\n")
     process.stdin.flush()
     time.sleep(sleep_time)
 
@@ -95,11 +111,11 @@ def xfoil_polar(path_xfoil, airfoil):
     process.stdin.flush()
     time.sleep(sleep_time)
 
-    process.stdin.write(f"{-10}\n")
+    process.stdin.write(f"{-5}\n")
     process.stdin.flush()
     time.sleep(sleep_time)
 
-    process.stdin.write(f"{10}\n")
+    process.stdin.write(f"{8}\n")
     process.stdin.flush()
     time.sleep(sleep_time)
 
