@@ -17,7 +17,8 @@ With Special Thanks to my Supervisors during my thesis
 In order to succesfully run this project, several modules should be installed at first.
 
 **Anaconda** is recommended for managing all the modules.
-* OpenVSP API 3.26.1 [DownLoad Link](https://openvsp.org/download_old.php)
+* `OpenVSP API 3.26.1` [DownLoad Link](https://openvsp.org/download_old.php)
+  ![alt text](https://openvsp.org/images/title_small.png)
   1. After download, Navigate to ***./OpenVSP-3.26.1-win64/python/*** folder. Install **utilities, degen_geom, openvsp, CHARM, AvlPy** one by one.
   Take utilities for example, first navigate to the **utilities** folder using Anaconda Prompt, then excute:
 
@@ -39,25 +40,31 @@ In order to succesfully run this project, several modules should be installed at
     vsp.VSPCheckSetup()
     ```
   > **Note:** Only OpenVSP 3.26.1 is tested for this project. Other Versions of OpenVSP maybe cause conflicts!
-* GMSH Api [Module Homepage](https://pypi.org/project/gmsh/)
+* `GMSH Api` [Module Homepage](https://pypi.org/project/gmsh/)
+
+  ![alt text](https://gmsh.info/gallery/a319_4_small.png)
   ```bash
   pip install --upgrade gmsh
   ```
-* xmltodict [Module Homepage](https://pypi.org/project/xmltodict/)
+* `xmltodict` [Module Homepage](https://pypi.org/project/xmltodict/)
+
+  ![alt text](https://www.askpython.com/wp-content/uploads/2020/12/xmltodict-module-in-Python-1024x512.png.webp)
   ```bash
   pip install xmltodict
   ```
-* XRotor Api [Module Homepage](https://pypi.org/project/xrotor/)
+* `XRotor Api` [Module Homepage](https://pypi.org/project/xrotor/)
   
   Since I have altered the XRotor API source code to get the far-field slip-stream induced speed output. The XRotor API is already compiled and ready for use.
   Just copy the **XRotor_API** folder in this GITHUB project to Anaconda environment **site-packages** folder in your computer.
-
+* `PyoptSparce` [Module Homepage](https://mdolab-pyoptsparse.readthedocs-hosted.com/en/latest/install.html)
+  ![alt text](https://mdolab-pyoptsparse.readthedocs-hosted.com/en/latest/_static/pyOptSparse_logo.svg)
   
 ## Task Lists
  - [x] Development of CPACS & OpenVSP interface
  - [x] OpenVSP - Gmsh - SU<sup>2</sup>
- - [ ] XFoil - XRotor - LiftingLine
+ - [x] XFoil - XRotor - LiftingLine
  - [ ] Wing Optimization
+> **Note:** Ongoing.......
  - [ ] Integration to the pre-existing aircraft design loop @ Bauhaus Luftfahrt e.V
  - [ ] Thesis Writing
  - [ ] :tada:
