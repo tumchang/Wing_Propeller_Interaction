@@ -16,3 +16,15 @@ Lifting_Line/LILI/atr72-500_out/
 Lifting_Line/LILI/Do328_out/
 Lifting_Line/_pycache_/
 Lifting_Line/VALIDATION/
+
+Lifting_Line/CPACS4LILI.log
+Lifting_Line/CPACS4LILI_Distribution.plt
+Lifting_Line/CPACS4LILI_Geometry.plt
+Lifting_Line/CPACS4LILI_Total.plt
+
+Lifting_Line/output
+Lifting_Line/output.json
+Lifting_Line/example_slipstream.xlsx
+Lifting_Line/TIGL.log
+Lifting_Line/atr72.inp
+Lifting_Line/atr72_prop.inp
