@@ -1,6 +1,5 @@
 # Ignore directories for wing_propeller_interaction project
 
-xrotor_api/
 .idea/
 
 VSP/Steady/
