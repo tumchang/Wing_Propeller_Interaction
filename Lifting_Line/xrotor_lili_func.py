@@ -23,6 +23,8 @@ import xml.etree.ElementTree as ET
 from xrotor import XRotor
 from xrotor.model import Case
 from scipy.optimize import minimize
+from pyoptsparse.pyOpt_history import History
+from pyoptsparse import SLSQP, NSGA2
 from Lifting_Line_Visualization import *
 from VSP.cpacs_vsp_wrapper import *
 
@@ -430,9 +432,9 @@ def geomdata(beta_70=55.31):
     return dense_geom_data
 
 
-def case(propeller):
+def case(propeller, geom_data):
     # geom_data = geomdata(beta_70=propeller.beta_70)
-    geom_data = validation_geomdata_58689()
+    # geom_data = validation_geomdata_58689()
 
     # geom_data = ten_eight_MLH_geomdata()
     #     np.array([
@@ -460,14 +462,10 @@ def case(propeller):
     case_setting = {
         'conditions': {
             # Standard atmosphere at sea level
-            'rho': 1.225,
+            'rho': 0.6597,
             'vso': 340,
             'rmu': 1.789e-5,
-            'alt': 1,
-            # Operating conditions in accordance with NASA Report No. 640
-            # adv = V / (Omega * R) = V / (RPM * pi/30 * R)
-            # 'vel': 142,
-            # 'adv': 0.90159
+            'alt': 8000,
             'vel': propeller.Vinf,
             'adv': propeller.J
         },
@@ -475,7 +473,6 @@ def case(propeller):
             'n_blds': propeller.B,
             'blade': {
                 'geometry': {
-                    # TODO: Get the parameter of the Hamilton F568 Propeller
                     'r_hub': propeller.hub_radius,
                     'r_tip': propeller.tip_radius,
                     'r_wake': 0.0,
@@ -566,10 +563,11 @@ def case(propeller):
 
 def operate_xrotor(cases, RPM):
     xr = XRotor()
-    xr.vrtx = True
+    # xr.vrtx = True
     xr.use_compr_corr = True
     xr.max_iter = 100
     xr.case = Case.from_dict(cases)
+    xr.save_propeller_geometry()
 
     xr.operate(rpm=RPM)
 
@@ -712,7 +710,7 @@ def calc_dev_coeff(oper_pnt, dist):
     return kd
 
 
-def add_slipstream(cpacs_ref, slipstream, RPM, prop_flag=True):
+def add_slipstream(cpacs_ref, slipstream, RPM, opt_method, prop_flag=True):
     """
     :param RPM:
     :param prop_flag: Turn on or Turn off Propeller rotation
@@ -792,7 +790,8 @@ def add_slipstream(cpacs_ref, slipstream, RPM, prop_flag=True):
     #     text = elem
 
     # Write the modified xml
-    write_path = f'./LILI/{aircraft_name}/prop{prop_flag}_RPM{RPM}'
+    write_path = f'./LILI/{aircraft_name}/prop{prop_flag}_RPM{RPM}_{opt_method}'
+    # write_path = f'./LILI/{aircraft_name}/prop{prop_flag}_RPM{RPM}'
     # Check if the directory exists or not
     if os.path.exists(write_path):
         if prop_flag:
@@ -861,15 +860,24 @@ def lili_visualization(xml_dir, save_plot=False):
     # Get the Overall Lift to Drag ratio
 
     tecplot_dir = xml_dir + '/ReturnDirectory/CPACS4LILI_LILI-Config_1.lili.V3.1/export/tecplot'
-    total_tecplot_dir = xml_dir + '/ReturnDirectory'
+    # total_tecplot_dir = xml_dir + '/ReturnDirectory'
 
-    geom_secs = parse_attributes(tecplot_dir, aircraft_name)
+    # geom_secs = parse_attributes(tecplot_dir, aircraft_name)
     distribution, distribution_dict = parse_distribution(tecplot_dir, aircraft_name)
     total_distribution = parse_total_dist(tecplot_dir)
     total_coeff = parse_distribution(tecplot_dir, aircraft_name, parse_total=True)
 
     CD = float(total_distribution[0]['CFX_FROM_CDI'])
     CL = float(total_distribution[0]['CFZ'])
+
+    # ==================================================================================================================
+    # This part is used to getting the lift distribution and Dimensionless lateral coordinate of the centre of pressure
+    # ==================================================================================================================
+    Cl = np.asarray(distribution['CFZ'].iloc[:34])
+    Y = np.asarray(distribution['Y'].iloc[:34])
+
+    M_total = sum(Cl * Y)
+    eta_y = M_total / (np.sum(Cl)*total_distribution[0]['REF_SPAN'].iloc[0]/2)
 
     # fig1 = panel_dist_plot(distribution_dict, "CFZ", geom_secs,
     #                        3, mesh_flag=False)
@@ -891,7 +899,7 @@ def lili_visualization(xml_dir, save_plot=False):
     #
     #     for elev, azim in view_angles:
     #         ax1.view_init(elev=elev, azim=azim)
-    #         filename = f'panel_dist_plot_{elev}_{azim}.png'
+    #         filename = panel_dist_plot_{elev}_{azim}.png'
     #         fig1.savefig(os.path.join(xml_dir, filename), dpi=dpi)
     #
     #     fig2.savefig(os.path.join(xml_dir, 'cl_distribution.png'), dpi=dpi)
@@ -900,7 +908,7 @@ def lili_visualization(xml_dir, save_plot=False):
     # Show all the figures
     # plt.show()
 
-    return CL, CD, total_coeff[0]
+    return CL, CD, total_coeff[0], eta_y
 
 
 # def a_phi_equations(vars, cl_val, cd_val):
@@ -1370,22 +1378,28 @@ def va_vt_plot_bem(prop):
 # to PyoptSparse process
 # ======================================================================================================================
 class WingShape:
-    def __init__(self, cpacs_init):
+    def __init__(self, cpacs_init, eta_cp, wing_method):
         self.segment = None
+        self.sweep_LE = None
         self.sweep_25 = None
+        self.sweep_50 = None
         wing_original_shape_df, original_area, original_AR, origin_lambda = self.get_original_wing(cpacs_init)
         self.section = wing_original_shape_df
+        self.b_ref = wing_original_shape_df['tip_y'].iloc[-1]*2
         self.area = original_area
         self.taper_ratio = origin_lambda
         self.AR = original_AR
         self.t_c_root = 0.17305
-        self.ult_load_factor = 3.5
+        self.t_c_tip = 0.13004
+        self.ult_load_factor = 3.75
         self.MTOW = 13990
-        self.wing_weight_est = (
-                                0.0051 * (2.205*self.MTOW*self.ult_load_factor)**0.557 * (10.7639104*self.area)**0.649
-                                * self.AR**0.5 * (self.t_c_root**-0.4) * (1 + self.taper_ratio)**0.1
-                                * (np.cos(self.sweep_25))**-1 * (10.7639104*0.1*self.area)**0.1
-                                )
+        self.MZFW = 12610 - 3738
+
+        if wing_method == 'Raymer':
+            self.wing_weight_est = self.wing_weight_raymer()
+        elif wing_method == 'Torenbeek':
+            self.wing_weight_est = self.wing_weight_torenbeek(eta_cp)
+
         self.ZFW_no_wing = 12610 - 3738 - self.wing_weight_est + 1704
 
     def get_original_wing(self, cpacs_init):
@@ -1417,9 +1431,13 @@ class WingShape:
         original_area = (chord[0] + chord[1]) * (tip_y[1] - tip_y[0]) + (chord[1] + chord[2]) * (tip_y[2] - tip_y[1])
         original_AR = (2*tip_y[2])**2 / original_area
         origin_lambda = chord[2]/chord[0]
+        sweep_LE = np.arctan(((tip_x[2] + 0.00*chord[2]) - (tip_x[0] + 0.00*chord[0])) / tip_y[2])
         sweep_25 = np.arctan(((tip_x[2] + 0.25*chord[2]) - (tip_x[0] + 0.25*chord[0])) / tip_y[2])
+        sweep_50 = np.arctan(((tip_x[2] + 0.50*chord[2]) - (tip_x[0] + 0.50*chord[0])) / tip_y[2])
 
+        self.sweep_LE = sweep_LE
         self.sweep_25 = sweep_25
+        self.sweep_50 = sweep_50
 
         # Get the segment data
         sweep = []
@@ -1438,6 +1456,65 @@ class WingShape:
         self.segment = segment_df
 
         return wing_original_shape_df, original_area, original_AR, origin_lambda
+
+    def wing_weight_raymer(self):
+        wing_weight_est = (
+                0.0051 * (2.205 * self.MTOW * self.ult_load_factor) ** 0.557 * (10.7639104 * self.area)
+                ** 0.649 * self.AR ** 0.5 * (self.t_c_root ** -0.4) * (1 + self.taper_ratio) ** 0.1
+                * (np.cos(self.sweep_25)) ** -1 * (10.7639104 * 0.1 * self.area) ** 0.1
+        )
+
+        return wing_weight_est
+
+    def wing_weight_torenbeek(self, eta_cp):
+        # Dimensionless lateral coordinate of the centre of pressure
+        eta_cp = eta_cp
+
+        # eta_cp = 1 / (3 * self.ult_load_factor) * ((4 / np.pi) + (self.ult_load_factor - 1)
+        #                                            * (1 + 2 * self.taper_ratio) / (1 + self.taper_ratio))
+
+        # for Subsonic AC (0.84 for transonic)
+        eta_t = 0.81
+
+        # Structural Wing Span
+        b_s = self.b_ref / np.cos(self.sweep_50)
+
+        k_w = 6.67e-3
+
+        # first guess of wing group weight
+        W_w = (
+                self.MZFW * k_w * (b_s**0.75) * (1 + np.sqrt(self.b_ref/b_s)) * (self.ult_load_factor**0.55)
+                * ((b_s/self.t_c_root*self.section['chord'].loc[0])/(self.MZFW/self.area))**0.3
+        )
+
+        # Inertia Relief
+        R_in_w = W_w/self.MTOW
+        # TODO Engine inertia relief and Fuel inertia Relief to be added
+        R_in = 1 - R_in_w
+
+        R_cant = b_s / (2 * self.t_c_root * self.section['chord'].loc[0])
+        k_mat = 2796  # Specific weight of Al [N/m^3]
+
+        # % Torenbeek, 1992, "Development and application of a comprehensive,
+        # design-sensitive weight prediction method for wing structures of transport category aircraft".
+        # Equ. 11.79 and following
+        k_mat_str = 4 * 10**-5 * (1 + 1.1 * (self.MTOW / 10**6)**(-0.25))
+
+        k_rib = 0.005
+        t_ref = 1
+
+        wingbox_weight = (
+                0.36 * self.ult_load_factor * R_in * self.MTOW
+                * eta_cp * b_s * k_mat_str * ((1.05*R_cant/eta_t)+3.67)
+                )
+        rib_weight = (
+                k_mat * k_rib * self.area * (t_ref + (self.t_c_root*self.section['chord'].loc[0] +
+                                                      self.t_c_tip*self.section['chord'].loc[2]) / 2)
+        )
+
+        wing_id = wingbox_weight + rib_weight
+
+        return wing_id
 
 
 def variable_change(xdict, xml_path, origin_df, operpnt):
@@ -1503,17 +1580,144 @@ def variable_change(xdict, xml_path, origin_df, operpnt):
     return Cdo
 
 
-if __name__ == '__main__':
-    oper_point = OperPNT()
-    oper_point.beta_70 = 55.31
-    oper_point.rho = 1.225
-    oper_point.hub_radius = 0.376
-    oper_point.tip_radius = 1.88
-    # oper_point.RPM_list = list(range(700, 1001, 100))
-    oper_point.RPM_list = [800]
-    oper_point.Vinf = 142
-    oper_point.B = 6
+def history_visualization(his_file, optProb=SLSQP):
+    # Variable plot part=========================================================================================
+    history = History(his_file, optProb=optProb)
+    chord3_his = history.getValues(names='chord3', major=True)['chord3']
+    # Locate the deviated value of chord and find it index
+    error_index = int(np.where((chord3_his < 0.01) | (chord3_his > 2.21))[0])
+    chord3_his = np.delete(chord3_his, error_index)
 
-    cpacs_ref = "./LILI/Do328_out/propTrue_RPM800/propTrue_RPM800.xml"
-    # optimize_wing()
-    # objective_function(cpacs_ref, oper_point)
+    twist3_his = history.getValues(names='twist3', major=True)['twist3']
+    twist3_his = np.delete(twist3_his, error_index)
+
+    half_span_his = history.getValues(names='half span', major=True)['half span']
+    half_span_his = np.delete(half_span_his, error_index)
+
+    fig1, ax1 = plt.subplots(3, 1, figsize=(9, 8))
+    fig1.suptitle('Variable History', fontsize=16)
+
+    # Plot chord3 history
+    ax1[0].plot(chord3_his, '-o', label='chord3', color='blue')
+    ax1[0].axhline(0.442, color='black', linestyle='--', label='lower limit')  # Adding the dashed line
+    ax1[0].set_title('chord3')
+    ax1[0].set_xlabel('Iteration')
+    ax1[0].set_ylabel('chord3 [m]')
+    ax1[0].set_ylim([0, 2.21])
+    ax1[0].grid(True)
+    ax1[0].legend()
+
+    # Plot twist3 history
+    ax1[1].plot(twist3_his, '-o', label='twist3', color='green')
+    ax1[1].set_title('twist3')
+    ax1[1].set_xlabel('Iteration')
+    ax1[1].set_ylabel('twist3 [deg]')
+    ax1[1].set_ylim([-5, 2])
+    ax1[1].grid(True)
+    ax1[1].legend()
+
+    # Plot half span history
+    ax1[2].plot(half_span_his, '-o', label='half span', color='red')
+    ax1[2].set_title('Half Span')
+    ax1[2].set_xlabel('Iteration')
+    ax1[2].set_ylabel('Half Span [m]')
+    ax1[2].set_ylim([5, 18])
+    ax1[2].grid(True)
+    ax1[2].legend()
+
+    # Adjust layout
+    plt.tight_layout()
+
+    # Constraints plot part=========================================================================================
+    whole_span_his = history.getValues(names='Whole Span', major=True)['Whole Span']
+    whole_span_his = np.delete(whole_span_his, error_index)
+
+    wing_area_his = history.getValues(names='Wing Area', major=True)['Wing Area']
+    wing_area_his = np.delete(wing_area_his, error_index)
+
+    lambda_his = history.getValues(names='Taper Ratio', major=True)['Taper Ratio']
+    lambda_his = np.delete(lambda_his, error_index)
+
+    wing_weight_percentage_his = history.getValues(names='Wing Weight Percentage', major=True)['Wing Weight Percentage']
+    wing_weight_percentage_his = np.delete(wing_weight_percentage_his, error_index)
+
+    AR_his = history.getValues(names='Aspect Ratio Change', major=True)['Aspect Ratio Change']
+    AR_his = np.delete(AR_his, error_index)
+
+    fig2, ax2 = plt.subplots(5, 1, figsize=(9, 10))
+    fig2.suptitle('Constraint History', fontsize=16)
+
+    # Plot Whole Span history
+    ax2[0].plot(whole_span_his, '-o', color='blue', label='Whole Span')
+    ax2[0].set_title('Whole Span')
+    ax2[0].set_xlabel('Iteration')
+    ax2[0].set_ylabel('Whole Span [m]')
+    ax2[0].grid(True)
+    ax2[0].legend()
+
+    # Plot Wing Area history
+    ax2[1].plot(wing_area_his, '-o', color='green', label='Wing Area')
+    ax2[1].set_title('Wing Area')
+    ax2[1].set_xlabel('Iteration')
+    ax2[1].set_ylabel('Wing Area [m^2]')
+    ax2[1].grid(True)
+    ax2[1].legend()
+
+    # Plot Taper Ratio (lambda) history
+    ax2[2].plot(lambda_his, '-o', color='red', label='Taper Ratio (λ)')
+    ax2[2].set_title('Taper Ratio (λ)')
+    ax2[2].set_xlabel('Iteration')
+    ax2[2].set_ylabel('Taper Ratio [-]')
+    ax2[2].grid(True)
+    ax2[2].legend()
+
+    # Plot Wing Weight Change history
+    ax2[3].plot(wing_weight_percentage_his, '-o', color='magenta', label='Wing Weight Percentage')
+    ax2[3].set_title('Wing Weight Percentage')
+    ax2[3].set_xlabel('Iteration')
+    ax2[3].set_ylabel('Wing Weight Percentage [%]')
+    ax2[3].grid(True)
+    ax2[3].legend()
+
+    # Plot Aspect Ratio Change history
+    ax2[4].plot(AR_his, '-o', color='cyan', label='Aspect Ratio Change')
+    ax2[4].set_title('Aspect Ratio Change')
+    ax2[4].set_xlabel('Iteration')
+    ax2[4].set_ylabel('Aspect Ratio Change [%]')
+    ax2[4].grid(True)
+    ax2[4].legend()
+
+    # Adjust layout
+    plt.tight_layout()
+
+    # obj plot part=========================================================================================
+    range_his = -np.asarray(history.getValues(names='obj', major=True)['obj'])/1000
+    range_his = np.delete(range_his, error_index)
+
+    fig3, ax3 = plt.subplots(figsize=(9, 10))
+    fig3.suptitle('Range History', fontsize=16)
+    ax3.plot(range_his, '-o', color='cyan', label='Range')
+    ax3.set_title('Range')
+    ax3.set_xlabel('Iteration')
+    ax3.set_ylabel('Range [km]')
+    ax3.grid(True)
+    ax3.legend()
+
+    plt.show()
+
+    pass
+
+
+if __name__ == '__main__':
+    pass
+    # oper_point = OperPNT()
+    # oper_point.beta_70 = 55.31
+    # oper_point.rho = 1.225
+    # oper_point.hub_radius = 0.376
+    # oper_point.tip_radius = 1.88
+    # # oper_point.RPM_list = list(range(700, 1001, 100))
+    # oper_point.RPM_list = [800]
+    # oper_point.Vinf = 142
+    # oper_point.B = 6
+    #
+    # cpacs_ref = "./LILI/Do328_out/propTrue_RPM800/propTrue_RPM800.xml"

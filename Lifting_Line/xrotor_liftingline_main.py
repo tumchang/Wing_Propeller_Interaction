@@ -24,9 +24,6 @@ This section is used for specify file directory
 and Analysis basic parameter setting
 ================================================================================================================
 """
-# Specify the CPACS file to include engine Nacelle or not
-nonac = True
-prop_flag = False
 
 # =============================================================================================================
 # Specify all the file path and exe path
@@ -52,19 +49,6 @@ if not os.path.exists(polar_dir):
     # Copy the polar file to xfoil folder
     shutil.move(f'./{airfoil_name}_polar.txt', './xfoil')
 
-# Definition of propeller operating point
-oper_point = OperPNT()
-# oper_point.beta_70 = 55.31
-oper_point.rho = 1.225
-oper_point.hub_radius = 0.0236
-oper_point.tip_radius = 0.236/2
-# oper_point.RPM_list = list(range(700, 1001, 100))
-# oper_point.RPM_list = [632.5, 674.66667, 722.857, 778.46, 843.33]
-oper_point.RPM_list = [15254]
-# [632.5, 778.46, 843.33]
-oper_point.Vinf = 51  # Q = 1500 Pa = 0.5 * 1.225 * Vinf**2
-oper_point.B = 4
-
 """
 ================================================================================================================
 This section is used for Optimization process
@@ -72,9 +56,7 @@ This section is used for Optimization process
 """
 
 
-def xf_xr_lili(oper_pnt, cpacs_init, RPM, xdict, origin_wing):
-    # L_D_list = []
-
+def xf_xr_lili(oper_pnt, cpacs_init, RPM, xdict, origin_wing, prop_flag, opt_method):
     # for RPM in oper_pnt.RPM_list:
     """
     ================================================================================================================
@@ -89,7 +71,7 @@ def xf_xr_lili(oper_pnt, cpacs_init, RPM, xdict, origin_wing):
     propeller.generate_prop_section()
 
     # Set up xrotor case
-    xrotor_case = case(propeller)
+    xrotor_case = case(propeller, geom_data)
     # Operate XRotor
     xr = operate_xrotor(xrotor_case, RPM=RPM)
     # Get the slipstream output
@@ -104,7 +86,9 @@ def xf_xr_lili(oper_pnt, cpacs_init, RPM, xdict, origin_wing):
     """
     # Add the slipstream data to CPACS file
     xml_path = add_slipstream(cpacs_init, slipstream_norm,
-                              RPM, prop_flag=prop_flag)
+                              RPM, opt_method=opt_method, prop_flag=prop_flag)
+    # xml_path = add_slipstream(cpacs_init, slipstream_norm,
+    #                           RPM, prop_flag=prop_flag)
     print(xml_path)
     print("slipstream added")
 
@@ -114,10 +98,10 @@ def xf_xr_lili(oper_pnt, cpacs_init, RPM, xdict, origin_wing):
     # Run the Lifting Line.exe for conducting analysis
     xml_dir = run_lili(lili_path, xml_path)
 
-    new_wing = WingShape(xml_path)
-
     # Lifting Line results visualization
-    CL, CDi, total_coeff = lili_visualization(xml_dir, save_plot=False)
+    CL, CDi, total_coeff, eta_y = lili_visualization(xml_dir, save_plot=False)
+
+    new_wing = WingShape(xml_path, eta_y, wing_method='Torenbeek')
 
     Lift = CL * new_wing.area
     Drag = (CDi + 3 * Cdo_wing) * new_wing.area
@@ -145,31 +129,49 @@ def xf_xr_lili(oper_pnt, cpacs_init, RPM, xdict, origin_wing):
 
 
 if __name__ == '__main__':
+    """
+    ================================================================================================================
+    This section is used for debugging and doing validation of the XF-XR-LILI workflow
+    ================================================================================================================
+    """
     pass
-    cpacs_init = f'C:/Users/chang.xu/wing_propeller_interaction/prop_plate.xml'
-    # Set up the Propeller, using geometry data and operation points
-    geom_data = validation_geomdata_58689()
+    # Definition of propeller operating point
+    # oper_point = OperPNT()
+    # # oper_point.beta_70 = 55.31
+    # oper_point.rho = 0.52517
+    # oper_point.hub_radius = 0.0236
+    # oper_point.tip_radius = 0.236/2
+    # # oper_point.RPM_list = list(range(700, 1001, 100))
+    # # oper_point.RPM_list = [632.5, 674.66667, 722.857, 778.46, 843.33]
+    # oper_point.RPM_list = [15254]
+    # # [632.5, 778.46, 843.33]
+    # oper_point.Vinf = 51  # Q = 1500 Pa = 0.5 * 1.225 * Vinf**2
+    # oper_point.B = 4
 
-    # Initialize the Propeller Class
-    propeller = Propeller(polar_dir, geom_data, oper_point, 15254)
-    propeller.generate_prop_section()
-
-    # Set up xrotor case
-    xrotor_case = case(propeller)
-    # Operate XRotor
-    xr = operate_xrotor(xrotor_case, RPM=15254)
-    # Get the slipstream output
-    slipstream = vput_xr(xr, 15254, print_flag=True)
-    # Normalize the slipstream with Vinf
-    slipstream_norm = slipstream_normalize(slipstream, xr)
-
-    # Add contraction & development factor consideration
-    slipstream_dev_coeff = calc_dev_coeff(oper_point, 0.201)
-    slipstream_norm_contracted = slipstream_norm.copy()
-    slipstream_norm_contracted[:, 1] = slipstream_norm_contracted[:, 1] * slipstream_dev_coeff/2
-
-    # Add the slipstream data to CPACS file
-    xml_path = add_slipstream(cpacs_init, slipstream_norm_contracted,
-                              15254, prop_flag=prop_flag)
-
-    print("finished")
+    # cpacs_init = f'C:/Users/chang.xu/wing_propeller_interaction/prop_plate.xml'
+    # # Set up the Propeller, using geometry data and operation points
+    # geom_data = geomdata(beta_70=55.31)
+    #
+    # # Initialize the Propeller Class
+    # propeller = Propeller(polar_dir, geom_data, oper_point, 800)
+    # propeller.generate_prop_section()
+    #
+    # # Set up xrotor case
+    # xrotor_case = case(propeller, geom_data)
+    # # Operate XRotor
+    # xr = operate_xrotor(xrotor_case, RPM=15254)
+    # # Get the slipstream output
+    # slipstream = vput_xr(xr, 15254, print_flag=True)
+    # # Normalize the slipstream with Vinf
+    # slipstream_norm = slipstream_normalize(slipstream, xr)
+    #
+    # # Add contraction & development factor consideration
+    # slipstream_dev_coeff = calc_dev_coeff(oper_point, 0.201)
+    # slipstream_norm_contracted = slipstream_norm.copy()
+    # slipstream_norm_contracted[:, 1] = slipstream_norm_contracted[:, 1] * slipstream_dev_coeff/2
+    #
+    # # Add the slipstream data to CPACS file
+    # xml_path = add_slipstream(cpacs_init, slipstream_norm_contracted,
+    #                           15254, prop_flag=prop_flag)
+    #
+    # print("finished")

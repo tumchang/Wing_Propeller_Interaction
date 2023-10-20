@@ -247,7 +247,7 @@ def plot_geom_secs(geom_secs, num_plot, panel_plot=1):
     fig = plt.figure(figsize=(16, 16))
     ax = fig.add_subplot(111, projection='3d')
 
-    # TODO: You can change the surfurce that you want to plot here
+    # TODO: You can change the surface that you want to plot here
     for i in range(num_plot):
         # Unpack XYZ data
         X = geom_secs[i].XYZ[:, 0]
@@ -306,12 +306,12 @@ def panel_dist_plot(distribution_dic, variable,
     # Interpolate
     zi = griddata((X, Y), Z, (xi, yi), method='linear')
 
-    if mesh_flag:
-        surf = ax.plot_surface(xi, yi, zi, cmap='viridis')
-        plt.colorbar(surf, ax=ax, label='CFY Value')
+    # if mesh_flag:
+    #     surf = ax.plot_surface(xi, yi, zi, cmap='viridis')
+    #     plt.colorbar(surf, ax=ax, label='CFY Value')
 
     # TODO: Change the panel number to be plotted
-    for i in range(63):
+    for i in range(64):
         # Unpack XYZ data
         X = geom_secs[i].XYZ[:, 0]
         Y = geom_secs[i].XYZ[:, 1]
@@ -336,6 +336,10 @@ def panel_dist_plot(distribution_dic, variable,
     # ax.set_zlim(-4, 4)
 
     # ax.set_box_aspect([5/30, 1, 8/30])
+
+    plt.xlabel('X')
+    plt.ylabel('Y')
+    # plt.zlabel('Z')
 
     ax.set_xlim(-1, 1)
     ax.set_ylim(-1, 1)
@@ -399,8 +403,8 @@ def lift_distribution_2d(distribution_dic):
 if __name__ == '__main__':
     # aircraft_name = "CPACS4LILI_LILI-Config_1"
     #
-    # # Tecplot directory
-    # tecplot_dir = fr"C:\Users\chang.xu\wing_propeller_interaction\Lifting_Line\ReturnDirectory\CPACS4LILI_LILI-Config_1.lili.V3.1\export\tecplot"
+    # # Tecplot directory tecplot_dir = fr"C:\Users\chang.xu\wing_propeller_interaction\Lifting_Line\ReturnDirectory
+    # \CPACS4LILI_LILI-Config_1.lili.V3.1\export\tecplot"
     #
     # # Execute the function to parse the data and plot as figures
     # geom_secs = parse_attributes(tecplot_dir, aircraft_name)
@@ -422,7 +426,6 @@ if __name__ == '__main__':
     distribution, distribution_dict = parse_distribution(tecplot_dir, aircraft_name, parse_total=False)
     panel_dist_plot(distribution_dict, "CFZ", geom_secs, 3)
     # lift_distribution_2d(distribution_dict)
-
 
     # Show all the figures
     plt.show()

@@ -51,8 +51,8 @@ auto_time_flag = [1]
 num_rev_flag = [2]
 
 # cpacs = CPACS(fr"C:\Users\chang.xu\wing_propeller_interaction\D150.xml")
-# cpacs = CPACS(fr"C:\Users\chang.xu\wing_propeller_interaction\atr72-500_out.xml")
-cpacs = CPACS(fr"C:\Users\chang.xu\wing_propeller_interaction\Do328_out.xml")
+cpacs = CPACS(fr"C:\Users\chang.xu\wing_propeller_interaction\atr72-500_out.xml")
+# cpacs = CPACS(fr"C:\Users\chang.xu\wing_propeller_interaction\Do328_out.xml")
 # cpacs = CPACS(fr"C:\Users\chang.xu\wing_propeller_interaction\FLIPASED01.xml")
 vsp_model = VSP(cpacs)
 
