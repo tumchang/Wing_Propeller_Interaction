@@ -35,16 +35,27 @@ oper_point.Vinf = 142
 oper_point.B = 6
 
 RPM = oper_point.RPM_list[0]
+
+# Operation Point definition
+oper_point_2 = OperPNT()
+oper_point_2.beta_70 = 55.31
+oper_point_2.rho = 0.6597
+oper_point_2.hub_radius = 0.230
+oper_point_2.tip_radius = 1.15
+oper_point_2.RPM_list = [1200]
+oper_point_2.Vinf = 142
+oper_point_2.B = 7
+
+RPM_2 = oper_point_2.RPM_list[0]
+
 # CPACS Ref File
 if nonac:
-    cpacs_init = "./Do328_nonac.xml"
+    cpacs_init = "./Do328_nonac_4.xml"
 else:
     cpacs_init = "./Do328.xml"
 
 # Get the origin shape and area of the wing
-original_wing = WingShape(cpacs_init, eta_cp=0.44, wing_method='Torenbeek')
-
-# cpacs_ref = "./LILI/Do328_out/propTrue_RPM800/propTrue_RPM800.xml"
+original_wing = WingShape(cpacs_init, eta_cp=0.42, wing_method='Torenbeek')
 
 
 # For Xdict x[0]=chord3, x[1]=twist3, x[2]=span, x[3]=section3** tip x position
@@ -56,7 +67,9 @@ def objective_function(xdict):
     # ================================================================================================================
     # Definition of optimization object(Breguet Range Function estimation)
     # ================================================================================================================
-    s, wing_weight_new = xf_xr_lili(oper_point, cpacs_init, RPM, xdict, original_wing, prop_flag, opt_method=opt_method)
+    s, wing_weight_new = xf_xr_lili(oper_point, cpacs_init, RPM, xdict, original_wing, prop_flag,
+                                    oper_point_2, RPM_2,
+                                    opt_method=opt_method)
     # s, wing_weight_new = xf_xr_lili(oper_point, cpacs_init, RPM, xdict, original_wing, prop_flag)
 
     funcs["obj"] = -s
@@ -130,23 +143,23 @@ def optimize_wing():
     if opt_method == 'SLSQP':
         optOptions = {
             "IPRINT": 1,
-            # "PrintOut": 1,
-            # "TOLC": 1e-02,
-            # "TOLG": 1e-02,
-            # "TOLX": 1e-03,
-            # "RPF": 0.01
+            "ACC": 1e-08   # 1e-06 default
         }
         opt = SLSQP(options=optOptions)
 
     elif opt_method == 'NSGA2':
         optOptions = {
-            "PopSize": 300
+            "PopSize": 300,
+            "maxGen": 5000
         }
         opt = NSGA2(options=optOptions)
 
     # rst begin solve
     # Solve
-    sol = opt(optProb, sens="CD", storeHistory=f'opt_history_{opt_method}.hst')
+    if opt_method == 'SLSQP':
+        sol = opt(optProb, sens="FDR", storeHistory=f'opt_history_{opt_method}.hst')
+    elif opt_method == 'NSGA2':
+        sol = opt(optProb, sens="CD", storeHistory=f'opt_history_{opt_method}.hst')
 
     # Check Solution
     print(sol)

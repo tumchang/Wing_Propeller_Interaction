@@ -7,19 +7,28 @@
    ---------------------------------------------------------------------------
 
      PARAMETERS:
-        ACC =   0.1000D-05
+        ACC =   0.1000D-07
         MAXITER =500
         IPRINT =   1
 IOUT =  60
 
 
-     ITER =    1     OBJ = -0.29628967E+07
-     ITER =    2     OBJ = -0.29867635E+07
-     ITER =    3     OBJ = -0.30024678E+07
-     ITER =    4     OBJ = -0.30062549E+07
-     ITER =    6     OBJ = -0.30081041E+07
-     ITER =    7     OBJ = -0.30085897E+07
-     ITER =    8     OBJ = -0.30086170E+07
-     ITER =    9     OBJ = -0.30086255E+07
-        NUMBER OF FUNC-CALLS:  NFUNC =  32
-        NUMBER OF GRAD-CALLS:  NGRAD =   9
+     ITER =    1     OBJ = -0.29475990E+07
+     ITER =    2     OBJ = -0.29476007E+07
+     ITER =    3     OBJ = -0.29483721E+07
+     ITER =    5     OBJ = -0.29802076E+07
+     ITER =    6     OBJ = -0.29811012E+07
+     ITER =    7     OBJ = -0.29887732E+07
+     ITER =    9     OBJ = -0.29893738E+07
+     ITER =   10     OBJ = -0.29898826E+07
+     ITER =   11     OBJ = -0.29898842E+07
+     ITER =   12     OBJ = -0.29902045E+07
+     ITER =   14     OBJ = -0.29902047E+07
+     ITER =   15     OBJ = -0.29902047E+07
+     ITER =   16     OBJ = -0.29902048E+07
+     ITER =   17     OBJ = -0.29902049E+07
+     ITER =   18     OBJ = -0.29902401E+07
+     ITER =   20     OBJ = -0.29902401E+07
+     ITER =   21     OBJ = -0.29904918E+07
+        NUMBER OF FUNC-CALLS:  NFUNC =  82
+        NUMBER OF GRAD-CALLS:  NGRAD =  18

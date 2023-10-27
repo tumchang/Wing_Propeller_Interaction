@@ -24,7 +24,6 @@ from xrotor import XRotor
 from xrotor.model import Case
 from scipy.optimize import minimize
 from pyoptsparse.pyOpt_history import History
-from pyoptsparse import SLSQP, NSGA2
 from Lifting_Line_Visualization import *
 from VSP.cpacs_vsp_wrapper import *
 
@@ -465,7 +464,7 @@ def case(propeller, geom_data):
             'rho': 0.6597,
             'vso': 340,
             'rmu': 1.789e-5,
-            'alt': 8000,
+            'alt': 6000,
             'vel': propeller.Vinf,
             'adv': propeller.J
         },
@@ -484,72 +483,6 @@ def case(propeller, geom_data):
                 },
                 'polars': {
                     0.0: propeller.polar_for_xr,
-                    # 0.0: np.array([
-                    #             # alfa      Cl      CD        Cm
-                    #             [-7.750, -0.3714, 0.11498, -0.0175],
-                    #             [-7.500, -0.3722, 0.11289, -0.0166],
-                    #             [-7.250, -0.3744, 0.11098, -0.0154],
-                    #             [-7.000, -0.3641, 0.10791, -0.0177],
-                    #             [-6.750, -0.3484, 0.10439, -0.0215],
-                    #             [-6.500, -0.3313, 0.10064, -0.0255],
-                    #             [-6.250, -0.3123, 0.09680, -0.0299],
-                    #             [-6.000, -0.2900, 0.09268, -0.0352],
-                    #             [-5.750, -0.2670, 0.08864, -0.0406],
-                    #             [-5.500, -0.2474, 0.08485, -0.0449],
-                    #             [-5.250, -0.2215, 0.08067, -0.0509],
-                    #             [-5.000, -0.1978, 0.07460, -0.0575],
-                    #             [-4.750, -0.1810, 0.07037, -0.0607],
-                    #             [-4.500, -0.1577, 0.06642, -0.0646],
-                    #             [-4.250, -0.1254, 0.06225, -0.0711],
-                    #             [-4.000, -0.0901, 0.05807, -0.0784],
-                    #             [-3.750, -0.0542, 0.05390, -0.0856],
-                    #             [-3.500, -0.0058, 0.04907, -0.0956],
-                    #             [-3.250, 0.0675, 0.04220, -0.1114],
-                    #             [-3.000, 0.1139, 0.03842, -0.1184],
-                    #             [-2.750, 0.1741, 0.03311, -0.1291],
-                    #             [-2.500, 0.2365, 0.02805, -0.1387],
-                    #             [-2.250, 0.2961, 0.02363, -0.1466],
-                    #             [-2.000, 0.3502, 0.02020, -0.1524],
-                    #             [-1.750, 0.3943, 0.01825, -0.1556],
-                    #             [-1.500, 0.4347, 0.01673, -0.1584],
-                    #             [-1.250, 0.4738, 0.01557, -0.1606],
-                    #             [-1.000, 0.5130, 0.01473, -0.1630],
-                    #             [-0.750, 0.5500, 0.01419, -0.1648],
-                    #             [-0.500, 0.5833, 0.01358, -0.1661],
-                    #             [-0.250, 0.6218, 0.01277, -0.1690],
-                    #             [0.000, 0.6574, 0.01194, -0.1706],
-                    #             [0.250, 0.6763, 0.01139, -0.1681],
-                    #             [0.500, 0.7124, 0.01121, -0.1696],
-                    #             [0.750, 0.7416, 0.01112, -0.1697],
-                    #             [1.000, 0.7774, 0.01089, -0.1711],
-                    #             [1.250, 0.8061, 0.01080, -0.1711],
-                    #             [1.500, 0.8379, 0.01065, -0.1717],
-                    #             [1.750, 0.8723, 0.01044, -0.1727],
-                    #             [2.000, 0.9092, 0.01021, -0.1743],
-                    #             [2.250, 0.9524, 0.00992, -0.1772],
-                    #             [2.500, 1.0035, 0.00966, -0.1819],
-                    #             [2.750, 1.0510, 0.00960, -0.1857],
-                    #             [3.000, 1.0861, 0.00987, -0.1869],
-                    #             [3.250, 1.1113, 0.01039, -0.1860],
-                    #             [3.500, 1.1313, 0.01107, -0.1841],
-                    #             [3.750, 1.1490, 0.01186, -0.1819],
-                    #             [4.000, 1.1664, 0.01271, -0.1798],
-                    #             [4.250, 1.1846, 0.01358, -0.1780],
-                    #             [4.500, 1.2033, 0.01450, -0.1764],
-                    #             [4.750, 1.2225, 0.01547, -0.1749],
-                    #             [5.000, 1.2423, 0.01645, -0.1736],
-                    #             [5.250, 1.2615, 0.01758, -0.1722],
-                    #             [5.500, 1.2809, 0.01874, -0.1709],
-                    #             [5.750, 1.2977, 0.02036, -0.1691],
-                    #             [6.000, 1.3163, 0.02187, -0.1672],
-                    #             [6.250, 1.3359, 0.02316, -0.1654],
-                    #             [6.500, 1.3540, 0.02469, -0.1634],
-                    #             [6.750, 1.3711, 0.02649, -0.1612],
-                    #             [7.000, 1.3883, 0.02859, -0.1590],
-                    #             [7.250, 1.4067, 0.03102, -0.1570],
-                    #             [7.500, 1.4260, 0.03385, -0.1552],
-                    #         ]),
-
                 }
             }
         },
@@ -712,6 +645,7 @@ def calc_dev_coeff(oper_pnt, dist):
 
 def add_slipstream(cpacs_ref, slipstream, RPM, opt_method, prop_flag=True):
     """
+    :param opt_method: optimization method
     :param RPM:
     :param prop_flag: Turn on or Turn off Propeller rotation
     :param cpacs_ref: CPACS reference file
@@ -740,7 +674,7 @@ def add_slipstream(cpacs_ref, slipstream, RPM, opt_method, prop_flag=True):
             elem.text = 'false'
 
     # R_station to be interpolated
-    r_lili = np.linspace(slipstream[0, 0], slipstream[-1, 0], 20)
+    r_lili = np.linspace(slipstream['slipstream_norm_1'][0, 0], slipstream['slipstream_norm_1'][-1, 0], 20)
 
     # Get the number of Angles
     for elem in root.findall(".//ll:numberOfAngles", namespaces=namespace):
@@ -769,22 +703,28 @@ def add_slipstream(cpacs_ref, slipstream, RPM, opt_method, prop_flag=True):
         elem.text = angle_str
 
     # Add axial induced speed
+    i = 1
     for elem in root.findall(".//ll:relativeAxialFlowSpeeds", namespaces=namespace):
-        axial_interp = np.interp(r_lili, slipstream[:, 0], slipstream[:, 1])
+        axial_interp = np.interp(r_lili, slipstream[f'slipstream_norm_{i}'][:, 0],
+                                 slipstream[f'slipstream_norm_{i}'][:, 1])
         axial = np.repeat(axial_interp.reshape(-1, 1),
                           angle_num, axis=1)
         axial = axial.T.flatten()
         axial_str = ';'.join(map(str, axial))  # change to str, use ; as divider
         elem.text = axial_str
+        i = i + 1
 
+    i = 1
     # Add tangential induced Speed
     for elem in root.findall(".//ll:relativeTangentialFlowSpeeds", namespaces=namespace):
-        tangential_interp = np.interp(r_lili, slipstream[:, 0], slipstream[:, 2])
+        tangential_interp = np.interp(r_lili, slipstream[f'slipstream_norm_{i}'][:, 0],
+                                      slipstream[f'slipstream_norm_{i}'][:, 2])
         tangential = np.repeat(tangential_interp.reshape(-1, 1),
                                angle_num, axis=1)
         tangential = tangential.T.flatten()
         tangential_str = ';'.join(map(str, tangential))
         elem.text = tangential_str
+        i = i + 1
 
     # for elem in root.findall(".//ll:chordwise", namespaces=namespace):
     #     text = elem
@@ -1580,19 +1520,24 @@ def variable_change(xdict, xml_path, origin_df, operpnt):
     return Cdo
 
 
-def history_visualization(his_file, optProb=SLSQP):
+def history_visualization(his_file, optProb='SLSQP'):
     # Variable plot part=========================================================================================
     history = History(his_file, optProb=optProb)
     chord3_his = history.getValues(names='chord3', major=True)['chord3']
     # Locate the deviated value of chord and find it index
-    error_index = int(np.where((chord3_his < 0.01) | (chord3_his > 2.21))[0])
-    chord3_his = np.delete(chord3_his, error_index)
+    indices = np.where((chord3_his < 0.01) | (chord3_his > 2.21))
+    error_index = indices[0][0] if indices[0].size > 0 else None
+
+    if error_index is not None:
+        chord3_his = np.delete(chord3_his, error_index)
 
     twist3_his = history.getValues(names='twist3', major=True)['twist3']
-    twist3_his = np.delete(twist3_his, error_index)
+    if error_index is not None:
+        twist3_his = np.delete(twist3_his, error_index)
 
     half_span_his = history.getValues(names='half span', major=True)['half span']
-    half_span_his = np.delete(half_span_his, error_index)
+    if error_index is not None:
+        half_span_his = np.delete(half_span_his, error_index)
 
     fig1, ax1 = plt.subplots(3, 1, figsize=(9, 8))
     fig1.suptitle('Variable History', fontsize=16)
@@ -1630,19 +1575,24 @@ def history_visualization(his_file, optProb=SLSQP):
 
     # Constraints plot part=========================================================================================
     whole_span_his = history.getValues(names='Whole Span', major=True)['Whole Span']
-    whole_span_his = np.delete(whole_span_his, error_index)
+    if error_index is not None:
+        whole_span_his = np.delete(whole_span_his, error_index)
 
     wing_area_his = history.getValues(names='Wing Area', major=True)['Wing Area']
-    wing_area_his = np.delete(wing_area_his, error_index)
+    if error_index is not None:
+        wing_area_his = np.delete(wing_area_his, error_index)
 
     lambda_his = history.getValues(names='Taper Ratio', major=True)['Taper Ratio']
-    lambda_his = np.delete(lambda_his, error_index)
+    if error_index is not None:
+        lambda_his = np.delete(lambda_his, error_index)
 
     wing_weight_percentage_his = history.getValues(names='Wing Weight Percentage', major=True)['Wing Weight Percentage']
-    wing_weight_percentage_his = np.delete(wing_weight_percentage_his, error_index)
+    if error_index is not None:
+        wing_weight_percentage_his = np.delete(wing_weight_percentage_his, error_index)
 
     AR_his = history.getValues(names='Aspect Ratio Change', major=True)['Aspect Ratio Change']
-    AR_his = np.delete(AR_his, error_index)
+    if error_index is not None:
+        AR_his = np.delete(AR_his, error_index)
 
     fig2, ax2 = plt.subplots(5, 1, figsize=(9, 10))
     fig2.suptitle('Constraint History', fontsize=16)
@@ -1652,6 +1602,7 @@ def history_visualization(his_file, optProb=SLSQP):
     ax2[0].set_title('Whole Span')
     ax2[0].set_xlabel('Iteration')
     ax2[0].set_ylabel('Whole Span [m]')
+    ax2[0].set_ylim([15, 30])
     ax2[0].grid(True)
     ax2[0].legend()
 
@@ -1660,6 +1611,7 @@ def history_visualization(his_file, optProb=SLSQP):
     ax2[1].set_title('Wing Area')
     ax2[1].set_xlabel('Iteration')
     ax2[1].set_ylabel('Wing Area [m^2]')
+    ax2[1].set_ylim([35, 50])
     ax2[1].grid(True)
     ax2[1].legend()
 
@@ -1668,6 +1620,7 @@ def history_visualization(his_file, optProb=SLSQP):
     ax2[2].set_title('Taper Ratio (λ)')
     ax2[2].set_xlabel('Iteration')
     ax2[2].set_ylabel('Taper Ratio [-]')
+    ax2[2].set_ylim([0.2, 1.0])
     ax2[2].grid(True)
     ax2[2].legend()
 
@@ -1676,6 +1629,7 @@ def history_visualization(his_file, optProb=SLSQP):
     ax2[3].set_title('Wing Weight Percentage')
     ax2[3].set_xlabel('Iteration')
     ax2[3].set_ylabel('Wing Weight Percentage [%]')
+    ax2[3].set_ylim([0.05, 0.20])
     ax2[3].grid(True)
     ax2[3].legend()
 
@@ -1684,6 +1638,7 @@ def history_visualization(his_file, optProb=SLSQP):
     ax2[4].set_title('Aspect Ratio Change')
     ax2[4].set_xlabel('Iteration')
     ax2[4].set_ylabel('Aspect Ratio Change [%]')
+    ax2[4].set_ylim([0.8, 2.0])
     ax2[4].grid(True)
     ax2[4].legend()
 
@@ -1692,7 +1647,8 @@ def history_visualization(his_file, optProb=SLSQP):
 
     # obj plot part=========================================================================================
     range_his = -np.asarray(history.getValues(names='obj', major=True)['obj'])/1000
-    range_his = np.delete(range_his, error_index)
+    if error_index is not None:
+        range_his = np.delete(range_his, error_index)
 
     fig3, ax3 = plt.subplots(figsize=(9, 10))
     fig3.suptitle('Range History', fontsize=16)
@@ -1700,6 +1656,7 @@ def history_visualization(his_file, optProb=SLSQP):
     ax3.set_title('Range')
     ax3.set_xlabel('Iteration')
     ax3.set_ylabel('Range [km]')
+    ax3.set_ylim([2700, 3200])
     ax3.grid(True)
     ax3.legend()
 

@@ -56,7 +56,7 @@ This section is used for Optimization process
 """
 
 
-def xf_xr_lili(oper_pnt, cpacs_init, RPM, xdict, origin_wing, prop_flag, opt_method):
+def xf_xr_lili(oper_pnt, cpacs_init, RPM, xdict, origin_wing, prop_flag, oper_pnt2, RPM2, opt_method):
     # for RPM in oper_pnt.RPM_list:
     """
     ================================================================================================================
@@ -67,17 +67,25 @@ def xf_xr_lili(oper_pnt, cpacs_init, RPM, xdict, origin_wing, prop_flag, opt_met
     geom_data = geomdata(beta_70=oper_pnt.beta_70)
 
     # Initialize the Propeller Class
-    propeller = Propeller(polar_dir, geom_data, oper_pnt, RPM)
-    propeller.generate_prop_section()
+    propeller_1 = Propeller(polar_dir, geom_data, oper_pnt, RPM)
+    propeller_1.generate_prop_section()
+    propeller_2 = Propeller(polar_dir, geom_data, oper_pnt2, RPM2)
+    propeller_2.generate_prop_section()
 
     # Set up xrotor case
-    xrotor_case = case(propeller, geom_data)
+    xrotor_case_1 = case(propeller_1, geom_data)
+    xrotor_case_2 = case(propeller_2, geom_data)
     # Operate XRotor
-    xr = operate_xrotor(xrotor_case, RPM=RPM)
+    xr_1 = operate_xrotor(xrotor_case_1, RPM=RPM)
+    xr_2 = operate_xrotor(xrotor_case_2, RPM=RPM2)
     # Get the slipstream output
-    slipstream = vput_xr(xr, RPM, print_flag=True)
+    slipstream = vput_xr(xr_1, RPM, print_flag=True)
+    slipstream_2 = vput_xr(xr_2, RPM, print_flag=True)
     # Normalize the slipstream with Vinf
-    slipstream_norm = slipstream_normalize(slipstream, xr)
+    slipstream_norm = slipstream_normalize(slipstream, xr_1)
+    slipstream_norm_2 = slipstream_normalize(slipstream_2, xr_1)
+    combined_slipstream = {"slipstream_norm_1": slipstream_norm,
+                           "slipstream_norm_2": slipstream_norm_2}
 
     """
     ================================================================================================================
@@ -85,7 +93,7 @@ def xf_xr_lili(oper_pnt, cpacs_init, RPM, xdict, origin_wing, prop_flag, opt_met
     ================================================================================================================
     """
     # Add the slipstream data to CPACS file
-    xml_path = add_slipstream(cpacs_init, slipstream_norm,
+    xml_path = add_slipstream(cpacs_init, combined_slipstream,
                               RPM, opt_method=opt_method, prop_flag=prop_flag)
     # xml_path = add_slipstream(cpacs_init, slipstream_norm,
     #                           RPM, prop_flag=prop_flag)
