@@ -68,3 +68,8 @@ In order to succesfully run this project, several modules should be installed at
  - [ ] Integration to the pre-existing aircraft design loop @ Bauhaus Luftfahrt e.V
  - [ ] Thesis Writing
  - [ ] :tada:
+
+# Documentation for XFoil_XROTOR_LILI Workflow
+* Optimization main script <**./Lifting_Line/wing_optimization.py**>
+* XFoil_XROTOR_LILI workflow main script <**./Lifting_Line/xrotor_liftingline_main.py**>
+  
